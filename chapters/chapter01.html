@@ -14,793 +14,1017 @@
     <header class="header">
       <div class="header-chip">📐 Chapter 1</div>
       <h1>Measurements</h1>
-      <p>Units, uncertainties, errors &amp; dimensional analysis</p>
+      <p>
+        Physical quantities, SI units, scientific notation &amp; conventions
+      </p>
     </header>
 
     <!-- NAVIGATION -->
     <nav class="nav" id="mainNav" aria-label="Section navigation">
       <div class="nav-inner">
-        <a href="#s1" class="nav-link" data-section="1">1. Quantities</a>
-        <a href="#s2" class="nav-link" data-section="2">2. Notation</a>
-        <a href="#s3" class="nav-link" data-section="3">3. Sig. Figures</a>
-        <a href="#s4" class="nav-link" data-section="4">4. Dimensions</a>
-        <a href="#s5" class="nav-link" data-section="5">5. Precision</a>
-        <a href="#s6" class="nav-link" data-section="6">6. Errors</a>
-        <a href="#s7" class="nav-link" data-section="7">7. Propagation</a>
-        <a href="#s8" class="nav-link" data-section="8">8. Sig. Fig. Calcs</a>
-        <a href="#s9" class="nav-link" data-section="9">9. Adv. Dimensions</a>
-        <a href="#s10" class="nav-link" data-section="10">10. Unit Systems</a>
-        <a href="#s11" class="nav-link" data-section="11">11. Supplementary</a>
-        <a href="#s12" class="nav-link" data-section="12">12. Order of Mag.</a>
+        <a href="#intro" class="nav-link" data-section="1">📖 Introduction</a>
+        <a href="#s1-1" class="nav-link" data-section="2"
+          >1.1 Physical Quantities</a
+        >
+        <a href="#s1-2" class="nav-link" data-section="3">1.2 SI System</a>
+        <a href="#derived" class="nav-link" data-section="4">Derived Units</a>
+        <a href="#sci-notation" class="nav-link" data-section="5"
+          >Scientific Notation</a
+        >
+        <a href="#prefixes" class="nav-link" data-section="6">Prefixes</a>
+        <a href="#conventions" class="nav-link" data-section="7">Conventions</a>
       </div>
     </nav>
 
     <main class="container">
       <a href="../index.html" class="back-home">← Back to all chapters</a>
 
-      <!-- ═══════════ PART 1 ═══════════ -->
-      <div class="part-divider"><span>Part 1 · Foundations</span></div>
-
-      <!-- SECTION 1 -->
-      <section id="s1">
+      <!-- ═══════════ LEARNING OBJECTIVES ═══════════ -->
+      <section id="objectives">
         <div class="cornell-card card-section1">
           <div class="section-bar">
-            <span class="section-number">1</span>
-            Physical Quantities &amp; Units
+            <span class="section-number">🎯</span>
+            Learning Objectives
+          </div>
+          <div class="cornell-body">
+            <div class="cornell-cue">
+              <div class="cue-label">Goals</div>
+              <span class="cue-keyword">Estimates</span>
+              <span class="cue-keyword">SI Conventions</span>
+              <span class="cue-keyword">Derived Units</span>
+              <span class="cue-keyword">Dimensional Analysis</span>
+              <span class="cue-keyword">Accuracy</span>
+              <span class="cue-keyword">Uncertainty</span>
+              <span class="cue-keyword">Scientific Notation</span>
+            </div>
+            <div class="cornell-notes">
+              <p>
+                <strong
+                  >After studying this chapter, the students will be able
+                  to:</strong
+                >
+              </p>
+              <ul>
+                <li>
+                  Make reasonable estimates of value of physical quantities
+                  <em
+                    >[of those quantities that are discussed in the topics of
+                    this grade]</em
+                  >.
+                </li>
+                <li>
+                  Use the conventions for indicating units, as set out in the SI
+                  units.
+                </li>
+                <li>
+                  Express derived units as products or quotients of the SI base
+                  units.
+                </li>
+                <li>
+                  Analyze the homogeneity of physical equations
+                  <em>[Through dimensional analysis]</em>.
+                </li>
+                <li>
+                  Derive formulae in simple cases
+                  <em>[Through using dimensional analysis]</em>.
+                </li>
+                <li>
+                  Analyze and critique the accuracy and precision of data
+                  collected by measuring instruments.
+                </li>
+                <li>Justify why all measurements contain some uncertainty.</li>
+                <li>
+                  Assess the uncertainty in a derived quantity
+                  <em
+                    >[By simple addition of absolute, fractional or percentage
+                    uncertainties]</em
+                  >.
+                </li>
+                <li>
+                  Quote answers with correct scientific notations, number of
+                  significant figures and units in all experimental and
+                  numerical results.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ PART 1: INTRODUCTION ═══════════ -->
+      <div class="part-divider"><span>Introduction to Physics</span></div>
+
+      <section id="intro">
+        <div class="cornell-card card-section2">
+          <div class="section-bar">
+            <span class="section-number">📖</span>
+            Physics — The Most Fundamental Science
+          </div>
+          <div class="cornell-body">
+            <div class="cornell-cue">
+              <div class="cue-label">Key Ideas</div>
+              <span class="cue-keyword">Fundamental branch</span>
+              <span class="cue-keyword">Experimental science</span>
+              <span class="cue-keyword">Global village</span>
+              <span class="cue-keyword">Measurement</span>
+            </div>
+            <div class="cornell-notes">
+              <p>
+                Physics is the
+                <strong>most fundamental branch of physical sciences</strong>.
+                It provides the basic principles and laws which help to
+                understand the mysteries of other branches of sciences such as
+                astronomy, chemistry, geology, biology and health sciences. The
+                tools, techniques and products of Physics have transformed our
+                dreams into realities. The comforts and pleasures added in our
+                lives are fruitful results of science, technology and
+                engineering in everyday life.
+              </p>
+
+              <p>
+                The Information technology has entirely changed the outlook of
+                mankind. The fast means of communication have brought people of
+                the entire world in so close contact that the whole world has
+                become a <strong>global village</strong>.
+              </p>
+
+              <p>
+                Physics is an <strong>experimental science</strong> and the
+                scientific method emphasizes the need of accurate measurement of
+                various measurable physical quantities. This chapter stresses in
+                understanding the concept of measuring techniques and recording
+                skills.
+              </p>
+
+              <div class="tip-box">
+                <strong>💭 Think Over!</strong><br />
+                <em
+                  >"Computer chips are made from silicon, which is obtained from
+                  sand. It is up to us whether we make a sand castle or a
+                  computer out of it."</em
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ SECTION 1.1 ═══════════ -->
+      <div class="part-divider"><span>Section 1.1</span></div>
+
+      <section id="s1-1">
+        <div class="cornell-card card-section3">
+          <div class="section-bar">
+            <span class="section-number">1.1</span>
+            Physical Quantities and Their Units
           </div>
           <div class="cornell-body">
             <div class="cornell-cue">
               <div class="cue-label">Key Terms</div>
               <span class="cue-keyword">Physical Quantity</span>
-              <span class="cue-keyword">Base Units (SI)</span>
-              <span class="cue-keyword">Derived Units</span>
-              <span class="cue-keyword">7 Base Quantities</span>
+              <span class="cue-keyword">Base Quantities</span>
+              <span class="cue-keyword">Derived Quantities</span>
+              <span class="cue-keyword">Standard</span>
+              <span class="cue-keyword">Measurement</span>
             </div>
             <div class="cornell-notes">
-              <h3>Physical Quantity</h3>
-              <div class="def-box">
-                <strong>Definition:</strong> Any quantity that can be measured
-                and consists of a <strong>numerical value</strong> and a
-                <strong>unit</strong> (e.g., <span class="math">5 kg</span>).
-              </div>
-              <h3>Base Units (SI)</h3>
               <p>
-                Fundamental, independent quantities that
-                <strong>cannot be defined</strong> in terms of other units.
+                The foundation of physics depends on
+                <strong>physical quantities</strong> in terms of which the laws
+                of Physics are expressed. Therefore, these quantities have to be
+                measured accurately. These are mass, length, time, velocity,
+                force, density, temperature, electric current, and numerous
+                others.
               </p>
-              <ul>
-                <li>
-                  <strong>Length</strong> — metre (<span class="math">m</span>)
-                </li>
-                <li>
-                  <strong>Mass</strong> — kilogram (<span class="math">kg</span
-                  >)
-                </li>
-                <li>
-                  <strong>Time</strong> — second (<span class="math">s</span>)
-                </li>
-                <li>
-                  <strong>Temperature</strong> — kelvin (<span class="math"
-                    >K</span
-                  >)
-                </li>
-                <li>
-                  <strong>Electric Current</strong> — ampere (<span class="math"
-                    >A</span
-                  >)
-                </li>
-                <li>
-                  <strong>Amount of Substance</strong> — mole (<span
-                    class="math"
-                    >mol</span
-                  >)
-                </li>
-                <li>
-                  <strong>Luminous Intensity</strong> — candela (<span
-                    class="math"
-                    >cd</span
-                  >)
-                </li>
-              </ul>
-              <h3>Derived Units</h3>
-              <p>Formed by <strong>combinations</strong> of base units.</p>
-              <ul>
-                <li>
-                  <strong>Velocity</strong> — <span class="math">m/s</span>
-                </li>
-                <li>
-                  <strong>Force</strong> — <span class="math">kg·m/s²</span> (or
-                  <span class="math">N</span>)
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Physics is built on <strong>7 SI base units</strong>. Every other
-              unit (derived) is a combination of these. A complete physical
-              quantity always has a number <em>and</em> a unit.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <!-- SECTION 2 -->
-      <section id="s2">
-        <div class="cornell-card card-section2">
-          <div class="section-bar">
-            <span class="section-number">2</span>
-            Scientific Notation &amp; Prefixes
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Scientific Notation</span>
-              <span class="cue-keyword">A × 10ⁿ</span>
-              <span class="cue-keyword">Metric Prefixes</span>
-              <span class="cue-keyword">Powers of 10</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Scientific Notation</h3>
-              <div class="def-box">
-                <strong>Definition:</strong> Expressing numbers as
-                <span class="math">A × 10<sup>n</sup></span> (where
-                <span class="math">1 ≤ A &lt; 10</span>) to easily manage very
-                large or very small measurements.
-              </div>
-              <h3>Common Prefixes</h3>
-              <table class="prefix-table">
-                <thead>
-                  <tr>
-                    <th>Prefix</th>
-                    <th>Symbol</th>
-                    <th>Factor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Mega</td>
-                    <td><span class="math">M</span></td>
-                    <td>10<sup>6</sup></td>
-                  </tr>
-                  <tr>
-                    <td>Kilo</td>
-                    <td><span class="math">k</span></td>
-                    <td>10<sup>3</sup></td>
-                  </tr>
-                  <tr>
-                    <td>Milli</td>
-                    <td><span class="math">m</span></td>
-                    <td>10<sup>−3</sup></td>
-                  </tr>
-                  <tr>
-                    <td>Micro</td>
-                    <td><span class="math">μ</span></td>
-                    <td>10<sup>−6</sup></td>
-                  </tr>
-                  <tr>
-                    <td>Nano</td>
-                    <td><span class="math">n</span></td>
-                    <td>10<sup>−9</sup></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Scientific notation keeps numbers manageable. Prefixes are
-              shorthand for powers of ten — memorise from
-              <strong>Mega (10⁶)</strong> down to <strong>Nano (10⁻⁹)</strong>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 3 -->
-      <section id="s3">
-        <div class="cornell-card card-section3">
-          <div class="section-bar">
-            <span class="section-number">3</span>
-            Uncertainty &amp; Significant Figures
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Accuracy</span>
-              <span class="cue-keyword">Precision</span>
-              <span class="cue-keyword">Systematic Error</span>
-              <span class="cue-keyword">Random Error</span>
-              <span class="cue-keyword">Significant Figures</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Accuracy vs. Precision</h3>
+              <h3>Two Categories of Physical Quantities</h3>
               <div class="compare-grid">
                 <div class="compare-item">
-                  <h4>🎯 Accuracy</h4>
+                  <h4>🧱 Base Quantities</h4>
                   <p>
-                    How close a measurement is to the
-                    <strong>true or accepted value</strong>.
+                    <strong>Not defined</strong> in terms of other physical
+                    quantities. Independent quantities that other physical
+                    quantities can be defined in terms of.<br /><em
+                      >Examples:</em
+                    >
+                    length, mass, time.
                   </p>
                 </div>
                 <div class="compare-item">
-                  <h4>🔁 Precision</h4>
+                  <h4>🔧 Derived Quantities</h4>
                   <p>
-                    The closeness of <strong>repeated measurements</strong> to
-                    each other.
+                    Depend on base quantities.<br /><em>Examples:</em> velocity,
+                    acceleration, force.
                   </p>
                 </div>
               </div>
-              <h3>Types of Errors</h3>
-              <ul>
-                <li>
-                  <strong>Systematic Errors</strong> — Shift all readings in
-                  <em>one direction</em>.
-                </li>
-                <li>
-                  <strong>Random Errors</strong> — Unpredictable scatter in
-                  measurements.
-                </li>
-              </ul>
-              <h3>Significant Figures</h3>
+
+              <h3>Steps in Measuring a Base Quantity</h3>
               <div class="def-box">
-                <strong>Definition:</strong> All accurately known digits
-                <strong>plus</strong> the first uncertain digit.
+                <strong>Step 1:</strong> The choice of a
+                <strong>standard</strong>.<br />
+                <strong>Step 2:</strong> The establishment of a
+                <strong>procedure for comparing</strong> the quantity to be
+                measured with the standard — so that a number and a unit are
+                determined as the measure of that quantity.
               </div>
+
+              <div class="tip-box">
+                Measurements must be <strong>reliable and accurate</strong> so
+                that they can be used easily and effectively.
+              </div>
+
+              <h3>🔬 Areas of Physics</h3>
+              <div class="system-grid">
+                <div class="system-card">
+                  <h4>Classical Areas</h4>
+                  <p>
+                    Mechanics · Heat &amp; Thermodynamics · Electromagnetism ·
+                    Optics · Sound · Hydrodynamics
+                  </p>
+                </div>
+                <div class="system-card">
+                  <h4>Modern Areas</h4>
+                  <p>
+                    Special &amp; General Relativity · Quantum Mechanics ·
+                    Atomic · Molecular · Nuclear Physics
+                  </p>
+                </div>
+                <div class="system-card">
+                  <h4>Matter &amp; Fields</h4>
+                  <p>
+                    Solid State · Particle · Superconductivity · Superfluidity ·
+                    Plasma · Magnetohydrodynamics
+                  </p>
+                </div>
+                <div class="system-card">
+                  <h4>Space Physics</h4>
+                  <p>Study of physical phenomena in space environments</p>
+                </div>
+              </div>
+
+              <h3>🌐 Interdisciplinary Areas of Physics</h3>
               <ul>
                 <li>
-                  Non-zero digits are <strong>always significant</strong>.
+                  <strong>Astrophysics</strong> — physics of celestial objects
                 </li>
                 <li>
-                  Zeros <strong>between</strong> non-zero digits are
-                  significant.
+                  <strong>Biophysics</strong> — physics in biological systems
                 </li>
-                <li>Leading zeros are <strong>not significant</strong>.</li>
+                <li>
+                  <strong>Chemical physics</strong> — physics of chemical
+                  processes
+                </li>
+                <li>
+                  <strong>Engineering physics</strong> — applied physics for
+                  engineering
+                </li>
+                <li><strong>Geophysics</strong> — physics of the Earth</li>
+                <li><strong>Medical physics</strong> — physics in medicine</li>
+                <li>
+                  <strong>Physical oceanography</strong> — physics of the oceans
+                </li>
+                <li>
+                  <strong>Physics of music</strong> — acoustics &amp; sound
+                </li>
               </ul>
             </div>
           </div>
           <div class="cornell-summary">
             <div class="summary-label">Summary</div>
             <p>
-              Accuracy ≠ Precision. Significant figures communicate measurement
-              <strong>reliability</strong>.
+              Physical quantities split into <strong>base</strong> (independent)
+              and <strong>derived</strong> (dependent). Measurement needs a
+              <strong>standard</strong> and a
+              <strong>comparison procedure</strong>, giving both a number and a
+              unit.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 4 -->
-      <section id="s4">
+      <!-- ═══════════ SECTION 1.2 ═══════════ -->
+      <div class="part-divider"><span>Section 1.2</span></div>
+
+      <section id="s1-2">
         <div class="cornell-card card-section4">
           <div class="section-bar">
-            <span class="section-number">4</span>
-            Dimensions of Physical Quantities
+            <span class="section-number">1.2</span>
+            International System of Units (SI)
           </div>
           <div class="cornell-body">
             <div class="cornell-cue">
               <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Dimensions</span>
-              <span class="cue-keyword">[M], [L], [T]</span>
-              <span class="cue-keyword">Dimensional Analysis</span>
-              <span class="cue-keyword">Homogeneity</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Dimensions</h3>
-              <div class="def-box">
-                <strong>Definition:</strong> The dependence of a physical
-                quantity on base quantities, represented as powers of
-                <strong>Mass [M]</strong>, <strong>Length [L]</strong>, and
-                <strong>Time [T]</strong>.
-              </div>
-              <h3>Dimensional Analysis</h3>
-              <ul>
-                <li><strong>Check homogeneity</strong> of equations.</li>
-                <li><strong>Derive relations</strong> between quantities.</li>
-              </ul>
-              <h3>Example: Force</h3>
-              <div class="formula-box">
-                <span class="math">Force = Mass × Acceleration</span><br />
-                <span class="math" style="font-size: 1.1rem"
-                  >[F] = [M<sup>1</sup> L<sup>1</sup> T<sup>−2</sup>]</span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Dimensions reduce quantities to <strong>[M], [L], [T]</strong>. If
-              dimensions don't match, the equation is <em>definitely wrong</em>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════ PART 2 ═══════════ -->
-      <div class="part-divider">
-        <span>Part 2 · Errors, Uncertainty &amp; Advanced</span>
-      </div>
-
-      <!-- SECTION 5 -->
-      <section id="s5">
-        <div class="cornell-card card-section5">
-          <div class="section-bar">
-            <span class="section-number">5</span>
-            Precision and Accuracy
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Accuracy</span>
-              <span class="cue-keyword">Precision</span>
-              <span class="cue-keyword">Least Count</span>
-              <span class="cue-keyword">Zero Error</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Accuracy</h3>
-              <div class="def-box">
-                <strong>Definition:</strong> The degree of
-                <strong>closeness</strong> between a measured value and the
-                <strong>true / standard value</strong>. High accuracy = little
-                to no systematic error.
-              </div>
-              <h3>Precision</h3>
-              <div class="def-box">
-                <strong>Definition:</strong> The degree of
-                <strong>exactness or reproducibility</strong> — how close
-                repeated measurements are to one another. Determined by the
-                <strong>least count</strong>.
-              </div>
-              <div class="tip-box">
-                <strong>Key Distinction:</strong> A measurement can be very
-                <strong>precise</strong> (e.g., repeating
-                <span class="math">5.123 cm</span>) but
-                <strong>inaccurate</strong> if the instrument has a zero-error.
-              </div>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Accuracy = closeness to <strong>truth</strong>; Precision =
-              closeness to <strong>each other</strong>. Always check for
-              calibration issues.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 6 -->
-      <section id="s6">
-        <div class="cornell-card card-section6">
-          <div class="section-bar">
-            <span class="section-number">6</span>
-            Uncertainty and Types of Errors
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Uncertainty (Δx)</span>
-              <span class="cue-keyword">Systematic Error</span>
-              <span class="cue-keyword">Random Error</span>
-              <span class="cue-keyword">Parallax</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Uncertainty (<span class="math">Δx</span>)</h3>
-              <div class="def-box">
-                <strong>Definition:</strong> The <strong>doubt</strong> around
-                any measurement, expressed as an absolute value alongside it.
-              </div>
-              <div class="formula-box">
-                <span class="math" style="font-size: 1.1rem"
-                  >L = 5.0 ± 0.1 cm</span
-                >
-              </div>
-              <h3>Systematic Errors</h3>
-              <ul>
-                <li>
-                  Shift measurements in
-                  <strong>one direction</strong> consistently.
-                </li>
-                <li>
-                  <strong>Causes:</strong> Zero-errors, faulty calibration,
-                  environmental factors.
-                </li>
-                <li>
-                  <strong>Fix:</strong> Recalibrate instruments, correct
-                  technique.
-                </li>
-              </ul>
-              <h3>Random Errors</h3>
-              <ul>
-                <li>
-                  Fluctuate <strong>randomly</strong> around the true value.
-                </li>
-                <li>
-                  <strong>Causes:</strong> Parallax, fluctuating conditions.
-                </li>
-                <li>
-                  <strong>Fix:</strong> Multiple trials → take the
-                  <strong>average</strong>.
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Every measurement has <strong>uncertainty</strong>. Systematic =
-              one-direction bias (recalibrate). Random = scatter (average out).
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 7 -->
-      <section id="s7">
-        <div class="cornell-card card-section7">
-          <div class="section-bar">
-            <span class="section-number">7</span>
-            Error Propagation
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Error Propagation</span>
-              <span class="cue-keyword">Absolute Uncertainty</span>
-              <span class="cue-keyword">Fractional Uncertainty</span>
-              <span class="cue-keyword">Powers Rule</span>
+              <span class="cue-keyword">SI System</span>
+              <span class="cue-keyword">1960</span>
+              <span class="cue-keyword">7 Base Units</span>
+              <span class="cue-keyword">Global Standard</span>
             </div>
             <div class="cornell-notes">
               <p>
-                When calculated quantities use measured values with
-                uncertainties, those uncertainties <strong>propagate</strong>:
+                In <strong>1960</strong>, an international committee agreed on a
+                set of definitions and standards to describe the physical
+                quantities. The system that was established is called the
+                <strong>System International (SI)</strong>.
               </p>
-              <div class="rule-grid">
-                <div class="rule-card">
-                  <h4>➕ Addition &amp; Subtraction</h4>
-                  <p><strong>Absolute uncertainties</strong> are added.</p>
-                  <span class="formula-mini">ΔZ = ΔA + ΔB</span>
-                </div>
-                <div class="rule-card">
-                  <h4>✖️ Multiplication &amp; Division</h4>
-                  <p><strong>Fractional uncertainties</strong> are added.</p>
-                  <span class="formula-mini">ΔZ/Z = ΔA/A + ΔB/B</span>
-                </div>
-                <div class="rule-card">
-                  <h4>🔺 Powers / Exponents</h4>
-                  <p>Fractional uncertainty × the power.</p>
-                  <span class="formula-mini">ΔZ/Z = n × (ΔA/A)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              <strong>Add absolutes</strong> for +/−;
-              <strong>add fractionals</strong> for ×/÷;
-              <strong>multiply by exponent</strong> for powers.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <!-- SECTION 8 -->
-      <section id="s8">
-        <div class="cornell-card card-section8">
-          <div class="section-bar">
-            <span class="section-number">8</span>
-            Significant Figures in Calculations
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Fewest Sig. Figs.</span>
-              <span class="cue-keyword">Least Decimal Place</span>
-              <span class="cue-keyword">Rounding</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Multiplication &amp; Division</h3>
-              <div class="def-box">
-                Result has the same number of sig. figs. as the measurement with
-                the <strong>fewest sig. figs.</strong>
-              </div>
-              <h3>Addition &amp; Subtraction</h3>
-              <div class="def-box">
-                Result is rounded to the
-                <strong>least number of decimal places</strong>.
-              </div>
-              <h3>Intermediate Steps</h3>
-              <div class="tip-box">
-                <strong>Golden Rule:</strong> Keep
-                <strong>at least one extra digit</strong> during intermediate
-                steps. Round only at the <strong>final step</strong>.
-              </div>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              ×/÷ → fewest sig. figs. +/− → fewest decimal places. Never round
-              mid-calculation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 9 -->
-      <section id="s9">
-        <div class="cornell-card card-section9">
-          <div class="section-bar">
-            <span class="section-number">9</span>
-            Advanced Dimensional Analysis
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Homogeneity</span>
-              <span class="cue-keyword">Consistency Check</span>
-              <span class="cue-keyword">Deriving Relations</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Dimensional Homogeneity</h3>
-              <div class="def-box">
-                Every valid equation must be
-                <strong>dimensionally consistent</strong> — all terms on both
-                sides share <strong>identical dimensions</strong>.
-              </div>
-              <h3>Applications</h3>
+              <p>
+                SI units are used by the world's scientific community and by
+                almost all nations. The System International (SI) consists of
+                <strong>two kinds of units</strong>:
+              </p>
               <ul>
-                <li>
-                  <strong>Checking Equations:</strong> e.g., verifying
-                  <span class="math">s = ut + ½at²</span>
-                </li>
-                <li>
-                  <strong>Deriving Relations:</strong> Finding how quantities
-                  depend on each other.
-                </li>
+                <li><strong>Base units</strong></li>
+                <li><strong>Derived units</strong></li>
               </ul>
-              <h3>Example Dimensions</h3>
+
+              <h3>Base Units</h3>
+              <div class="def-box">
+                There are <strong>seven base units</strong> for physical
+                quantities namely: length, mass, time, temperature, electric
+                current, light or luminous intensity and amount of substance
+                (with special reference to the number of particles).
+                <strong>Prefixes</strong> such as milli, micro, kilo, etc. may
+                be used with them to express smaller or larger quantities.
+              </div>
+
+              <p>
+                The names of base units for these physical quantities together
+                with symbols are listed in <strong>Table 1.1</strong>.
+              </p>
+
+              <h3>📊 Table 1.1 — SI Base Units</h3>
               <table class="prefix-table">
                 <thead>
                   <tr>
-                    <th>Quantity</th>
-                    <th>Dimension</th>
+                    <th>Physical Quantity</th>
+                    <th>SI Unit</th>
+                    <th>Symbol</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Length</td>
-                    <td><span class="math">[L]</span></td>
+                    <td>metre</td>
+                    <td><span class="math">m</span></td>
                   </tr>
                   <tr>
                     <td>Mass</td>
-                    <td><span class="math">[M]</span></td>
+                    <td>kilogram</td>
+                    <td><span class="math">kg</span></td>
                   </tr>
                   <tr>
                     <td>Time</td>
-                    <td><span class="math">[T]</span></td>
+                    <td>second</td>
+                    <td><span class="math">s</span></td>
                   </tr>
                   <tr>
-                    <td>Velocity</td>
-                    <td><span class="math">[L T<sup>−1</sup>]</span></td>
+                    <td>Electric current</td>
+                    <td>ampere</td>
+                    <td><span class="math">A</span></td>
                   </tr>
                   <tr>
-                    <td>Acceleration</td>
-                    <td><span class="math">[L T<sup>−2</sup>]</span></td>
+                    <td>Thermodynamic temperature</td>
+                    <td>kelvin</td>
+                    <td><span class="math">K</span></td>
                   </tr>
                   <tr>
-                    <td>Force</td>
-                    <td><span class="math">[M L T<sup>−2</sup>]</span></td>
+                    <td>Intensity of light</td>
+                    <td>candela</td>
+                    <td><span class="math">cd</span></td>
+                  </tr>
+                  <tr>
+                    <td>Amount of substance</td>
+                    <td>mole</td>
+                    <td><span class="math">mol</span></td>
                   </tr>
                 </tbody>
               </table>
-              <div class="tip-box">
-                <strong>Remember:</strong> Dimensional analysis can prove an
-                equation <em>wrong</em>, but not <em>right</em> — dimensionless
-                constants (½, π) are invisible to it!
-              </div>
             </div>
           </div>
           <div class="cornell-summary">
             <div class="summary-label">Summary</div>
             <p>
-              All terms must have <strong>identical dimensions</strong>. A fast
-              sanity check, but it ignores dimensionless constants.
+              The <strong>SI system</strong> (established 1960) is the global
+              standard, built on <strong>7 base units</strong> plus derived
+              units. Prefixes let us scale them for very small or very large
+              measurements.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════ PART 3 ═══════════ -->
-      <div class="part-divider">
-        <span>Part 3 · Systems, Supplementary &amp; Order of Magnitude</span>
-      </div>
-
-      <!-- SECTION 10 -->
-      <section id="s10">
-        <div class="cornell-card card-section10">
+      <!-- ═══════════ DERIVED UNITS ═══════════ -->
+      <section id="derived">
+        <div class="cornell-card card-section5">
           <div class="section-bar">
-            <span class="section-number">10</span>
-            Systems of Units
+            <span class="section-number">📐</span>
+            Derived Units
           </div>
           <div class="cornell-body">
             <div class="cornell-cue">
               <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">CGS System</span>
-              <span class="cue-keyword">FPS System</span>
-              <span class="cue-keyword">MKS System</span>
-              <span class="cue-keyword">SI System</span>
+              <span class="cue-keyword">Derived Units</span>
+              <span class="cue-keyword">Plane Angle (rad)</span>
+              <span class="cue-keyword">Solid Angle (sr)</span>
+              <span class="cue-keyword">Additional Units</span>
             </div>
             <div class="cornell-notes">
-              <h3>Four Major Systems</h3>
-              <div class="system-grid">
-                <div class="system-card">
-                  <h4>📏 CGS System</h4>
-                  <p>
-                    <strong>Centimetre</strong> (cm), <strong>Gram</strong> (g),
-                    <strong>Second</strong> (s)
-                  </p>
-                </div>
-                <div class="system-card">
-                  <h4>🇬🇧 FPS (British)</h4>
-                  <p>
-                    <strong>Foot</strong> (ft), <strong>Pound</strong> (lb),
-                    <strong>Second</strong> (s)
-                  </p>
-                </div>
-                <div class="system-card">
-                  <h4>📐 MKS System</h4>
-                  <p>
-                    <strong>Metre</strong> (m), <strong>Kilogram</strong> (kg),
-                    <strong>Second</strong> (s)
-                  </p>
-                </div>
-                <div class="system-card highlight">
-                  <h4>🌍 SI System</h4>
-                  <p>
-                    The globally accepted modern metric system — expands MKS to
-                    include <strong>7 base units</strong> and
-                    <strong>2 supplementary units</strong>.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Four main systems exist: <strong>CGS, FPS, MKS,</strong> and
-              <strong>SI</strong>. The SI system is the globally accepted
-              standard, building upon MKS with 7 base + 2 supplementary units.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 11 -->
-      <section id="s11">
-        <div class="cornell-card card-section11">
-          <div class="section-bar">
-            <span class="section-number">11</span>
-            Supplementary Quantities &amp; Units
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Plane Angle (θ)</span>
-              <span class="cue-keyword">Radian (rad)</span>
-              <span class="cue-keyword">Solid Angle (Ω)</span>
-              <span class="cue-keyword">Steradian (sr)</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Plane Angle (<span class="math">θ</span>)</h3>
-              <div class="def-box">
-                <strong>Unit:</strong> Radian (<span class="math">rad</span
-                >)<br />
-                <strong>Definition:</strong> Ratio of arc length to radius.
-              </div>
-              <div class="formula-box">
-                <span class="math" style="font-size: 1.2rem">θ = s / r</span>
-              </div>
-
-              <h3>Solid Angle (<span class="math">Ω</span>)</h3>
-              <div class="def-box">
-                <strong>Unit:</strong> Steradian (<span class="math">sr</span
-                >)<br />
-                <strong>Definition:</strong> Three-dimensional analogue of an
-                angle, subtended at the center of a sphere by a surface area.
-              </div>
-              <div class="formula-box">
-                <span class="math" style="font-size: 1.2rem"
-                  >Ω = Area / r²</span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="cornell-summary">
-            <div class="summary-label">Summary</div>
-            <p>
-              Two supplementary units: <strong>Radian</strong> (plane angle =
-              arc/radius) and <strong>Steradian</strong> (solid angle =
-              area/radius²). Both are dimensionless ratios.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 12 -->
-      <section id="s12">
-        <div class="cornell-card card-section12">
-          <div class="section-bar">
-            <span class="section-number">12</span>
-            Order of Magnitude
-          </div>
-          <div class="cornell-body">
-            <div class="cornell-cue">
-              <div class="cue-label">Key Terms</div>
-              <span class="cue-keyword">Order of Magnitude</span>
-              <span class="cue-keyword">Nearest Power of 10</span>
-              <span class="cue-keyword">Estimation Rule</span>
-              <span class="cue-keyword">Standard Form</span>
-            </div>
-            <div class="cornell-notes">
-              <h3>Definition</h3>
-              <div class="def-box">
-                <strong>Order of Magnitude:</strong> The nearest
-                <strong>power of 10</strong> that represents the scale or size
-                of a physical quantity.
-              </div>
-
-              <h3>Estimation Rule</h3>
               <p>
-                Express any measurement in standard form as
-                <span class="math">A × 10<sup>n</sup></span
-                >, where <span class="math">0.5 &lt; A ≤ 5</span>. The exponent
-                <span class="math">n</span> represents the
-                <strong>order of magnitude</strong>.
+                Derived units are those units which
+                <strong>depend on the base units</strong>. Some of the derived
+                units are given in <strong>Table 1.2</strong>. The units of
+                <strong>plane angle</strong> and
+                <strong>solid angle</strong> have also been included in the list
+                of derived units since <strong>1995</strong>.
               </p>
 
-              <h3>Example</h3>
+              <h3>📊 Table 1.2 — Common Derived Units</h3>
+              <table class="prefix-table">
+                <thead>
+                  <tr>
+                    <th>Physical Quantity</th>
+                    <th>Unit</th>
+                    <th>Symbol</th>
+                    <th>In Base Units</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Plane angle</td>
+                    <td>radian</td>
+                    <td><span class="math">rad</span></td>
+                    <td>dimensionless</td>
+                  </tr>
+                  <tr>
+                    <td>Solid angle</td>
+                    <td>steradian</td>
+                    <td><span class="math">sr</span></td>
+                    <td>dimensionless</td>
+                  </tr>
+                  <tr>
+                    <td>Force</td>
+                    <td>newton</td>
+                    <td><span class="math">N</span></td>
+                    <td><span class="math">kg m s⁻²</span></td>
+                  </tr>
+                  <tr>
+                    <td>Work</td>
+                    <td>joule</td>
+                    <td><span class="math">J</span></td>
+                    <td><span class="math">N m = kg m² s⁻²</span></td>
+                  </tr>
+                  <tr>
+                    <td>Power</td>
+                    <td>watt</td>
+                    <td><span class="math">W</span></td>
+                    <td><span class="math">J s⁻¹ = kg m² s⁻³</span></td>
+                  </tr>
+                  <tr>
+                    <td>Electric charge</td>
+                    <td>coulomb</td>
+                    <td><span class="math">C</span></td>
+                    <td><span class="math">A s</span></td>
+                  </tr>
+                  <tr>
+                    <td>Pressure</td>
+                    <td>pascal</td>
+                    <td><span class="math">Pa</span></td>
+                    <td><span class="math">N m⁻² = kg m⁻¹ s⁻²</span></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h3>Additional Permitted Units</h3>
+              <p>
+                In addition to base and derived units, the SI permits the use of
+                certain additional units, including:
+              </p>
+              <ul>
+                <li>
+                  The traditional
+                  <strong>mathematical units for angles</strong> (degree,
+                  arcminute, arcsecond).
+                </li>
+                <li>
+                  The traditional units for
+                  <strong>standard time</strong> (minute, hour, day, year).
+                </li>
+                <li>
+                  The <strong>logarithmic units</strong> bel (and its multiples,
+                  such as the decibel).
+                </li>
+                <li>
+                  Two metric units for ordinary life: <strong>litre</strong> for
+                  volume and <strong>tonne</strong> (metric ton) for large
+                  masses.
+                </li>
+                <li>
+                  Two non-metric scientific units:
+                  <strong>atomic mass unit (μ)</strong> and the
+                  <strong>electron volt (eV)</strong>.
+                </li>
+                <li>
+                  The <strong>nautical mile</strong> and <strong>knot</strong> —
+                  used at sea and in meteorology.
+                </li>
+                <li>
+                  The <strong>acre</strong> and <strong>hectare</strong> —
+                  common metric units of land area.
+                </li>
+                <li>
+                  The <strong>bar</strong> — a unit of pressure (millibar in
+                  meteorology, kilobar in engineering).
+                </li>
+                <li>
+                  The <strong>angstrom</strong> and the <strong>barn</strong> —
+                  units used in physics and astronomy.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="cornell-summary">
+            <div class="summary-label">Summary</div>
+            <p>
+              Derived units come from combinations of base units. Since
+              <strong>1995</strong>, plane angle (rad) and solid angle (sr) are
+              also included. SI also permits several traditional units (degree,
+              litre, tonne, eV, etc.) for practical use.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ SCIENTIFIC NOTATION ═══════════ -->
+      <section id="sci-notation">
+        <div class="cornell-card card-section6">
+          <div class="section-bar">
+            <span class="section-number">🔢</span>
+            Scientific Notation
+          </div>
+          <div class="cornell-body">
+            <div class="cornell-cue">
+              <div class="cue-label">Key Terms</div>
+              <span class="cue-keyword">Scientific Notation</span>
+              <span class="cue-keyword">Standard Form</span>
+              <span class="cue-keyword">Powers of Ten</span>
+              <span class="cue-keyword">One Non-Zero Digit</span>
+            </div>
+            <div class="cornell-notes">
+              <div class="def-box">
+                Numbers are expressed in <strong>standard form</strong> called
+                scientific notation, which employs
+                <strong>powers of ten</strong>. The internationally accepted
+                practice is that there should be
+                <strong>only one non-zero digit left of the decimal</strong>.
+              </div>
+
+              <h3>Examples</h3>
               <div class="formula-box">
-                Speed of light = <span class="math">3 × 10<sup>8</sup> m/s</span
-                ><br />
-                <strong>Order of magnitude = 10<sup>8</sup></strong>
+                <span class="math">134.7</span> →
+                <span class="math">1.347 × 10²</span>
+              </div>
+              <div class="formula-box">
+                <span class="math">0.0023</span> →
+                <span class="math">2.3 × 10⁻³</span>
               </div>
 
               <div class="tip-box">
-                <strong>Why it matters:</strong> Orders of magnitude let you
-                quickly compare vastly different scales — from atoms (<span
-                  class="math"
-                  >10<sup>−10</sup> m</span
-                >) to galaxies (<span class="math">10<sup>21</sup> m</span>) —
-                without worrying about exact numbers.
+                <strong
+                  >💡 Interesting Information — Order of Magnitude of Some
+                  Masses</strong
+                >
+                <table class="prefix-table" style="margin-top: 0.5rem">
+                  <thead>
+                    <tr>
+                      <th>Mass (kg)</th>
+                      <th>Example</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="math">10⁻³⁰</span></td>
+                      <td>Electron</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁻²⁷</span></td>
+                      <td>Proton</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁻²⁵</span></td>
+                      <td>Uranium atom</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁻²¹</span></td>
+                      <td>DNA molecule</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁻¹⁵</span></td>
+                      <td>Cell</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁻³</span></td>
+                      <td>Mosquito</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁰</span></td>
+                      <td>Book</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10³</span></td>
+                      <td>Car</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10⁸</span></td>
+                      <td>Oil tanker</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10¹²</span></td>
+                      <td>Mount Everest</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10²²</span></td>
+                      <td>Earth</td>
+                    </tr>
+                    <tr>
+                      <td><span class="math">10³⁰</span></td>
+                      <td>Sun</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
           <div class="cornell-summary">
             <div class="summary-label">Summary</div>
             <p>
-              Order of magnitude = the <strong>power of 10</strong> nearest to a
-              quantity's size. It's a quick estimation tool for comparing scales
-              across physics.
+              Scientific notation puts numbers in the form
+              <span class="math">A × 10ⁿ</span> with exactly
+              <strong>one non-zero digit</strong> to the left of the decimal.
+              Perfect for handling everything from electron masses to the mass
+              of the Sun.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ PREFIXES ═══════════ -->
+      <section id="prefixes">
+        <div class="cornell-card card-section7">
+          <div class="section-bar">
+            <span class="section-number">🔤</span>
+            Prefixes
+          </div>
+          <div class="cornell-body">
+            <div class="cornell-cue">
+              <div class="cue-label">Key Terms</div>
+              <span class="cue-keyword">Prefixes</span>
+              <span class="cue-keyword">Steps of 1000</span>
+              <span class="cue-keyword">centi, deci, deca, hecto</span>
+              <span class="cue-keyword">atto → exa</span>
+            </div>
+            <div class="cornell-notes">
+              <p>
+                Most prefixes indicate order of magnitude in
+                <strong>steps of 1000</strong> and provide a convenient way to
+                express large and small numbers, to eliminate non-significant
+                digits. SI also includes <strong>four other prefixes</strong> to
+                accommodate usage already established before the introduction of
+                SI:
+              </p>
+              <ul>
+                <li>
+                  <strong>centi-</strong> (<span class="math">10⁻²</span>)
+                </li>
+                <li><strong>deci-</strong> (<span class="math">10⁻¹</span>)</li>
+                <li><strong>deca-</strong> (<span class="math">10¹</span>)</li>
+                <li><strong>hecto-</strong> (<span class="math">10²</span>)</li>
+              </ul>
+
+              <h3>📊 Table 1.3 — Prefixes for Powers of Ten</h3>
+              <table class="prefix-table">
+                <thead>
+                  <tr>
+                    <th>Factor</th>
+                    <th>Prefix</th>
+                    <th>Symbol</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="math">10⁻¹⁸</span></td>
+                    <td>atto</td>
+                    <td><span class="math">a</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻¹⁵</span></td>
+                    <td>femto</td>
+                    <td><span class="math">f</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻¹²</span></td>
+                    <td>pico</td>
+                    <td><span class="math">p</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻⁹</span></td>
+                    <td>nano</td>
+                    <td><span class="math">n</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻⁶</span></td>
+                    <td>micro</td>
+                    <td><span class="math">μ</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻³</span></td>
+                    <td>milli</td>
+                    <td><span class="math">m</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻²</span></td>
+                    <td>centi</td>
+                    <td><span class="math">c</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁻¹</span></td>
+                    <td>deci</td>
+                    <td><span class="math">d</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10¹</span></td>
+                    <td>deca</td>
+                    <td><span class="math">da</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10²</span></td>
+                    <td>hecto</td>
+                    <td><span class="math">h</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10³</span></td>
+                    <td>kilo</td>
+                    <td><span class="math">k</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁶</span></td>
+                    <td>mega</td>
+                    <td><span class="math">M</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10⁹</span></td>
+                    <td>giga</td>
+                    <td><span class="math">G</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10¹²</span></td>
+                    <td>tera</td>
+                    <td><span class="math">T</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10¹⁵</span></td>
+                    <td>peta</td>
+                    <td><span class="math">P</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="math">10¹⁸</span></td>
+                    <td>exa</td>
+                    <td><span class="math">E</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="cornell-summary">
+            <div class="summary-label">Summary</div>
+            <p>
+              Prefixes scale units in <strong>steps of 1000</strong> (mostly).
+              Four extra prefixes — <em>centi, deci, deca, hecto</em> — were
+              retained from pre-SI usage. Range:
+              <strong>atto (10⁻¹⁸)</strong> to <strong>exa (10¹⁸)</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ CONVENTIONS ═══════════ -->
+      <section id="conventions">
+        <div class="cornell-card card-section8">
+          <div class="section-bar">
+            <span class="section-number">✍️</span>
+            Conventions for Using SI Units
+          </div>
+          <div class="cornell-body">
+            <div class="cornell-cue">
+              <div class="cue-label">Key Rules</div>
+              <span class="cue-keyword">Symbols not Abbreviations</span>
+              <span class="cue-keyword">Lowercase Units</span>
+              <span class="cue-keyword">Capital for Names</span>
+              <span class="cue-keyword">No Plurals</span>
+              <span class="cue-keyword">No Full Stops</span>
+              <span class="cue-keyword">Spacing Rules</span>
+            </div>
+            <div class="cornell-notes">
+              <p>
+                Use of SI units requires special care, more particularly in
+                writing prefixes. Some points to note are:
+              </p>
+
+              <div class="rule-grid">
+                <div class="rule-card">
+                  <h4>1️⃣ Symbols, Not Abbreviations</h4>
+                  <p>
+                    Each SI unit is represented by a <strong>symbol</strong>,
+                    not an abbreviation. These symbols are the same in all
+                    languages.
+                  </p>
+                  <p>
+                    <em>Example:</em> Use "<span class="math">A</span>" not
+                    "amp"; "<span class="math">s</span>" not "sec"; "SI" not
+                    "S.I."
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>2️⃣ Full Names — Lowercase</h4>
+                  <p>
+                    Full name of a unit does
+                    <strong>not begin with a capital letter</strong>.
+                  </p>
+                  <p>
+                    <em>Example:</em> newton, metre, etc. —
+                    <strong>exception:</strong> Celsius.
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>3️⃣ Symbols — Lowercase</h4>
+                  <p>Symbols appear in <strong>lower case</strong>.</p>
+                  <p>
+                    <em>Example:</em> "<span class="math">m</span>" for metre,
+                    "<span class="math">s</span>" for second.
+                    <strong>Exception:</strong> "<span class="math">L</span>"
+                    for litre.
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>4️⃣ Named After Scientists → Capital</h4>
+                  <p>
+                    Symbols named after scientists have
+                    <strong>initial letters capital</strong>.
+                  </p>
+                  <p>
+                    <em>Example:</em> "<span class="math">N</span>" for newton,
+                    "<span class="math">Pa</span>" for pascal, "<span
+                      class="math"
+                      >W</span
+                    >" for watt.
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>5️⃣ Upright (Roman) Style</h4>
+                  <p>
+                    Symbols and prefixes are printed in
+                    <strong>upright (roman) style</strong> regardless of the
+                    surrounding text style.
+                  </p>
+                  <p>
+                    <em>Example:</em> a distance of
+                    <span class="math">50 m</span>.
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>6️⃣ No Plural Form</h4>
+                  <p>Symbols do <strong>not take plural form</strong>.</p>
+                  <p>
+                    <em>Example:</em> <span class="math">1 mm</span>,
+                    <span class="math">100 mm</span>,
+                    <span class="math">1 kg</span>,
+                    <span class="math">60 kg</span>.
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>7️⃣ No Full Stops</h4>
+                  <p>
+                    No full stop or dot is placed after the symbol —
+                    <strong>except at the end of a sentence</strong>.
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>8️⃣ Prefix Attached to Unit</h4>
+                  <p>
+                    Prefix is written
+                    <strong>before and without a space</strong> to the base
+                    unit.
+                  </p>
+                  <p>
+                    <em>Example:</em> "<span class="math">mL</span>" not "m L";
+                    "<span class="math">ms</span>" not "m s".
+                  </p>
+                </div>
+
+                <div class="rule-card">
+                  <h4>9️⃣ Spacing Between Units &amp; Values</h4>
+                  <p>
+                    Base units are written <strong>one space apart</strong>.
+                    Leave a space between the number (value) and the symbol.
+                  </p>
+                  <p>
+                    <em>Example:</em> <span class="math">1 kg</span>,
+                    <span class="math">10 m s⁻¹</span>, etc.
+                  </p>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <strong
+                  >⏱️ For Your Information — Approximate Time Intervals</strong
+                >
+                <table class="prefix-table" style="margin-top: 0.5rem">
+                  <thead>
+                    <tr>
+                      <th>Event / Description</th>
+                      <th>Interval (s)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Age of the universe</td>
+                      <td><span class="math">5 × 10¹⁷</span></td>
+                    </tr>
+                    <tr>
+                      <td>Age of the Earth</td>
+                      <td><span class="math">1.4 × 10¹⁷</span></td>
+                    </tr>
+                    <tr>
+                      <td>One year</td>
+                      <td><span class="math">3.2 × 10⁷</span></td>
+                    </tr>
+                    <tr>
+                      <td>One day</td>
+                      <td><span class="math">8.6 × 10⁴</span></td>
+                    </tr>
+                    <tr>
+                      <td>Time between normal heartbeats</td>
+                      <td><span class="math">8 × 10⁻¹</span></td>
+                    </tr>
+                    <tr>
+                      <td>Period of audible sound waves</td>
+                      <td><span class="math">1 × 10⁻³</span></td>
+                    </tr>
+                    <tr>
+                      <td>Period of typical radiowaves</td>
+                      <td><span class="math">1 × 10⁻⁸</span></td>
+                    </tr>
+                    <tr>
+                      <td>Period of vibration of an atom in a solid</td>
+                      <td><span class="math">1 × 10⁻¹³</span></td>
+                    </tr>
+                    <tr>
+                      <td>Period of visible light waves</td>
+                      <td><span class="math">2 × 10⁻¹⁵</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="def-box">
+                <strong>🌟 Do You Know?</strong><br />
+                Mass can be thought of as a form of energy. In effect, mass is a
+                highly concentrated form of energy. Einstein's famous equation,
+                <span class="math">E = mc²</span>, means:
+                <div class="formula-box" style="margin-top: 0.5rem">
+                  <span class="math">Energy = mass × (speed of light)²</span>
+                </div>
+                According to this equation, <strong>1 kg</strong> of mass is
+                actually <span class="math">9 × 10¹⁶ J</span> of energy.
+              </div>
+            </div>
+          </div>
+          <div class="cornell-summary">
+            <div class="summary-label">Summary</div>
+            <p>
+              <strong>9 golden rules</strong> govern SI notation: use symbols
+              (not abbreviations), lowercase names/symbols (except Celsius,
+              litre, and units named after scientists), no plurals, no full
+              stops, and always leave spaces between value and unit.
             </p>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- BACK TO TOP BUTTON -->
+    <!-- BACK TO TOP -->
     <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
     <!-- FOOTER -->
     <footer class="footer">
-      <p>
-        Physics Chapter 1: Measurements — Complete Study Notes (12 Sections)
-      </p>
+      <p>Physics Chapter 1: Measurements — <em>In progress...</em></p>
       <p style="margin-top: 0.3rem">
         <a
           href="../index.html"
@@ -814,68 +1038,57 @@
       </p>
     </footer>
 
-    <!-- ===== JAVASCRIPT FOR ANIMATIONS ===== -->
+    <!-- JAVASCRIPT -->
     <script>
-      // 1. Scroll-triggered card reveal
+      // Scroll reveal
       const cards = document.querySelectorAll(".cornell-card");
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-              setTimeout(() => {
-                entry.target.classList.add("visible");
-              }, index * 80);
+              setTimeout(
+                () => entry.target.classList.add("visible"),
+                index * 80,
+              );
               observer.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
       );
-
       cards.forEach((card) => observer.observe(card));
 
-      // 2. Progress bar
+      // Progress bar
       const progressBar = document.getElementById("progressBar");
       window.addEventListener("scroll", () => {
         const scrollTop = window.scrollY;
         const docHeight =
           document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrollTop / docHeight) * 100;
-        progressBar.style.width = progress + "%";
+        progressBar.style.width = (scrollTop / docHeight) * 100 + "%";
       });
 
-      // 3. Back to top button
+      // Back to top
       const backTop = document.getElementById("backTop");
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 400) {
-          backTop.classList.add("show");
-        } else {
-          backTop.classList.remove("show");
-        }
+        backTop.classList.toggle("show", window.scrollY > 400);
       });
-      backTop.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+      backTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      );
 
-      // 4. Nav shadow on scroll
+      // Nav shadow
       const nav = document.getElementById("mainNav");
       window.addEventListener("scroll", () => {
-        if (window.scrollY > 10) {
-          nav.classList.add("scrolled");
-        } else {
-          nav.classList.remove("scrolled");
-        }
+        nav.classList.toggle("scrolled", window.scrollY > 10);
       });
 
-      // 5. Active nav link highlight on scroll
+      // Active nav highlight
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll(".nav-link");
-
       window.addEventListener("scroll", () => {
         let current = "";
         sections.forEach((section) => {
-          const sectionTop = section.offsetTop - 100;
-          if (window.scrollY >= sectionTop) {
+          if (window.scrollY >= section.offsetTop - 100) {
             current = section.getAttribute("id");
           }
         });
