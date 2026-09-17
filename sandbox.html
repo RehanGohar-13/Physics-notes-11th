@@ -21,23 +21,64 @@
         height: 100vh;
         height: 100dvh;
         overflow: hidden;
-        padding-top: 56px; /* FIX: Pushes sandbox below the top navbar */
+        padding-top: 5px; /* space for top navbar */
       }
 
+      /* ===== SANDBOX TABS — MOBILE SCROLL FIX ===== */
       .sandbox-tabs {
         position: relative;
         flex-shrink: 0;
-        overflow-x: auto; /* FIX: Enables horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        width: 100%;
+        overflow-x: auto; /* enables horizontal scroll */
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; /* smooth iOS swipe */
+        scrollbar-width: none; /* hide scrollbar Firefox */
         border-bottom: 1px solid var(--glass-border);
-        background: var(--bg-deep);
+        background: rgba(6, 6, 15, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .sandbox-tabs::-webkit-scrollbar {
+        display: none; /* hide scrollbar Chrome/Safari */
       }
 
       .sandbox-tabs-inner {
         display: flex;
-        gap: 8px;
-        padding: 10px 12px;
-        width: max-content; /* FIX: Forces pills to stay in a row so they scroll */
+        flex-wrap: nowrap; /* force single row */
+        gap: 6px;
+        padding: 8px 10px; /* tighter to the edges (was too much) */
+        width: max-content; /* let content define width so it can scroll */
+        min-width: 100%;
+      }
+
+      .tab-btn {
+        flex: 0 0 auto; /* don't shrink, don't grow — keep natural size */
+        padding: 10px 14px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text-muted);
+        font-size: 0.78rem;
+        font-weight: 600;
+        white-space: nowrap;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: var(--transition);
+      }
+      .tab-btn.active {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 240, 255, 0.15),
+          rgba(0, 255, 136, 0.1)
+        );
+        border-color: var(--neon-cyan);
+        color: var(--neon-cyan);
+        box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+      }
+      .tab-btn:active {
+        transform: scale(0.96);
       }
 
       .sandbox-body {
