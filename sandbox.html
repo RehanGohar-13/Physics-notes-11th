@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#06060f" />
+    <title>🧪 Physics Sandbox</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ===== SANDBOX-SPECIFIC OVERRIDES ===== */
+      body {
+        overflow: hidden;
+      }
+      .sandbox-wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+      }
+      .sandbox-tabs {
+        position: relative;
+        top: 0;
+        flex-shrink: 0;
+      }
+      .sandbox-body {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 80px;
+      }
+      .sandbox-module {
+        display: none;
+        padding: 12px;
+      }
+      .sandbox-module.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Canvas fills width, fixed aspect */
+      .sim-canvas-wrap {
+        aspect-ratio: 4/3;
+        max-height: 45vh;
+        position: relative;
+      }
+      .sim-canvas-wrap canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .sim-canvas-wrap.tall {
+        aspect-ratio: 3/4;
+        max-height: 55vh;
+      }
+      .sim-canvas-wrap.square {
+        aspect-ratio: 1/1;
+        max-height: 50vh;
+      }
+
+      /* Playground specific */
+      .playground-hud {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        display: flex;
+        gap: 6px;
+        z-index: 10;
+      }
+      .hud-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(6, 6, 15, 0.85);
+        border: 1px solid var(--glass-border);
+        color: var(--text-bright);
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+      }
+      .hud-btn.active {
+        border-color: var(--neon-green);
+        color: var(--neon-green);
+      }
+
+      /* Graph canvas */
+      .graph-canvas-wrap {
+        aspect-ratio: 16/10;
+        max-height: 40vh;
+      }
+
+      /* Equation input row */
+      .eq-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+      .eq-color {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .eq-input {
+        flex: 1;
+        padding: 10px 12px;
+        background: #05050f;
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        color: var(--text-bright);
+        font-family: "Consolas", monospace;
+        font-size: 0.9rem;
+        min-height: 42px;
+      }
+      .eq-input:focus {
+        border-color: var(--neon-cyan);
+        outline: none;
+      }
+      .eq-remove {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 0, 170, 0.1);
+        color: var(--neon-magenta);
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Calculator sub-tabs */
+      .calc-tabs {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 12px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+      }
+      .calc-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .calc-tab {
+        padding: 8px 14px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        white-space: nowrap;
+        min-height: 38px;
+      }
+      .calc-tab.active {
+        background: rgba(0, 240, 255, 0.1);
+        border-color: var(--neon-cyan);
+        color: var(--neon-cyan);
+      }
+      .calc-panel {
+        display: none;
+      }
+      .calc-panel.active {
+        display: block;
+      }
+
+      /* Unit converter */
+      .converter-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .converter-row select {
+        flex: 1;
+        padding: 10px;
+        background: #05050f;
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        color: var(--text-bright);
+        font-size: 0.85rem;
+        min-height: 42px;
+      }
+
+      @media (min-width: 640px) {
+        .sandbox-module {
+          padding: 20px;
+        }
+        .sim-canvas-wrap {
+          max-height: 55vh;
+        }
+      }
+      @media (min-width: 900px) {
+        .sandbox-module {
+          max-width: 1000px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 320px;
+          gap: 20px;
+        }
+        .sandbox-module .module-header,
+        .sandbox-module .sim-canvas-wrap,
+        .sandbox-module .sim-stats,
+        .sandbox-module .result-box {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar" style="display: none"></div>
+
+    <nav class="navbar">
+      <a href="index.html" class="nav-back">← Home</a>
+      <span class="nav-logo" style="font-size: 0.85rem"
+        >🧪 <span>SANDBOX</span></span
+      >
+    </nav>
+
+    <div class="sandbox-wrap">
+      <!-- ===== MODULE TABS ===== -->
+      <div class="sandbox-tabs">
+        <div class="sandbox-tabs-inner">
+          <button class="tab-btn active" data-tab="playground">
+            🎮 Playground
+          </button>
+          <button class="tab-btn" data-tab="projectile">🚀 Projectile</button>
+          <button class="tab-btn" data-tab="freefall">🎢 Free Fall</button>
+          <button class="tab-btn" data-tab="graph">📊 Grapher</button>
+          <button class="tab-btn" data-tab="calculator">🧮 Calculator</button>
+        </div>
+      </div>
+
+      <div class="sandbox-body">
+        <!-- =============================================
+           MODULE 1: PLAYGROUND
+           ============================================= -->
+        <div class="sandbox-module active" id="mod-playground">
+          <div class="module-header">
+            <h2>🎮 Physics Playground</h2>
+            <p>
+              Tap to place objects. Watch real gravity, bouncing, and
+              collisions!
+            </p>
+          </div>
+
+          <!-- Tool Palette -->
+          <div class="tool-palette" id="pgTools">
+            <button class="tool-btn active" data-tool="ball">
+              <span class="icon">⚽</span>Ball
+            </button>
+            <button class="tool-btn" data-tool="wall">
+              <span class="icon">🧱</span>Wall
+            </button>
+            <button class="tool-btn" data-tool="ramp">
+              <span class="icon">📐</span>Ramp
+            </button>
+            <button class="tool-btn" data-tool="eraser">
+              <span class="icon">🗑️</span>Erase
+            </button>
+          </div>
+
+          <!-- Canvas -->
+          <div class="sim-canvas-wrap" id="pgCanvasWrap">
+            <canvas id="pgCanvas"></canvas>
+            <div class="playground-hud">
+              <button
+                class="hud-btn active"
+                id="pgPlayBtn"
+                onclick="pgTogglePlay()"
+              >
+                ▶
+              </button>
+              <button class="hud-btn" onclick="pgReset()">↺</button>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="controls-panel">
+            <h3>⚙️ World Settings</h3>
+            <div class="control-group">
+              <div class="control-label">
+                Gravity <span class="value" id="pgGravVal">9.8 m/s²</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="pgGravity"
+                min="0"
+                max="30"
+                step="0.1"
+                value="9.8"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Bounciness <span class="value" id="pgBounceVal">0.7</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="pgBounce"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.7"
+              />
+            </div>
+            <div class="preset-row">
+              <button class="preset-chip" onclick="pgPreset('earth')">
+                🌍 Earth
+              </button>
+              <button class="preset-chip" onclick="pgPreset('moon')">
+                🌙 Moon
+              </button>
+              <button class="preset-chip" onclick="pgPreset('jupiter')">
+                🪐 Jupiter
+              </button>
+              <button class="preset-chip" onclick="pgPreset('zero')">
+                🚀 Zero-G
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- =============================================
+           MODULE 2: PROJECTILE LAB
+           ============================================= -->
+        <div class="sandbox-module" id="mod-projectile">
+          <div class="module-header">
+            <h2>🚀 Projectile Motion Lab</h2>
+            <p>Launch a projectile and watch the trajectory in real-time.</p>
+          </div>
+
+          <div class="sim-canvas-wrap" id="projCanvasWrap">
+            <canvas id="projCanvas"></canvas>
+          </div>
+
+          <div class="sim-stats" id="projStats">
+            <div class="stat-card">
+              <div class="stat-label">Range</div>
+              <div class="stat-value" id="projRange">0.0 m</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Max Height</div>
+              <div class="stat-value" id="projHeight">0.0 m</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Flight Time</div>
+              <div class="stat-value" id="projTime">0.0 s</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Final V</div>
+              <div class="stat-value" id="projFinalV">0.0 m/s</div>
+            </div>
+          </div>
+
+          <div class="controls-panel">
+            <h3>🎯 Launch Parameters</h3>
+            <div class="control-group">
+              <div class="control-label">
+                Angle <span class="value" id="projAngleVal">45°</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="projAngle"
+                min="1"
+                max="89"
+                step="1"
+                value="45"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Velocity <span class="value" id="projVelVal">30 m/s</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="projVel"
+                min="5"
+                max="100"
+                step="1"
+                value="30"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Gravity <span class="value" id="projGravVal">9.8 m/s²</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="projGrav"
+                min="1"
+                max="25"
+                step="0.1"
+                value="9.8"
+              />
+            </div>
+            <div class="preset-row">
+              <button class="preset-chip" onclick="projPreset('earth')">
+                🌍 Earth
+              </button>
+              <button class="preset-chip" onclick="projPreset('moon')">
+                🌙 Moon (1.6)
+              </button>
+              <button class="preset-chip" onclick="projPreset('mars')">
+                🔴 Mars (3.7)
+              </button>
+              <button class="preset-chip" onclick="projPreset('jupiter')">
+                🪐 Jupiter (24.8)
+              </button>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="projLaunch()">
+                🚀 Launch!
+              </button>
+              <button class="btn btn-secondary" onclick="projReset()">
+                ↺ Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="result-box" id="projResult" style="display: none">
+            <div class="label">📊 Calculated Results</div>
+            <div class="steps" id="projSteps"></div>
+          </div>
+        </div>
+
+        <!-- =============================================
+           MODULE 3: FREE FALL LAB
+           ============================================= -->
+        <div class="sandbox-module" id="mod-freefall">
+          <div class="module-header">
+            <h2>🎢 Free Fall Lab</h2>
+            <p>
+              Drop an object from a height and watch position, velocity, and
+              energy change live.
+            </p>
+          </div>
+
+          <div class="sim-canvas-wrap tall" id="ffCanvasWrap">
+            <canvas id="ffCanvas"></canvas>
+          </div>
+
+          <div class="sim-stats" id="ffStats">
+            <div class="stat-card">
+              <div class="stat-label">Time</div>
+              <div class="stat-value" id="ffTime">0.00 s</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Height</div>
+              <div class="stat-value" id="ffHeight">0.0 m</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Velocity</div>
+              <div class="stat-value" id="ffVel">0.0 m/s</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">KE / PE</div>
+              <div class="stat-value" id="ffEnergy">0 / 100%</div>
+            </div>
+          </div>
+
+          <div class="controls-panel">
+            <h3>⚙️ Parameters</h3>
+            <div class="control-group">
+              <div class="control-label">
+                Drop Height <span class="value" id="ffHeightVal">20 m</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="ffHeightSlider"
+                min="1"
+                max="100"
+                step="1"
+                value="20"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Initial Velocity (up)
+                <span class="value" id="ffInitVVal">0 m/s</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="ffInitV"
+                min="0"
+                max="50"
+                step="1"
+                value="0"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Gravity <span class="value" id="ffGravVal">9.8 m/s²</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="ffGrav"
+                min="1"
+                max="25"
+                step="0.1"
+                value="9.8"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Mass <span class="value" id="ffMassVal">1.0 kg</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="ffMass"
+                min="0.1"
+                max="10"
+                step="0.1"
+                value="1"
+              />
+            </div>
+            <div class="preset-row">
+              <button class="preset-chip" onclick="ffPreset('drop')">
+                🍎 Simple Drop
+              </button>
+              <button class="preset-chip" onclick="ffPreset('throw')">
+                ⬆️ Throw Up
+              </button>
+              <button class="preset-chip" onclick="ffPreset('moon')">
+                🌙 Moon Drop
+              </button>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary" onclick="ffStart()">
+                ▶ Drop!
+              </button>
+              <button class="btn btn-secondary" onclick="ffReset()">
+                ↺ Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="result-box" id="ffResult" style="display: none">
+            <div class="label">📊 Final Results</div>
+            <div class="steps" id="ffSteps"></div>
+          </div>
+        </div>
+
+        <!-- =============================================
+           MODULE 4: GRAPH PLOTTER
+           ============================================= -->
+        <div class="sandbox-module" id="mod-graph">
+          <div class="module-header">
+            <h2>📊 Graph Plotter</h2>
+            <p>
+              Type equations like
+              <code style="color: var(--neon-cyan)">sin(x)</code>,
+              <code style="color: var(--neon-cyan)">x^2</code>, or
+              <code style="color: var(--neon-cyan)">0.5*a*x^2</code>.
+            </p>
+          </div>
+
+          <div class="sim-canvas-wrap graph-canvas-wrap" id="graphCanvasWrap">
+            <canvas id="graphCanvas"></canvas>
+          </div>
+
+          <div class="sim-stats">
+            <div class="stat-card">
+              <div class="stat-label">X Range</div>
+              <div class="stat-value" id="graphXRange">±10</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Y Range</div>
+              <div class="stat-value" id="graphYRange">±10</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Zoom</div>
+              <div class="stat-value" id="graphZoom">1.0×</div>
+            </div>
+          </div>
+
+          <div class="controls-panel">
+            <h3>📈 Equations</h3>
+            <div id="eqList"></div>
+            <button
+              class="btn btn-secondary"
+              onclick="addEq()"
+              style="width: 100%; margin-top: 8px"
+            >
+              + Add Equation
+            </button>
+          </div>
+
+          <div class="controls-panel">
+            <h3>🔍 View Controls</h3>
+            <div class="control-group">
+              <div class="control-label">
+                Zoom <span class="value" id="graphZoomVal">1.0×</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="graphZoomSlider"
+                min="0.1"
+                max="5"
+                step="0.1"
+                value="1"
+              />
+            </div>
+            <div class="control-group">
+              <div class="control-label">
+                Parameter <span style="color: var(--neon-yellow)">a</span> =
+                <span class="value" id="graphAVal">1.0</span>
+              </div>
+              <input
+                type="range"
+                class="slider"
+                id="graphA"
+                min="-5"
+                max="5"
+                step="0.1"
+                value="1"
+              />
+            </div>
+            <div class="preset-row">
+              <button class="preset-chip" onclick="graphPreset('linear')">
+                Linear
+              </button>
+              <button class="preset-chip" onclick="graphPreset('quad')">
+                Quadratic
+              </button>
+              <button class="preset-chip" onclick="graphPreset('projectile')">
+                Projectile
+              </button>
+              <button class="preset-chip" onclick="graphPreset('trig')">
+                Trig
+              </button>
+              <button class="preset-chip" onclick="graphPreset('decay')">
+                Decay
+              </button>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary" onclick="graphReset()">
+                ↺ Reset View
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- =============================================
+           MODULE 5: PHYSICS CALCULATOR
+           ============================================= -->
+        <div class="sandbox-module" id="mod-calculator">
+          <div class="module-header">
+            <h2>🧮 Physics Calculator</h2>
+            <p>Every analytical tool you need for FSc exams.</p>
+          </div>
+
+          <!-- Sub-tabs -->
+          <div class="calc-tabs">
+            <button class="calc-tab active" data-panel="sigfig">
+              🔢 Sig Figs
+            </button>
+            <button class="calc-tab" data-panel="uncert">📏 Uncertainty</button>
+            <button class="calc-tab" data-panel="convert">🔄 Convert</button>
+            <button class="calc-tab" data-panel="scinot">
+              🧮 Sci Notation
+            </button>
+            <button class="calc-tab" data-panel="dim">📐 Dimensions</button>
+          </div>
+
+          <!-- SIG FIGS PANEL -->
+          <div class="calc-panel active" id="panel-sigfig">
+            <div class="controls-panel">
+              <h3>🔢 Significant Figures Analyzer</h3>
+              <input
+                type="text"
+                class="text-input"
+                id="sfInput"
+                placeholder="Enter number: 0.00450"
+                value="0.00450"
+              />
+              <div
+                id="sfBreakdown"
+                style="
+                  margin-top: 12px;
+                  text-align: center;
+                  font-family: &quot;Consolas&quot;, monospace;
+                  font-size: 1.4rem;
+                  letter-spacing: 4px;
+                "
+              ></div>
+              <div class="result-box" style="margin-top: 12px">
+                <div class="label">📊 Result</div>
+                <div class="value" id="sfCount">3 significant figures</div>
+                <div class="steps" id="sfExplain"></div>
+              </div>
+            </div>
+
+            <div class="controls-panel">
+              <h3>➕ Sig Fig Arithmetic</h3>
+              <div class="segmented">
+                <button class="active" onclick="setSfOp('add')">
+                  Add / Sub
+                </button>
+                <button onclick="setSfOp('mul')">Mul / Div</button>
+              </div>
+              <input
+                type="text"
+                class="text-input"
+                id="sfA"
+                placeholder="First number"
+                value="72.1"
+                style="margin-bottom: 8px"
+              />
+              <input
+                type="text"
+                class="text-input"
+                id="sfB"
+                placeholder="Second number"
+                value="3.42"
+                style="margin-bottom: 8px"
+              />
+              <input
+                type="text"
+                class="text-input"
+                id="sfC"
+                placeholder="Third number (optional)"
+                value="0.003"
+              />
+              <div class="result-box" style="margin-top: 12px">
+                <div class="label">✅ Correctly Rounded Answer</div>
+                <div class="value" id="sfArithResult">—</div>
+                <div class="steps" id="sfArithSteps"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UNCERTAINTY PANEL -->
+          <div class="calc-panel" id="panel-uncert">
+            <div class="controls-panel">
+              <h3>📏 Uncertainty Calculator</h3>
+              <div class="control-group">
+                <div class="control-label">Measured value</div>
+                <input
+                  type="text"
+                  class="text-input"
+                  id="unV"
+                  placeholder="e.g. 23.5"
+                  value="23.5"
+                />
+              </div>
+              <div class="control-group">
+                <div class="control-label">Absolute uncertainty (Δx)</div>
+                <input
+                  type="text"
+                  class="text-input"
+                  id="unDx"
+                  placeholder="e.g. 0.1"
+                  value="0.1"
+                />
+              </div>
+              <div class="result-box">
+                <div class="label">📊 Uncertainties</div>
+                <div class="steps" id="unResult"></div>
+              </div>
+            </div>
+
+            <div class="controls-panel">
+              <h3>➗ Combining Uncertainties</h3>
+              <div class="control-group">
+                <div class="eq-row">
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="cuA"
+                    placeholder="A"
+                    value="10"
+                    style="flex: 1"
+                  />
+                  <span style="color: var(--text-muted)">±</span>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="cuDA"
+                    placeholder="ΔA"
+                    value="0.5"
+                    style="flex: 1"
+                  />
+                </div>
+              </div>
+              <div class="segmented" style="margin-bottom: 8px">
+                <button class="active" onclick="setCuOp('+')">A + B</button>
+                <button onclick="setCuOp('-')">A − B</button>
+                <button onclick="setCuOp('*')">A × B</button>
+                <button onclick="setCuOp('/')">A ÷ B</button>
+              </div>
+              <div class="control-group">
+                <div class="eq-row">
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="cuB"
+                    placeholder="B"
+                    value="5"
+                    style="flex: 1"
+                  />
+                  <span style="color: var(--text-muted)">±</span>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="cuDB"
+                    placeholder="ΔB"
+                    value="0.2"
+                    style="flex: 1"
+                  />
+                </div>
+              </div>
+              <div class="result-box">
+                <div class="label">✅ Combined Result</div>
+                <div class="value" id="cuResult">—</div>
+                <div class="steps" id="cuSteps"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UNIT CONVERTER PANEL -->
+          <div class="calc-panel" id="panel-convert">
+            <div class="controls-panel">
+              <h3>🔄 Unit Converter</h3>
+              <div class="control-group">
+                <div class="control-label">Quantity Type</div>
+                <select
+                  class="text-input"
+                  id="convType"
+                  onchange="rebuildConvUnits()"
+                >
+                  <option value="length">Length</option>
+                  <option value="mass">Mass</option>
+                  <option value="time">Time</option>
+                  <option value="temp">Temperature</option>
+                  <option value="energy">Energy</option>
+                  <option value="pressure">Pressure</option>
+                  <option value="force">Force</option>
+                  <option value="speed">Speed</option>
+                </select>
+              </div>
+              <div class="converter-row">
+                <input
+                  type="text"
+                  class="text-input"
+                  id="convA"
+                  value="1"
+                  style="flex: 1"
+                />
+                <select
+                  class="text-input"
+                  id="convFrom"
+                  style="flex: 1"
+                ></select>
+              </div>
+              <div
+                style="
+                  text-align: center;
+                  color: var(--neon-green);
+                  font-size: 1.5rem;
+                  margin: 4px 0;
+                "
+              >
+                ↓
+              </div>
+              <div class="converter-row">
+                <input
+                  type="text"
+                  class="text-input"
+                  id="convB"
+                  readonly
+                  style="flex: 1; color: var(--neon-green)"
+                />
+                <select class="text-input" id="convTo" style="flex: 1"></select>
+              </div>
+              <div class="result-box">
+                <div class="label">📊 Result</div>
+                <div class="value" id="convResult">—</div>
+                <div class="steps" id="convSteps"></div>
+              </div>
+            </div>
+
+            <div class="controls-panel">
+              <h3>🔢 SI Prefix Converter</h3>
+              <div class="control-group">
+                <div class="control-label">Value</div>
+                <input type="text" class="text-input" id="prefVal" value="1" />
+              </div>
+              <div class="converter-row">
+                <select class="text-input" id="prefFrom" style="flex: 1">
+                  <option value="-18">atto (a) 10⁻¹⁸</option>
+                  <option value="-15">femto (f) 10⁻¹⁵</option>
+                  <option value="-12">pico (p) 10⁻¹²</option>
+                  <option value="-9">nano (n) 10⁻⁹</option>
+                  <option value="-6">micro (µ) 10⁻⁶</option>
+                  <option value="-3">milli (m) 10⁻³</option>
+                  <option value="-2">centi (c) 10⁻²</option>
+                  <option value="0" selected>base (—) 10⁰</option>
+                  <option value="3">kilo (k) 10³</option>
+                  <option value="6">mega (M) 10⁶</option>
+                  <option value="9">giga (G) 10⁹</option>
+                  <option value="12">tera (T) 10¹²</option>
+                  <option value="15">peta (P) 10¹⁵</option>
+                  <option value="18">exa (E) 10¹⁸</option>
+                </select>
+                <span style="color: var(--neon-green)">→</span>
+                <select class="text-input" id="prefTo" style="flex: 1">
+                  <option value="-18">atto (a)</option>
+                  <option value="-15">femto (f)</option>
+                  <option value="-12">pico (p)</option>
+                  <option value="-9">nano (n)</option>
+                  <option value="-6">micro (µ)</option>
+                  <option value="-3" selected>milli (m)</option>
+                  <option value="-2">centi (c)</option>
+                  <option value="0">base (—)</option>
+                  <option value="3">kilo (k)</option>
+                  <option value="6">mega (M)</option>
+                  <option value="9">giga (G)</option>
+                  <option value="12">tera (T)</option>
+                  <option value="15">peta (P)</option>
+                  <option value="18">exa (E)</option>
+                </select>
+              </div>
+              <div class="result-box">
+                <div class="label">✅ Result</div>
+                <div class="value" id="prefResult">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCIENTIFIC NOTATION PANEL -->
+          <div class="calc-panel" id="panel-scinot">
+            <div class="controls-panel">
+              <h3>🧮 Scientific Notation Converter</h3>
+              <div class="segmented">
+                <button class="active" onclick="setSnMode('to')">
+                  → Scientific
+                </button>
+                <button onclick="setSnMode('from')">→ Standard</button>
+              </div>
+              <input
+                type="text"
+                class="text-input"
+                id="snInput"
+                placeholder="Enter a number"
+                value="0.0000456"
+              />
+              <div class="result-box" style="margin-top: 12px">
+                <div class="label">✨ Converted</div>
+                <div class="value" id="snResult">—</div>
+                <div class="steps" id="snSteps"></div>
+              </div>
+            </div>
+
+            <div class="controls-panel">
+              <h3>➕ Sci Notation Arithmetic</h3>
+              <div class="control-group">
+                <div class="control-label">First Number: a × 10^n</div>
+                <div class="eq-row">
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="snA"
+                    value="3.5"
+                    placeholder="mantissa"
+                  />
+                  <span style="color: var(--text-muted)">×10^</span>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="snAe"
+                    value="4"
+                    placeholder="exp"
+                    style="max-width: 70px"
+                  />
+                </div>
+              </div>
+              <div class="segmented">
+                <button class="active" onclick="setSnaOp('+')">+</button>
+                <button onclick="setSnaOp('-')">−</button>
+                <button onclick="setSnaOp('*')">×</button>
+                <button onclick="setSnaOp('/')">÷</button>
+              </div>
+              <div class="control-group">
+                <div class="control-label">Second Number: b × 10^m</div>
+                <div class="eq-row">
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="snB"
+                    value="2"
+                    placeholder="mantissa"
+                  />
+                  <span style="color: var(--text-muted)">×10^</span>
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="snBe"
+                    value="3"
+                    placeholder="exp"
+                    style="max-width: 70px"
+                  />
+                </div>
+              </div>
+              <div class="result-box">
+                <div class="label">= Result</div>
+                <div class="value" id="snaResult">—</div>
+                <div class="steps" id="snaSteps"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIMENSIONAL ANALYSIS PANEL -->
+          <div class="calc-panel" id="panel-dim">
+            <div class="controls-panel">
+              <h3>📐 Dimensional Analysis Lookup</h3>
+              <select class="text-input" id="dimSelect" onchange="showDim()">
+                <option value="length">Length [L]</option>
+                <option value="mass">Mass [M]</option>
+                <option value="time">Time [T]</option>
+                <option value="velocity">Velocity</option>
+                <option value="acceleration">Acceleration</option>
+                <option value="force">Force</option>
+                <option value="work">Work / Energy</option>
+                <option value="power">Power</option>
+                <option value="pressure">Pressure</option>
+                <option value="momentum">Momentum</option>
+                <option value="frequency">Frequency</option>
+                <option value="density">Density</option>
+                <option value="charge">Electric Charge</option>
+                <option value="voltage">Voltage</option>
+              </select>
+              <div class="result-box" style="margin-top: 12px">
+                <div class="label">📊 Dimensional Formula</div>
+                <div class="value" id="dimResult">[L]</div>
+                <div class="steps" id="dimSteps"></div>
+              </div>
+            </div>
+
+            <div class="controls-panel">
+              <h3>✅ Equation Homogeneity Checker</h3>
+              <div class="preset-row">
+                <button class="preset-chip" onclick="checkEq('vut')">
+                  v = u + at
+                </button>
+                <button class="preset-chip" onclick="checkEq('s')">
+                  s = ut + ½at²
+                </button>
+                <button class="preset-chip" onclick="checkEq('v2')">
+                  v² = u² + 2as
+                </button>
+                <button class="preset-chip" onclick="checkEq('ke')">
+                  KE = ½mv²
+                </button>
+                <button class="preset-chip" onclick="checkEq('pe')">
+                  PE = mgh
+                </button>
+                <button class="preset-chip" onclick="checkEq('emc2')">
+                  E = mc²
+                </button>
+                <button class="preset-chip" onclick="checkEq('f')">
+                  F = ma
+                </button>
+                <button class="preset-chip" onclick="checkEq('t2pi')">
+                  T = 2π√(l/g)
+                </button>
+              </div>
+              <div class="result-box">
+                <div class="label">🔬 Dimensional Proof</div>
+                <div class="steps" id="eqCheckSteps">
+                  Click any equation above to check homogeneity.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /sandbox-body -->
+    </div>
+    <!-- /sandbox-wrap -->
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+      <a href="index.html#chapters"
+        ><span class="icon">📚</span><span>Chapters</span></a
+      >
+      <a href="sandbox.html" class="active"
+        ><span class="icon">🧪</span><span>Sandbox</span></a
+      >
+      <a href="chapter1.html"><span class="icon">📖</span><span>Study</span></a>
+    </nav>
+
+    <!-- External Script Links -->
+    <script src="script.js"></script>
+    <script src="sandbox.js"></script>
+  </body>
+</html>

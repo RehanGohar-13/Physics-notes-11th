@@ -2,50 +2,241 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Physics Study Notes</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#06060f" />
+    <title>⚛️ Physics Notes — Inter / HSSC</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="header">
-      <div class="header-chip">📚 Complete Notes</div>
-      <h1>Physics Study Notes</h1>
-      <p>Select a chapter below to begin reviewing</p>
-    </header>
+    <div id="progress-bar"></div>
+    <canvas id="particles-canvas"></canvas>
 
-    <main class="container">
-      <div class="part-divider"><span>Available Chapters</span></div>
-      <div class="chapter-grid">
-        <a href="chapters/chapter01.html" class="chapter-card active">
-          <span class="ch-number">Chapter 1</span>
-          <span class="ch-title">Measurements</span>
-          <span class="ch-desc"
-            >Physical quantities, SI units, scientific notation, uncertainties,
-            error propagation, significant figures, dimensional analysis,
-            systems of units &amp; order of magnitude.</span
-          >
-          <span class="ch-tag">12 Sections · Complete ✓</span>
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">⚛️ PHYSICS<span>NOTES</span></a>
+      <a href="sandbox.html" class="nav-back" style="color: var(--neon-green)"
+        >🧪 Sandbox</a
+      >
+    </nav>
+
+    <div class="page-wrap">
+      <section class="hero">
+        <div class="hero-badge">Inter / HSSC · Pakistan</div>
+        <h1>Physics<br />Notes</h1>
+        <p>
+          Complete interactive notes + a full physics sandbox to experiment with
+          real simulations.
+        </p>
+        <a href="sandbox.html" class="hero-cta">Open Sandbox 🧪</a>
+      </section>
+
+      <div class="quick-access">
+        <a href="sandbox.html" class="quick-btn sandbox">
+          <span class="icon">🧪</span>
+          <span class="label">Sandbox</span>
+          <span class="desc">5 physics tools</span>
         </a>
-        <a href="#" class="chapter-card">
-          <span class="ch-number">Chapter 2</span>
-          <span class="ch-title">Vectors &amp; Equilibrium</span>
-          <span class="ch-desc">Coming soon...</span>
-          <span class="ch-tag">Coming Soon</span>
+        <a href="chapter1.html" class="quick-btn">
+          <span class="icon">📖</span>
+          <span class="label">Chapter 1</span>
+          <span class="desc">Measurements</span>
         </a>
-        <a href="#" class="chapter-card">
-          <span class="ch-number">Chapter 3</span>
-          <span class="ch-title">Motion &amp; Force</span>
-          <span class="ch-desc">Coming soon...</span>
-          <span class="ch-tag">Coming Soon</span>
+        <a href="#chapters" class="quick-btn">
+          <span class="icon">📚</span>
+          <span class="label">All Chapters</span>
+          <span class="desc">12 topics</span>
+        </a>
+        <a href="#about" class="quick-btn">
+          <span class="icon">ℹ️</span>
+          <span class="label">About</span>
+          <span class="desc">Info</span>
         </a>
       </div>
-    </main>
 
-    <footer class="footer">
-      <p>Physics Study Notes — Cornell Style</p>
-      <p style="margin-top: 0.3rem">
-        Built for effective <span>revision</span> ✦
-      </p>
-    </footer>
+      <div class="section-title" id="chapters">
+        <h2>All <span class="accent">12 Chapters</span></h2>
+        <p>Tap any chapter to start studying</p>
+      </div>
+
+      <section class="chapters-section">
+        <div class="chapters-grid">
+          <a href="chapter1.html" class="chapter-card reveal">
+            <div class="card-number-mobile">01</div>
+            <div class="card-icon-mobile">📏</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Measurements</div>
+              <div class="card-desc">
+                Units, dimensions, uncertainty, sig figs
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">02</div>
+            <div class="card-icon-mobile">🚀</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Force and Motion</div>
+              <div class="card-desc">
+                Newton's laws, momentum, projectile motion
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">03</div>
+            <div class="card-icon-mobile">🔄</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Circular & Rotational Motion</div>
+              <div class="card-desc">
+                Angular velocity, torque, moment of inertia
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">04</div>
+            <div class="card-icon-mobile">⚡</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Work, Energy and Power</div>
+              <div class="card-desc">
+                Energy conservation, work-energy theorem
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">05</div>
+            <div class="card-icon-mobile">💧</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Solids and Fluid Dynamics</div>
+              <div class="card-desc">
+                Elasticity, Bernoulli's equation, viscosity
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">06</div>
+            <div class="card-icon-mobile">🔥</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Heat and Thermodynamics</div>
+              <div class="card-desc">
+                Laws of thermodynamics, entropy, engines
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">07</div>
+            <div class="card-icon-mobile">🌊</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Waves and Vibrations</div>
+              <div class="card-desc">
+                SHM, resonance, standing waves, Doppler
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">08</div>
+            <div class="card-icon-mobile">🌈</div>
+            <div class="card-content-mobile">
+              <div class="card-title">
+                Physical Optics & Gravitational Waves
+              </div>
+              <div class="card-desc">Interference, diffraction, LIGO</div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">09</div>
+            <div class="card-icon-mobile">🔋</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Electrostatics & Current Electricity</div>
+              <div class="card-desc">
+                Coulomb's law, fields, capacitance, circuits
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">10</div>
+            <div class="card-icon-mobile">🧲</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Electromagnetism</div>
+              <div class="card-desc">
+                Magnetic fields, Faraday, Maxwell's equations
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">11</div>
+            <div class="card-icon-mobile">🕳️</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Special Theory of Relativity</div>
+              <div class="card-desc">
+                Time dilation, length contraction, E=mc²
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+
+          <a href="#" class="chapter-card reveal">
+            <div class="card-number-mobile">12</div>
+            <div class="card-icon-mobile">☢️</div>
+            <div class="card-content-mobile">
+              <div class="card-title">Nuclear and Particle Physics</div>
+              <div class="card-desc">
+                Radioactivity, fission, fusion, standard model
+              </div>
+            </div>
+            <div class="card-arrow-mobile">›</div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer" id="about">
+        <p>
+          Made with <span class="heart">♥</span> for Physics · Inter/HSSC
+          Pakistan
+        </p>
+        <p style="margin-top: 4px">Deployed on Vercel · Mobile-first design</p>
+      </footer>
+    </div>
+
+    <!-- BOTTOM MOBILE NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="active">
+        <span class="icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="#chapters">
+        <span class="icon">📚</span>
+        <span>Chapters</span>
+      </a>
+      <a href="sandbox.html">
+        <span class="icon">🧪</span>
+        <span>Sandbox</span>
+      </a>
+      <a href="chapter1.html">
+        <span class="icon">📖</span>
+        <span>Study</span>
+      </a>
+    </nav>
+
+    <script src="script.js"></script>
   </body>
 </html>

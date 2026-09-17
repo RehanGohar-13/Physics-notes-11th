@@ -1,0 +1,2970 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ch 1: Measurements — Physics Notes</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* =============================================
+       CHAPTER 1 — INTERACTIVE ENCYCLOPEDIA STYLES
+       ============================================= */
+
+      .hl-cyan {
+        color: var(--neon-cyan);
+        font-weight: 600;
+      }
+      .hl-magenta {
+        color: var(--neon-magenta);
+        font-weight: 600;
+      }
+      .hl-green {
+        color: var(--neon-green);
+        font-weight: 600;
+      }
+      .hl-yellow {
+        color: var(--neon-yellow);
+        font-weight: 600;
+      }
+      .hl-purple {
+        color: var(--neon-purple);
+        font-weight: 600;
+      }
+      .hl-orange {
+        color: var(--neon-orange);
+        font-weight: 600;
+      }
+
+      /* --- Interactive Demo Container --- */
+      .interactive-demo {
+        background: var(--bg-card);
+        border: 1px solid rgba(0, 255, 136, 0.15);
+        border-radius: var(--radius);
+        padding: 28px;
+        margin: 36px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .interactive-demo::after {
+        content: "⚡ INTERACTIVE";
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        color: var(--neon-green);
+        background: rgba(0, 255, 136, 0.08);
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        font-weight: 700;
+      }
+      .demo-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .demo-title .icon {
+        font-size: 1.6rem;
+      }
+      .demo-title h3 {
+        font-size: 1.15rem;
+        color: var(--neon-green);
+        font-weight: 700;
+      }
+      .demo-hint {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+        font-style: italic;
+      }
+      .demo-canvas-wrap {
+        display: flex;
+        justify-content: center;
+        margin: 12px 0;
+      }
+      .demo-canvas-wrap canvas {
+        border-radius: 12px;
+        background: #08081a;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        max-width: 100%;
+        cursor: pointer;
+        touch-action: none;
+      }
+      .demo-controls {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 14px;
+        flex-wrap: wrap;
+      }
+      .demo-btn {
+        padding: 8px 20px;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.3);
+        color: var(--neon-green);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .demo-btn:hover {
+        background: rgba(0, 255, 136, 0.2);
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+      }
+      .demo-readout {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+      .readout-item {
+        text-align: center;
+      }
+      .readout-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+      }
+      .readout-value {
+        font-size: 1.3rem;
+        font-weight: 800;
+        font-family: "Consolas", monospace;
+        color: var(--neon-cyan);
+        text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+      }
+
+      /* --- Dartboard Grid --- */
+      .dartboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 12px 0;
+      }
+      .dartboard-cell {
+        text-align: center;
+      }
+      .dartboard-cell canvas {
+        border-radius: 50%;
+        cursor: crosshair;
+      }
+      .dartboard-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+        font-weight: 600;
+      }
+      .dartboard-label .hl {
+        color: var(--neon-green);
+      }
+      .dartboard-label .hl-bad {
+        color: var(--neon-magenta);
+      }
+
+      /* --- Sig Fig Scanner --- */
+      .sigfig-input-wrap {
+        display: flex;
+        justify-content: center;
+        margin: 16px 0;
+      }
+      .sigfig-input {
+        background: #08081a;
+        border: 2px solid rgba(0, 240, 255, 0.2);
+        border-radius: 12px;
+        padding: 14px 24px;
+        font-size: 1.8rem;
+        font-family: "Consolas", monospace;
+        color: var(--text-bright);
+        text-align: center;
+        width: 280px;
+        outline: none;
+        transition: var(--transition);
+      }
+      .sigfig-input:focus {
+        border-color: var(--neon-cyan);
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      }
+      .sigfig-display {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin: 16px 0;
+        min-height: 60px;
+        flex-wrap: wrap;
+      }
+      .sigfig-digit {
+        width: 42px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-family: "Consolas", monospace;
+        font-weight: 800;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+      .sigfig-digit.sig {
+        color: var(--neon-green);
+        background: rgba(0, 255, 136, 0.08);
+        border-color: rgba(0, 255, 136, 0.3);
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+      }
+      .sigfig-digit.not-sig {
+        color: #444;
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.05);
+      }
+      .sigfig-digit.dot {
+        color: var(--text-muted);
+        background: none;
+        border: none;
+        width: 20px;
+      }
+      .sigfig-count {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--neon-green);
+        font-weight: 700;
+        margin-top: 8px;
+      }
+      .sigfig-rules {
+        text-align: center;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+        min-height: 20px;
+      }
+
+      /* --- Digital Scale --- */
+      .digital-scale {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+      .digital-display {
+        background: #0a0a0a;
+        border: 3px solid #222;
+        border-radius: 12px;
+        padding: 20px 40px;
+        font-family: "Consolas", monospace;
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: var(--neon-green);
+        text-shadow:
+          0 0 15px rgba(0, 255, 136, 0.5),
+          0 0 30px rgba(0, 255, 136, 0.2);
+        letter-spacing: 4px;
+        position: relative;
+        box-shadow:
+          inset 0 0 30px rgba(0, 0, 0, 0.8),
+          0 4px 20px rgba(0, 0, 0, 0.5);
+      }
+      .digital-display .unit {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-left: 8px;
+        letter-spacing: 1px;
+      }
+      .digital-display .fluctuating {
+        animation: digit-flicker 0.15s infinite;
+        color: var(--neon-yellow);
+        text-shadow: 0 0 15px rgba(255, 230, 0, 0.5);
+      }
+      @keyframes digit-flicker {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* --- Prefix Converter --- */
+      .prefix-converter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin: 16px 0;
+      }
+      .prefix-slider-wrap {
+        width: 100%;
+        max-width: 500px;
+      }
+      .prefix-slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--neon-magenta),
+          var(--neon-cyan),
+          var(--neon-green)
+        );
+        outline: none;
+      }
+      .prefix-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--neon-cyan);
+        cursor: pointer;
+        box-shadow: 0 0 15px var(--neon-cyan);
+      }
+      .prefix-result {
+        font-family: "Consolas", monospace;
+        font-size: 1.4rem;
+        color: var(--text-bright);
+        text-align: center;
+      }
+      .prefix-result .val {
+        color: var(--neon-cyan);
+        font-weight: 800;
+      }
+      .prefix-result .prefix-name {
+        color: var(--neon-magenta);
+        font-weight: 700;
+      }
+
+      /* --- Scientific Notation Shifter --- */
+      .notation-shifter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 20px 0;
+        font-family: "Consolas", monospace;
+        font-size: 1.5rem;
+      }
+      .notation-original {
+        color: var(--text-muted);
+        text-decoration: line-through;
+        text-decoration-color: rgba(255, 0, 170, 0.4);
+      }
+      .notation-arrow {
+        color: var(--neon-green);
+        font-size: 1.2rem;
+        animation: arrow-pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes arrow-pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+          transform: translateX(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(5px);
+        }
+      }
+      .notation-result {
+        color: var(--neon-cyan);
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      }
+
+      /* --- Objectives --- */
+      .objectives-box {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 240, 255, 0.05),
+          rgba(168, 85, 247, 0.08)
+        );
+        border: 1px solid rgba(168, 85, 247, 0.25);
+        border-radius: var(--radius);
+        padding: 32px;
+        margin: 30px 0 50px;
+        position: relative;
+        overflow: hidden;
+      }
+      .objectives-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--neon-purple),
+          var(--neon-cyan)
+        );
+        box-shadow: 0 0 12px var(--neon-purple);
+      }
+      .objectives-box h3 {
+        color: var(--neon-purple);
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 18px;
+      }
+      .objectives-list {
+        list-style: none;
+        display: grid;
+        gap: 8px;
+      }
+      .objectives-list li {
+        padding: 10px 14px 10px 40px;
+        position: relative;
+        color: var(--text-main);
+        font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: var(--transition);
+        cursor: pointer;
+        user-select: none;
+      }
+      .objectives-list li:hover {
+        background: rgba(168, 85, 247, 0.06);
+        border-color: rgba(168, 85, 247, 0.15);
+      }
+      .objectives-list li::before {
+        content: "○";
+        position: absolute;
+        left: 14px;
+        top: 10px;
+        color: var(--neon-purple);
+        transition: var(--transition);
+      }
+      .objectives-list li.checked::before {
+        content: "●";
+        color: var(--neon-green);
+        text-shadow: 0 0 8px var(--neon-green);
+      }
+      .objectives-list li.checked {
+        color: var(--text-muted);
+        text-decoration: line-through;
+        text-decoration-color: rgba(0, 255, 136, 0.3);
+      }
+
+      /* --- Quote --- */
+      .quote-box {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 106, 0, 0.06),
+          rgba(255, 230, 0, 0.04)
+        );
+        border: 1px solid rgba(255, 106, 0, 0.2);
+        border-radius: var(--radius);
+        padding: 28px 32px;
+        margin: 30px 0;
+        position: relative;
+      }
+      .quote-box::before {
+        content: '"';
+        font-size: 5rem;
+        color: var(--neon-orange);
+        opacity: 0.15;
+        position: absolute;
+        top: -10px;
+        left: 16px;
+        font-family: Georgia, serif;
+        line-height: 1;
+      }
+      .quote-box .label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--neon-orange);
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .quote-box p {
+        font-style: italic;
+        color: var(--text-bright);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0;
+        padding-left: 10px;
+      }
+
+      /* --- Areas Grid --- */
+      .areas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 8px;
+        margin: 16px 0;
+      }
+      .area-tag {
+        background: rgba(0, 240, 255, 0.05);
+        border: 1px solid rgba(0, 240, 255, 0.12);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 0.78rem;
+        color: var(--text-main);
+        text-align: center;
+        transition: var(--transition);
+      }
+      .area-tag:hover {
+        background: rgba(0, 240, 255, 0.1);
+        border-color: var(--neon-cyan);
+        color: var(--neon-cyan);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 240, 255, 0.1);
+      }
+
+      /* --- Mass/Distance Bars --- */
+      .scale-visual {
+        margin: 24px 0;
+        padding: 24px;
+        background: var(--bg-card);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+      }
+      .scale-visual h4 {
+        color: var(--neon-yellow);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 18px;
+        text-align: center;
+      }
+      .bar-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 5px;
+      }
+      .bar-label {
+        width: 110px;
+        text-align: right;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        flex-shrink: 0;
+      }
+      .bar-track {
+        flex: 1;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        display: flex;
+        align-items: center;
+        padding-left: 6px;
+      }
+      .bar-fill span {
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: var(--bg-deep);
+        white-space: nowrap;
+      }
+      .bar-row.visible .bar-fill {
+        width: var(--w);
+      }
+
+      /* --- Convention Rules --- */
+      .convention-rules {
+        counter-reset: rule;
+        list-style: none;
+        margin: 20px 0;
+      }
+      .convention-rules li {
+        counter-increment: rule;
+        padding: 14px 14px 14px 52px;
+        position: relative;
+        margin-bottom: 6px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        border-radius: var(--radius-sm);
+        color: var(--text-main);
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+      .convention-rules li:hover {
+        background: rgba(0, 255, 136, 0.04);
+        border-color: rgba(0, 255, 136, 0.12);
+      }
+      .convention-rules li::before {
+        content: counter(rule);
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 28px;
+        height: 28px;
+        background: rgba(0, 255, 136, 0.1);
+        border: 1px solid rgba(0, 255, 136, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--neon-green);
+      }
+      .convention-rules li strong {
+        color: var(--neon-green);
+      }
+      .convention-rules li .ex {
+        display: block;
+        margin-top: 4px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+      .convention-rules li code {
+        background: rgba(0, 240, 255, 0.08);
+        color: var(--neon-cyan);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 0.82rem;
+        font-family: "Consolas", monospace;
+      }
+
+      /* --- Quiz --- */
+      .quiz-box {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 170, 0.05),
+          rgba(168, 85, 247, 0.05)
+        );
+        border: 1px solid rgba(255, 0, 170, 0.2);
+        border-radius: var(--radius);
+        padding: 28px;
+        margin: 30px 0;
+      }
+      .quiz-box h3 {
+        color: var(--neon-magenta);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 16px;
+      }
+      .quiz-q {
+        margin-bottom: 16px;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .quiz-q p {
+        font-size: 0.9rem;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+      .quiz-answer {
+        font-size: 0.85rem;
+        color: var(--neon-green);
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+        padding: 4px 12px;
+        background: rgba(0, 255, 136, 0.06);
+        border-radius: 6px;
+        display: inline-block;
+        transition: var(--transition);
+      }
+      .quiz-answer.hidden-answer {
+        color: transparent;
+        background: rgba(255, 255, 255, 0.06);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+      .quiz-answer.hidden-answer:hover,
+      .quiz-answer.hidden-answer.revealed {
+        color: var(--neon-green);
+        background: rgba(0, 255, 136, 0.08);
+        text-shadow: none;
+      }
+
+      /* --- Two Col --- */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin: 24px 0;
+      }
+
+      /* --- Responsive --- */
+      @media (max-width: 768px) {
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .dartboard-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        .bar-label {
+          width: 75px;
+          font-size: 0.65rem;
+        }
+        .sigfig-input {
+          width: 200px;
+          font-size: 1.3rem;
+        }
+        .sigfig-digit {
+          width: 32px;
+          height: 44px;
+          font-size: 1.2rem;
+        }
+        .digital-display {
+          font-size: 1.8rem;
+          padding: 14px 20px;
+        }
+        .convention-rules li {
+          padding-left: 44px;
+          font-size: 0.82rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">⚛️ PHYSICS<span>NOTES</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#chapters">All Chapters</a></li>
+        <li><a href="#s1">1.1</a></li>
+        <li><a href="#s2">1.2</a></li>
+        <li><a href="#s3">1.3</a></li>
+        <li><a href="#s4">1.4</a></li>
+        <li><a href="#s5">1.5</a></li>
+      </ul>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="chapter-hero">
+      <a href="index.html" class="back-link">← Back to All Chapters</a>
+      <div class="ch-number">Chapter 01</div>
+      <h1>Measurements</h1>
+      <p style="color: var(--text-muted); margin-top: 12px; font-size: 1rem">
+        Units, dimensions, uncertainty, significant figures, and the language of
+        physics.
+      </p>
+    </section>
+
+    <div class="chapter-content">
+      <!-- ===== LEARNING OBJECTIVES ===== -->
+      <div class="objectives-box reveal">
+        <h3>🎯 Learning Objectives</h3>
+        <p
+          style="
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+          "
+        >
+          Click each to mark as done!
+        </p>
+        <ul class="objectives-list">
+          <li onclick="this.classList.toggle('checked')">
+            Make reasonable estimates of value of physical quantities
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Use the conventions for indicating units, as set out in the SI units
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Express derived units as products or quotients of the SI base units
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Analyze the homogeneity of physical equations through dimensional
+            analysis
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Derive formulae in simple cases through dimensional analysis
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Analyze and critique accuracy and precision of data
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Justify why all measurements contain some uncertainty
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Assess uncertainty in a derived quantity
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Quote answers with correct scientific notations, sig figs and units
+          </li>
+        </ul>
+      </div>
+
+      <!-- ===== INTRODUCTION ===== -->
+      <div class="content-section reveal">
+        <h2>📖 Introduction</h2>
+        <p>
+          Physics is the <span class="hl-cyan">most fundamental branch</span> of
+          physical sciences. It provides the basic principles and laws which
+          help to understand the mysteries of other branches of sciences such as
+          astronomy, chemistry, geology, biology and health sciences.
+        </p>
+        <p>
+          The tools, techniques and products of Physics have transformed our
+          dreams into realities. The comforts and pleasures added in our lives
+          are fruitful results of science, technology and engineering in
+          everyday life.
+        </p>
+        <p>
+          The Information technology has entirely changed the outlook of
+          mankind. The fast means of communication have brought people of the
+          entire world in so close contact that the whole world has become a
+          <span class="hl-purple">global village</span>.
+        </p>
+        <p>
+          Physics is an <span class="hl-green">experimental science</span> and
+          the scientific method emphasizes the need of accurate measurement of
+          various measurable physical quantities.
+        </p>
+
+        <div class="quote-box">
+          <div class="label">💭 Think Over!</div>
+          <p>
+            Computer chips are made from silicon, which is obtained from sand.
+            It is up to us whether we make a sand castle or a computer out of
+            it.
+          </p>
+        </div>
+      </div>
+
+      <!-- ===== 1.1 PHYSICAL QUANTITIES ===== -->
+      <div class="content-section reveal" id="s1">
+        <h2>1.1 Physical Quantities and Their Units</h2>
+        <p>
+          The foundation of physics depends on
+          <span class="hl-cyan">physical quantities</span> in terms of which the
+          laws of Physics are expressed. These are mass, length, time, velocity,
+          force, density, temperature, electric current, and numerous others.
+        </p>
+
+        <div class="definition-box">
+          <div class="label">📌 Key Concept</div>
+          <p>
+            <strong>Base quantities</strong> are independent (not defined in
+            terms of others). <strong>Derived quantities</strong> depend on base
+            quantities.
+          </p>
+        </div>
+
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Definition</th>
+                <th>Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong class="hl-cyan">Base</strong></td>
+                <td>Independent; other quantities defined from these</td>
+                <td>Length, Mass, Time</td>
+              </tr>
+              <tr>
+                <td><strong class="hl-magenta">Derived</strong></td>
+                <td>Depend on base quantities</td>
+                <td>Velocity, Acceleration, Force</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          The measurement of a base quantity involves
+          <span class="hl-green">two steps</span>: first, the choice of a
+          <strong>standard</strong>, and second, the establishment of a
+          <strong>procedure</strong> for comparing the quantity to be measured
+          with the standard.
+        </p>
+
+        <h3>🔭 Branches of Physics</h3>
+        <div class="two-col">
+          <div>
+            <h4
+              style="
+                color: var(--neon-cyan);
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+              "
+            >
+              Core Areas
+            </h4>
+            <div class="areas-grid">
+              <div class="area-tag">Mechanics</div>
+              <div class="area-tag">Heat & Thermo</div>
+              <div class="area-tag">Electromagnetism</div>
+              <div class="area-tag">Optics</div>
+              <div class="area-tag">Sound</div>
+              <div class="area-tag">Hydrodynamics</div>
+              <div class="area-tag">Special Relativity</div>
+              <div class="area-tag">General Relativity</div>
+              <div class="area-tag">Quantum Mechanics</div>
+              <div class="area-tag">Atomic Physics</div>
+              <div class="area-tag">Molecular Physics</div>
+              <div class="area-tag">Nuclear Physics</div>
+              <div class="area-tag">Solid State</div>
+              <div class="area-tag">Particle Physics</div>
+              <div class="area-tag">Superconductivity</div>
+              <div class="area-tag">Superfluidity</div>
+              <div class="area-tag">Plasma Physics</div>
+              <div class="area-tag">Magnetohydro</div>
+              <div class="area-tag">Space Physics</div>
+            </div>
+          </div>
+          <div>
+            <h4
+              style="
+                color: var(--neon-magenta);
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+              "
+            >
+              Interdisciplinary
+            </h4>
+            <div class="areas-grid">
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Astrophysics
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Biophysics
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Chemical Physics
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Engineering Physics
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Geophysics
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Medical Physics
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Physical Oceanography
+              </div>
+              <div
+                class="area-tag"
+                style="border-color: rgba(255, 0, 170, 0.15)"
+              >
+                Physics of Music
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 1.2 SI UNITS ===== -->
+      <div class="content-section reveal" id="s2">
+        <h2>1.2 International System of Units (SI)</h2>
+        <p>
+          In <span class="hl-yellow">1960</span>, an international committee
+          agreed on a set of definitions and standards. The system is called the
+          <strong>System International (SI)</strong>.
+        </p>
+
+        <h3>Base Units</h3>
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Physical Quantity</th>
+                <th>SI Unit</th>
+                <th>Symbol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Length</td>
+                <td>metre</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >m</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Mass</td>
+                <td>kilogram</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >kg</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Time</td>
+                <td>second</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >s</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Electric current</td>
+                <td>ampere</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >A</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Thermodynamic temperature</td>
+                <td>kelvin</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >K</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Intensity of light</td>
+                <td>candela</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >cd</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Amount of substance</td>
+                <td>mole</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 8px;
+                      border-radius: 4px;
+                    "
+                    >mol</code
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p
+          style="
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+          "
+        >
+          Table 1.1
+        </p>
+
+        <h3>Derived Units</h3>
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Symbol</th>
+                <th>Base Units</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Plane angle</td>
+                <td>radian</td>
+                <td>rad</td>
+                <td><span class="hl-purple">dimensionless</span></td>
+              </tr>
+              <tr>
+                <td>Solid angle</td>
+                <td>steradian</td>
+                <td>sr</td>
+                <td><span class="hl-purple">dimensionless</span></td>
+              </tr>
+              <tr>
+                <td>Force</td>
+                <td>newton</td>
+                <td>N</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >kg m s⁻²</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Work</td>
+                <td>joule</td>
+                <td>J</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >kg m² s⁻²</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Power</td>
+                <td>watt</td>
+                <td>W</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >kg m² s⁻³</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Electric charge</td>
+                <td>coulomb</td>
+                <td>C</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >A s</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Pressure</td>
+                <td>pascal</td>
+                <td>Pa</td>
+                <td>
+                  <code
+                    style="
+                      background: rgba(0, 240, 255, 0.08);
+                      color: var(--neon-cyan);
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                    "
+                    >kg m⁻¹ s⁻²</code
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p
+          style="
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+          "
+        >
+          Table 1.2
+        </p>
+
+        <div class="callout fun">
+          <span class="callout-icon">📎</span>
+          <div class="callout-content">
+            <strong>Additional SI-Permitted Units</strong>
+            <p>
+              Degrees/arcminutes/arcseconds (angles), minute/hour/day/year
+              (time), decibel (log), litre & tonne (everyday), atomic mass unit
+              (u) & electron volt (eV), nautical mile & knot, acre & hectare,
+              bar, angstrom & barn.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SCIENTIFIC NOTATION ===== -->
+      <div class="content-section reveal">
+        <h2>🔢 Scientific Notation</h2>
+        <p>
+          Numbers are expressed in standard form with
+          <strong>only one non-zero digit</strong> left of the decimal.
+        </p>
+
+        <div class="formula-box">
+          <div class="label">Format</div>
+          <div class="formula">N = a × 10ⁿ</div>
+          <div class="formula-note">Where 1 ≤ a < 10 and n is an integer</div>
+        </div>
+
+        <div class="notation-shifter">
+          <span class="notation-original">134.7</span>
+          <span class="notation-arrow">→</span>
+          <span class="notation-result">1.347 × 10²</span>
+        </div>
+        <div class="notation-shifter">
+          <span class="notation-original">0.0023</span>
+          <span class="notation-arrow">→</span>
+          <span class="notation-result">2.3 × 10⁻³</span>
+        </div>
+      </div>
+
+      <!-- ===== MASS SCALE ===== -->
+      <div class="content-section reveal">
+        <h2>⚖️ Order of Magnitude — Mass</h2>
+        <div class="scale-visual" id="massScale">
+          <h4>Mass in kg (logarithmic scale)</h4>
+          <div class="bar-row" style="--w: 8%">
+            <div class="bar-label">Electron</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff00aa, #ff6a00)"
+              >
+                <span>10⁻³⁰</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 12%">
+            <div class="bar-label">Proton</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff00aa, #a855f7)"
+              >
+                <span>10⁻²⁷</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 16%">
+            <div class="bar-label">Uranium atom</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #a855f7, #00f0ff)"
+              >
+                <span>10⁻²⁵</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 22%">
+            <div class="bar-label">DNA molecule</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #a855f7, #00ff88)"
+              >
+                <span>10⁻²¹</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 30%">
+            <div class="bar-label">Cell</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #00f0ff, #00ff88)"
+              >
+                <span>10⁻¹⁵</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 40%">
+            <div class="bar-label">Mosquito</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #00ff88, #ffe600)"
+              >
+                <span>10⁻³</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 50%">
+            <div class="bar-label">Book</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ffe600, #ff6a00)"
+              >
+                <span>10⁰</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 60%">
+            <div class="bar-label">Car</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff6a00, #ff00aa)"
+              >
+                <span>10³</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 72%">
+            <div class="bar-label">Oil tanker</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff00aa, #a855f7)"
+              >
+                <span>10⁸</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 82%">
+            <div class="bar-label">Mt. Everest</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #a855f7, #00f0ff)"
+              >
+                <span>10¹²</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 92%">
+            <div class="bar-label">Earth</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #00f0ff, #00ff88)"
+              >
+                <span>10²²</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 100%">
+            <div class="bar-label">Sun ☀️</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="
+                  background: linear-gradient(90deg, #ffe600, #ff6a00, #ff00aa);
+                "
+              >
+                <span>10³⁰</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== DISTANCE SCALE ===== -->
+      <div class="content-section reveal">
+        <h2>🌌 Order of Magnitude — Distance</h2>
+        <div class="scale-visual" id="distScale">
+          <h4>Distance in metres (logarithmic scale)</h4>
+          <div class="bar-row" style="--w: 10%">
+            <div class="bar-label">Nucleus</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff00aa, #a855f7)"
+              >
+                <span>10⁻¹⁵</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 18%">
+            <div class="bar-label">Atom</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #a855f7, #00f0ff)"
+              >
+                <span>10⁻¹⁰</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 32%">
+            <div class="bar-label">Person</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #00f0ff, #00ff88)"
+              >
+                <span>10⁰</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 48%">
+            <div class="bar-label">Earth diameter</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #00ff88, #ffe600)"
+              >
+                <span>10⁷</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 62%">
+            <div class="bar-label">To the Sun</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ffe600, #ff6a00)"
+              >
+                <span>10¹¹</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 76%">
+            <div class="bar-label">Nearest star</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff6a00, #ff00aa)"
+              >
+                <span>10¹⁷</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 90%">
+            <div class="bar-label">Milky Way</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="background: linear-gradient(90deg, #ff00aa, #a855f7)"
+              >
+                <span>10²¹</span>
+              </div>
+            </div>
+          </div>
+          <div class="bar-row" style="--w: 100%">
+            <div class="bar-label">Nearest galaxy</div>
+            <div class="bar-track">
+              <div
+                class="bar-fill"
+                style="
+                  background: linear-gradient(90deg, #a855f7, #00f0ff, #00ff88);
+                "
+              >
+                <span>10²⁸</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PREFIXES ===== -->
+      <div class="content-section reveal" id="s3-prefix">
+        <h2>📏 Prefixes for Powers of Ten</h2>
+        <p>
+          Most prefixes indicate order of magnitude in steps of
+          <span class="hl-yellow">1000</span>. SI also includes four extra
+          prefixes: centi (10⁻²), deci (10⁻¹), deca (10¹), hecto (10²).
+        </p>
+
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Factor</th>
+                <th>Prefix</th>
+                <th>Symbol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10⁻¹⁸</td>
+                <td>atto</td>
+                <td><strong class="hl-cyan">a</strong></td>
+              </tr>
+              <tr>
+                <td>10⁻¹⁵</td>
+                <td>femto</td>
+                <td><strong class="hl-cyan">f</strong></td>
+              </tr>
+              <tr>
+                <td>10⁻¹²</td>
+                <td>pico</td>
+                <td><strong class="hl-cyan">p</strong></td>
+              </tr>
+              <tr>
+                <td>10⁻⁹</td>
+                <td>nano</td>
+                <td><strong class="hl-cyan">n</strong></td>
+              </tr>
+              <tr>
+                <td>10⁻⁶</td>
+                <td>micro</td>
+                <td><strong class="hl-cyan">μ</strong></td>
+              </tr>
+              <tr>
+                <td>10⁻³</td>
+                <td>milli</td>
+                <td><strong class="hl-cyan">m</strong></td>
+              </tr>
+              <tr style="background: rgba(255, 230, 0, 0.03)">
+                <td>10⁻²</td>
+                <td>centi</td>
+                <td><strong class="hl-yellow">c</strong></td>
+              </tr>
+              <tr style="background: rgba(255, 230, 0, 0.03)">
+                <td>10⁻¹</td>
+                <td>deci</td>
+                <td><strong class="hl-yellow">d</strong></td>
+              </tr>
+              <tr style="background: rgba(255, 230, 0, 0.03)">
+                <td>10¹</td>
+                <td>deca</td>
+                <td><strong class="hl-yellow">da</strong></td>
+              </tr>
+              <tr style="background: rgba(255, 230, 0, 0.03)">
+                <td>10²</td>
+                <td>hecto</td>
+                <td><strong class="hl-yellow">h</strong></td>
+              </tr>
+              <tr>
+                <td>10³</td>
+                <td>kilo</td>
+                <td><strong class="hl-green">k</strong></td>
+              </tr>
+              <tr>
+                <td>10⁶</td>
+                <td>mega</td>
+                <td><strong class="hl-green">M</strong></td>
+              </tr>
+              <tr>
+                <td>10⁹</td>
+                <td>giga</td>
+                <td><strong class="hl-green">G</strong></td>
+              </tr>
+              <tr>
+                <td>10¹²</td>
+                <td>tera</td>
+                <td><strong class="hl-green">T</strong></td>
+              </tr>
+              <tr>
+                <td>10¹⁵</td>
+                <td>peta</td>
+                <td><strong class="hl-green">P</strong></td>
+              </tr>
+              <tr>
+                <td>10¹⁸</td>
+                <td>exa</td>
+                <td><strong class="hl-green">E</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p
+          style="
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+          "
+        >
+          Table 1.3
+        </p>
+
+        <!-- PREFIX CONVERTER -->
+        <div class="interactive-demo">
+          <div class="demo-title">
+            <span class="icon">🔄</span>
+            <h3>Prefix Converter</h3>
+          </div>
+          <p class="demo-hint">
+            Drag the slider to see how 1 metre transforms across prefixes
+          </p>
+          <div class="prefix-converter">
+            <div class="prefix-slider-wrap">
+              <input
+                type="range"
+                class="prefix-slider"
+                id="prefixSlider"
+                min="-6"
+                max="6"
+                value="0"
+                step="1"
+              />
+            </div>
+            <div class="prefix-result" id="prefixResult">
+              1 <span class="prefix-name">metre</span> =
+              <span class="val">1</span> m
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CONVENTIONS ===== -->
+      <div class="content-section reveal">
+        <h2>📝 Conventions for Using SI Units</h2>
+        <p>
+          All <span class="hl-green">16 rules</span> you need for your board
+          exams:
+        </p>
+        <ol class="convention-rules">
+          <li>
+            <strong>Symbol, not abbreviation.</strong> Same in all
+            languages.<span class="ex"
+              >✅ <code>A</code> not "amp" · <code>s</code> not "sec" ·
+              <code>SI</code> not "S.I."</span
+            >
+          </li>
+          <li>
+            <strong>Full name: no capital letter.</strong
+            ><span class="ex">✅ newton, metre · Exception: Celsius</span>
+          </li>
+          <li>
+            <strong>Symbols: lower case.</strong
+            ><span class="ex"
+              >✅ <code>m</code>, <code>s</code> · Exception: <code>L</code> for
+              litre</span
+            >
+          </li>
+          <li>
+            <strong>Named after scientist → capital initial.</strong
+            ><span class="ex"
+              >✅ <code>N</code>, <code>Pa</code>, <code>W</code></span
+            >
+          </li>
+          <li>
+            <strong>Upright (roman) style always.</strong
+            ><span class="ex">✅ 50 m (not italic)</span>
+          </li>
+          <li>
+            <strong>No plural form.</strong
+            ><span class="ex">✅ 100 mm, 60 kg · ❌ 100 mms</span>
+          </li>
+          <li>
+            <strong>No full stop after symbol</strong> (except end of sentence).
+          </li>
+          <li>
+            <strong>Prefix: before unit, no space.</strong
+            ><span class="ex"
+              >✅ <code>mL</code>, <code>ms</code> · ❌ m L</span
+            >
+          </li>
+          <li>
+            <strong>Space between value and symbol.</strong
+            ><span class="ex"
+              >✅ <code>1 kg</code>, <code>10 m s⁻¹</code> · ❌ 1kg</span
+            >
+          </li>
+          <li>
+            <strong>No compound prefixes.</strong
+            ><span class="ex">✅ 1 pF · ❌ 1 μμF</span>
+          </li>
+          <li>
+            <strong>Power applies to whole multiple.</strong
+            ><span class="ex">✅ 1 km² = 1 × (10³ m)² = 10⁶ m²</span>
+          </li>
+          <li>
+            <strong>Use negative index, not solidus.</strong
+            ><span class="ex">✅ <code>m s⁻¹</code> · ❌ m/s</span>
+          </li>
+          <li>
+            <strong
+              >Scientific notation: one non-zero digit left of decimal.</strong
+            ><span class="ex">✅ 1.437 × 10² · ❌ 143.7</span>
+          </li>
+          <li>
+            <strong>Don't mix symbols and names.</strong
+            ><span class="ex"
+              >✅ m s⁻¹ or "metre per second" · ❌ m/second</span
+            >
+          </li>
+          <li>
+            <strong
+              >Record in convenient units, convert to base for final
+              answer.</strong
+            ><span class="ex"
+              >Screw gauge → mm during work, → m in final result</span
+            >
+          </li>
+          <li>
+            <strong>CGS units not allowed in SI.</strong
+            ><span class="ex">❌ dyne, erg, gauss, poise, torr</span>
+          </li>
+        </ol>
+        <div class="callout warning">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-content">
+            <strong>Board Exam Alert!</strong>
+            <p>
+              SI conventions are frequently tested in Inter/FSc. "Identify the
+              incorrect usage" questions appear regularly!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 1.3 UNCERTAINTY ===== -->
+      <div class="content-section reveal" id="s3">
+        <h2>1.3 Uncertainty in Measurement</h2>
+        <p>
+          You can count the pages of a book exactly, but measuring its length
+          needs an instrument. Every instrument is calibrated to a certain
+          <span class="hl-cyan">smallest division</span>, which puts a limit on
+          its accuracy.
+        </p>
+        <p>
+          The <strong>absolute uncertainty</strong> is the maximum uncertainty —
+          equal to one smallest division of the instrument (the least count).
+        </p>
+
+        <!-- INTERACTIVE RULER -->
+        <div class="interactive-demo">
+          <div class="demo-title">
+            <span class="icon">📏</span>
+            <h3>Interactive Ruler — See Uncertainty</h3>
+          </div>
+          <p class="demo-hint">
+            Click "Measure" to see how uncertainty arises from the ruler's
+            smallest division
+          </p>
+          <div class="demo-canvas-wrap">
+            <canvas id="rulerCanvas" width="700" height="200"></canvas>
+          </div>
+          <div class="demo-controls">
+            <button class="demo-btn" onclick="animateRuler()">
+              📏 Measure!
+            </button>
+            <button class="demo-btn" onclick="resetRuler()">↺ Reset</button>
+          </div>
+          <div class="demo-readout" id="rulerReadout" style="display: none">
+            <div class="readout-item">
+              <div class="readout-label">Left Edge</div>
+              <div class="readout-value">10.00 cm</div>
+            </div>
+            <div class="readout-item">
+              <div class="readout-label">Right Edge</div>
+              <div class="readout-value">33.50 cm</div>
+            </div>
+            <div class="readout-item">
+              <div class="readout-label">Length</div>
+              <div class="readout-value" style="color: var(--neon-green)">
+                23.5 ± 0.1 cm
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="label">Uncertainty Formulas</div>
+          <div class="formula" style="font-size: 1.2rem">
+            Fractional = Δx / x
+          </div>
+          <div class="formula-note" style="margin-top: 8px">
+            Percentage = (Δx / x) × 100%
+          </div>
+        </div>
+
+        <h3>Uncertainty in Digital Instruments</h3>
+        <p>
+          With a digital scale, uncertainty is reflected in
+          <span class="hl-yellow">fluctuations of the last digit</span>. If the
+          last digit fluctuates by 1–2, write it down. If more than 2, the
+          reading may be influenced by external factors (e.g., air currents).
+        </p>
+
+        <!-- DIGITAL SCALE ANIMATION -->
+        <div class="interactive-demo">
+          <div class="demo-title">
+            <span class="icon">⚖️</span>
+            <h3>Digital Scale — Watch the Last Digit</h3>
+          </div>
+          <p class="demo-hint">
+            Notice how the last digit fluctuates — that's your uncertainty!
+          </p>
+          <div class="digital-scale">
+            <div class="digital-display">
+              3.14<span class="fluctuating" id="fluctDigit">5</span>
+              <span class="unit">g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 1.4 SIGNIFICANT FIGURES ===== -->
+      <div class="content-section reveal" id="s4">
+        <h2>1.4 Use of Significant Figures</h2>
+        <p>
+          The number of digits about which we feel reasonably sure are called
+          <span class="hl-green">significant figures</span>. They reflect the
+          actual instrument used.
+        </p>
+
+        <div class="definition-box">
+          <div class="label">📌 Definition</div>
+          <p>
+            In any measurement, the <strong>accurately known digits</strong> and
+            the <strong>first estimated/doubtful digit</strong> are called
+            significant figures.
+          </p>
+        </div>
+
+        <p>Example — weighing the same object with different balances:</p>
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Instrument</th>
+                <th>Reading</th>
+                <th>Sig Figs</th>
+                <th>Precision</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Electronic balance</td>
+                <td>3.145 ± 0.001 g</td>
+                <td><strong class="hl-green">4</strong></td>
+                <td>Higher ✅</td>
+              </tr>
+              <tr>
+                <td>Lever balance</td>
+                <td>3.1 ± 0.1 g</td>
+                <td><strong class="hl-yellow">2</strong></td>
+                <td>Lower</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SIG FIG SCANNER -->
+        <div class="interactive-demo">
+          <div class="demo-title">
+            <span class="icon">🔢</span>
+            <h3>Significant Figures Scanner</h3>
+          </div>
+          <p class="demo-hint">
+            Type any number below — watch which digits light up as significant!
+          </p>
+          <div class="sigfig-input-wrap">
+            <input
+              type="text"
+              class="sigfig-input"
+              id="sigfigInput"
+              placeholder="e.g. 0.00450"
+              maxlength="15"
+            />
+          </div>
+          <div class="sigfig-display" id="sigfigDisplay"></div>
+          <div class="sigfig-count" id="sigfigCount"></div>
+          <div class="sigfig-rules" id="sigfigRules"></div>
+        </div>
+
+        <h3>(i) Counting Significant Digits</h3>
+        <ul class="key-points">
+          <li>
+            <strong>All non-zero digits (1–9)</strong> are always significant
+          </li>
+          <li>
+            <strong>Zero between two sig figs</strong> is significant (e.g.,
+            3005 → 4 sig figs)
+          </li>
+          <li>
+            <strong>Leading zeros</strong> are NOT significant (e.g., 0.00467 →
+            3 sig figs)
+          </li>
+          <li>
+            <strong>Trailing zeros after decimal</strong> ARE significant (e.g.,
+            3.570 → 4 sig figs)
+          </li>
+          <li>
+            <strong>Trailing zeros in integers</strong> depend on instrument
+            precision (e.g., 8000 kg could be 1–4 sig figs — use scientific
+            notation!)
+          </li>
+          <li>
+            In <strong>scientific notation</strong>, only the coefficient digits
+            count (e.g., 8.70 × 10⁴ → 3 sig figs)
+          </li>
+        </ul>
+
+        <h3>(ii) Multiplying or Dividing</h3>
+        <p>
+          Keep sig figs equal to the
+          <span class="hl-magenta">least accurate factor</span> (fewest sig
+          figs).
+        </p>
+        <div class="formula-box">
+          <div class="label">Example</div>
+          <div class="formula" style="font-size: 1rem">
+            (5.348×10⁻² × 3.64×10⁴) / 1.336 = 1.46 × 10³
+          </div>
+          <div class="formula-note">
+            3.64 has 3 sig figs (fewest) → answer rounded to 3 sig figs
+          </div>
+        </div>
+
+        <h3>Rounding Rules</h3>
+        <ul class="key-points">
+          <li>
+            Dropped digit <strong>&lt; 5</strong> → last retained digit
+            unchanged
+          </li>
+          <li>
+            Dropped digit <strong>&gt; 5</strong> → last retained digit
+            increases by 1
+          </li>
+          <li>
+            Dropped digit <strong>= 5</strong> → round to
+            <em>even</em> (increase if odd, keep if even)
+          </li>
+        </ul>
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Original</th>
+                <th>Rounded (3 sig figs)</th>
+                <th>Rule Applied</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>43.75</td>
+                <td><strong class="hl-green">43.8</strong></td>
+                <td>5 → round up (7 is odd)</td>
+              </tr>
+              <tr>
+                <td>56.8546</td>
+                <td><strong class="hl-green">56.9</strong></td>
+                <td>
+                  Dropped 5 → round up (8 is even... wait, 546 > 5 so round up)
+                </td>
+              </tr>
+              <tr>
+                <td>73.650</td>
+                <td><strong class="hl-green">73.6</strong></td>
+                <td>5 → keep (6 is even)</td>
+              </tr>
+              <tr>
+                <td>64.350</td>
+                <td><strong class="hl-green">64.4</strong></td>
+                <td>5 → round up (3 is odd)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>(iii) Adding or Subtracting</h3>
+        <p>
+          Retain decimal places equal to the
+          <span class="hl-cyan">smallest number of decimal places</span> in any
+          quantity being added/subtracted. Position of decimal matters — not sig
+          figs!
+        </p>
+
+        <div class="two-col">
+          <div class="formula-box">
+            <div class="label">Example (a)</div>
+            <div class="formula" style="font-size: 1rem; line-height: 1.8">
+              72.1<br />
+              &nbsp;3.42<br />
+              &nbsp;0.003<br />
+              ─────<br />
+              = 75.523<br />
+              → <span class="hl-green">75.5 m</span>
+            </div>
+            <div class="formula-note">
+              72.1 has fewest decimals (1) → round to 1 decimal
+            </div>
+          </div>
+          <div class="formula-box">
+            <div class="label">Example (b)</div>
+            <div class="formula" style="font-size: 1rem; line-height: 1.8">
+              2.7543<br />
+              4.10<br />
+              1.273<br />
+              ─────<br />
+              = 8.1273<br />
+              → <span class="hl-green">8.13 m</span>
+            </div>
+            <div class="formula-note">
+              4.10 has fewest decimals (2) → round to 2 decimals
+            </div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <strong>Thumb Rule Summary</strong>
+            <p>
+              <span class="hl-cyan">Addition/Subtraction</span> → match
+              <strong>decimal places</strong> (precision)<br />
+              <span class="hl-magenta">Multiplication/Division</span> → match
+              <strong>significant figures</strong> (accuracy)
+            </p>
+          </div>
+        </div>
+
+        <h3>⚠️ Limitations of Significant Figures</h3>
+        <p>
+          Significant figures only deal with
+          <strong>one source of uncertainty</strong> — reading the scale. Real
+          experiments have many contributions: personal errors, hidden
+          systematic errors, etc. Total uncertainty may be more than what sig
+          figs suggest!
+        </p>
+      </div>
+
+      <!-- ===== 1.5 PRECISION VS ACCURACY ===== -->
+      <div class="content-section reveal" id="s5">
+        <h2>1.5 Precision and Accuracy</h2>
+        <p>
+          These two terms are often confused — but they're
+          <span class="hl-magenta">completely different</span>!
+        </p>
+
+        <div class="two-col">
+          <div
+            class="definition-box"
+            style="
+              border-left-color: var(--neon-cyan);
+              background: linear-gradient(
+                135deg,
+                rgba(0, 240, 255, 0.06),
+                rgba(0, 240, 255, 0.02)
+              );
+            "
+          >
+            <div class="label" style="color: var(--neon-cyan)">
+              🎯 Precision
+            </div>
+            <p>
+              <strong>Determined by the instrument.</strong> Smaller least count
+              = more precise. Measured by <strong>absolute uncertainty</strong>.
+            </p>
+          </div>
+          <div
+            class="definition-box"
+            style="
+              border-left-color: var(--neon-magenta);
+              background: linear-gradient(
+                135deg,
+                rgba(255, 0, 170, 0.06),
+                rgba(255, 0, 170, 0.02)
+              );
+            "
+          >
+            <div class="label" style="color: var(--neon-magenta)">
+              🎯 Accuracy
+            </div>
+            <p>
+              <strong>Closeness to the true value.</strong> Measured by
+              <strong>fractional / percentage uncertainty</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- DARTBOARD INTERACTIVE -->
+        <div class="interactive-demo">
+          <div class="demo-title">
+            <span class="icon">🎯</span>
+            <h3>Precision vs Accuracy — Dartboard!</h3>
+          </div>
+          <p class="demo-hint">
+            Click on each dartboard to throw darts and see the difference in
+            patterns!
+          </p>
+          <div class="dartboard-grid">
+            <div class="dartboard-cell">
+              <canvas
+                id="dart1"
+                width="180"
+                height="180"
+                data-type="1"
+              ></canvas>
+              <div class="dartboard-label">
+                <span class="hl">High</span> Accuracy<br /><span class="hl"
+                  >High</span
+                >
+                Precision
+              </div>
+            </div>
+            <div class="dartboard-cell">
+              <canvas
+                id="dart2"
+                width="180"
+                height="180"
+                data-type="2"
+              ></canvas>
+              <div class="dartboard-label">
+                <span class="hl-bad">Low</span> Accuracy<br /><span class="hl"
+                  >High</span
+                >
+                Precision
+              </div>
+            </div>
+            <div class="dartboard-cell">
+              <canvas
+                id="dart3"
+                width="180"
+                height="180"
+                data-type="3"
+              ></canvas>
+              <div class="dartboard-label">
+                <span class="hl">High</span> Accuracy<br /><span class="hl-bad"
+                  >Low</span
+                >
+                Precision
+              </div>
+            </div>
+            <div class="dartboard-cell">
+              <canvas
+                id="dart4"
+                width="180"
+                height="180"
+                data-type="4"
+              ></canvas>
+              <div class="dartboard-label">
+                <span class="hl-bad">Low</span> Accuracy<br /><span
+                  class="hl-bad"
+                  >Low</span
+                >
+                Precision
+              </div>
+            </div>
+          </div>
+          <div class="demo-controls">
+            <button class="demo-btn" onclick="clearAllDarts()">
+              ↺ Clear All Darts
+            </button>
+          </div>
+        </div>
+
+        <div class="callout danger">
+          <span class="callout-icon">🚨</span>
+          <div class="callout-content">
+            <strong>Common Exam Trap!</strong>
+            <p>
+              You can be <em>precise</em> without being
+              <em>accurate</em> (repeatedly hitting the same wrong spot). And
+              you can be accurate on average without being precise (scattered
+              around the target). Best case: <strong>both</strong>!
+            </p>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <strong>Thumb Rules for Uncertainty</strong>
+            <p>
+              <strong>Average value of many readings</strong> → mean deviation
+              from average<br />
+              <strong>Periodic uncertainty</strong> → divide least count of
+              timing device by number of oscillations
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BALL DROP EXPERIMENT ===== -->
+      <div class="content-section reveal">
+        <h2>🏀 Experiment: Free Fall Ball Drop</h2>
+        <p>
+          A classic physics experiment! Every measurement here has uncertainty —
+          from the ball's release height to the stopwatch reading. Click the
+          ball to release it!
+        </p>
+
+        <div class="interactive-demo">
+          <div class="demo-title">
+            <span class="icon">🏀</span>
+            <h3>Free Fall Simulation</h3>
+          </div>
+          <p class="demo-hint">
+            Click the ball (or the canvas) to drop it! Watch the position and
+            time update in real-time.
+          </p>
+          <div class="demo-canvas-wrap">
+            <canvas id="ballCanvas" width="600" height="400"></canvas>
+          </div>
+          <div class="demo-controls">
+            <button class="demo-btn" onclick="dropBall()">▶ Drop Ball</button>
+            <button class="demo-btn" onclick="resetBall()">↺ Reset</button>
+          </div>
+          <div class="demo-readout">
+            <div class="readout-item">
+              <div class="readout-label">Time</div>
+              <div class="readout-value" id="ballTime">0.00 s</div>
+            </div>
+            <div class="readout-item">
+              <div class="readout-label">Height</div>
+              <div class="readout-value" id="ballHeight">3.00 m</div>
+            </div>
+            <div class="readout-item">
+              <div class="readout-label">Velocity</div>
+              <div class="readout-value" id="ballVel">0.00 m/s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== QUICK QUIZ ===== -->
+      <div class="content-section reveal">
+        <h2>🧠 Quick Quiz — Test Yourself!</h2>
+        <div class="quiz-box">
+          <h3>📝 Sig Figs & Calculations</h3>
+
+          <div class="quiz-q">
+            <p>
+              <strong>Q1.</strong> Give the correct number of significant
+              figures for: 0.0054 m, 0.03030 m, 40.0 m, 0.6 m, 8.20 × 10³ m
+            </p>
+            <span
+              class="quiz-answer hidden-answer"
+              onclick="this.classList.add('revealed')"
+            >
+              👉 2, 4, 3, 1, 3 (click to reveal)
+            </span>
+          </div>
+
+          <div class="quiz-q">
+            <p><strong>Q2.</strong> 2502 kg + 36.02 kg + 54.1 kg = ?</p>
+            <span
+              class="quiz-answer hidden-answer"
+              onclick="this.classList.add('revealed')"
+            >
+              👉 2592 kg (2502 has 0 decimals → answer has 0 decimals)
+            </span>
+          </div>
+
+          <div class="quiz-q">
+            <p><strong>Q3.</strong> 3.54 kg − 2.4 kg = ?</p>
+            <span
+              class="quiz-answer hidden-answer"
+              onclick="this.classList.add('revealed')"
+            >
+              👉 1.1 kg (2.4 has 1 decimal → answer has 1 decimal)
+            </span>
+          </div>
+
+          <div class="quiz-q">
+            <p><strong>Q4.</strong> (2.45 × 10³ m × 2.46 m) / 3.6 m = ?</p>
+            <span
+              class="quiz-answer hidden-answer"
+              onclick="this.classList.add('revealed')"
+            >
+              👉 1.7 × 10³ m (3.6 has 2 sig figs → answer has 2 sig figs)
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== E=mc² ===== -->
+      <div class="content-section reveal">
+        <h2>💥 Did You Know?</h2>
+        <div class="callout fun">
+          <span class="callout-icon">🤯</span>
+          <div class="callout-content">
+            <strong>Mass IS Energy!</strong>
+            <p>
+              Mass can be thought of as a highly concentrated form of energy.
+              Einstein's famous equation shows the equivalence:
+            </p>
+          </div>
+        </div>
+        <div class="formula-box" style="margin-top: 20px">
+          <div class="label">Einstein's Mass-Energy Equivalence</div>
+          <div class="formula" style="font-size: 2.2rem">E = mc²</div>
+          <div class="formula-note">Energy = mass × (speed of light)²</div>
+        </div>
+        <div class="callout danger" style="margin-top: 20px">
+          <span class="callout-icon">⚡</span>
+          <div class="callout-content">
+            <strong>Mind-Blowing Fact</strong>
+            <p>
+              Just <strong>1 kg</strong> of mass =
+              <strong class="hl-yellow">9 × 10¹⁶ J</strong> of energy — enough
+              to power a nuclear plant for years!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== KEY POINTS ===== -->
+      <div class="content-section reveal">
+        <h2>⚡ Key Points Summary</h2>
+        <ul class="key-points">
+          <li>Physics is the most fundamental branch of physical sciences</li>
+          <li>
+            <strong>7 base quantities</strong>: length, mass, time, current,
+            temperature, luminous intensity, amount of substance
+          </li>
+          <li>
+            <strong>Derived quantities</strong> depend on base quantities
+            (velocity, force, etc.)
+          </li>
+          <li>The <strong>SI system</strong> was established in 1960</li>
+          <li>Prefixes indicate powers of 10, mostly in steps of 1000</li>
+          <li>
+            <strong>16 SI conventions</strong> for writing units correctly
+          </li>
+          <li>
+            <strong>Absolute uncertainty</strong> = smallest division of
+            instrument (least count)
+          </li>
+          <li>
+            <strong>Fractional uncertainty</strong> = Δx / x,
+            <strong>Percentage</strong> = (Δx / x) × 100%
+          </li>
+          <li>
+            Digital instruments show uncertainty as
+            <strong>fluctuation in last digit</strong>
+          </li>
+          <li>Add/Subtract → match <strong>decimal places</strong></li>
+          <li>Multiply/Divide → match <strong>significant figures</strong></li>
+          <li>
+            <strong>Precision</strong> = instrument quality;
+            <strong>Accuracy</strong> = closeness to true value
+          </li>
+          <li>Mass and energy are equivalent: <strong>E = mc²</strong></li>
+        </ul>
+      </div>
+
+      <!-- ===== NAV ===== -->
+      <div
+        class="reveal"
+        style="
+          text-align: center;
+          margin-top: 60px;
+          padding: 40px 0;
+          border-top: 1px solid var(--glass-border);
+        "
+      >
+        <p style="color: var(--text-muted); margin-bottom: 16px">
+          You've completed Chapter 1! 🎉
+        </p>
+        <a
+          href="index.html"
+          class="hero-cta"
+          style="font-size: 0.9rem; padding: 12px 28px"
+          >← Back to All Chapters</a
+        >
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>
+        Chapter 1 of 12 — Measurements | Made with
+        <span class="heart">♥</span> for Physics
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- ===================================================
+       CHAPTER 1 INTERACTIVE SCRIPTS
+       =================================================== -->
+    <script>
+      // ========== ANIMATE BARS ON SCROLL ==========
+      ["massScale", "distScale"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.querySelectorAll(".bar-row").forEach((r, i) => {
+                  setTimeout(() => r.classList.add("visible"), i * 100);
+                });
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.2 },
+        );
+        obs.observe(el);
+      });
+
+      // ========== DIGITAL SCALE FLUCTUATION ==========
+      const fluctDigit = document.getElementById("fluctDigit");
+      if (fluctDigit) {
+        setInterval(() => {
+          const digits = [4, 5, 5, 5, 6, 5, 4, 5];
+          fluctDigit.textContent =
+            digits[Math.floor(Math.random() * digits.length)];
+        }, 250);
+      }
+
+      // ========== PREFIX CONVERTER ==========
+      const prefixSlider = document.getElementById("prefixSlider");
+      const prefixResult = document.getElementById("prefixResult");
+      const prefixData = {
+        "-6": { name: "atto", factor: "10⁻¹⁸", value: "0.000000000000000001" },
+        "-5": { name: "femto", factor: "10⁻¹⁵", value: "0.000000000000001" },
+        "-4": { name: "pico", factor: "10⁻¹²", value: "0.000000000001" },
+        "-3": { name: "nano", factor: "10⁻⁹", value: "0.000000001" },
+        "-2": { name: "micro", factor: "10⁻⁶", value: "0.000001" },
+        "-1": { name: "milli", factor: "10⁻³", value: "0.001" },
+        0: { name: "metre", factor: "10⁰", value: "1" },
+        1: { name: "kilo", factor: "10³", value: "1,000" },
+        2: { name: "mega", factor: "10⁶", value: "1,000,000" },
+        3: { name: "giga", factor: "10⁹", value: "1,000,000,000" },
+        4: { name: "tera", factor: "10¹²", value: "1,000,000,000,000" },
+        5: { name: "peta", factor: "10¹⁵", value: "10¹⁵" },
+        6: { name: "exa", factor: "10¹⁸", value: "10¹⁸" },
+      };
+      if (prefixSlider) {
+        prefixSlider.addEventListener("input", () => {
+          const d = prefixData[prefixSlider.value];
+          prefixResult.innerHTML = `1 <span class="prefix-name">${d.name}</span>metre = <span class="val">${d.value}</span> m <span style="color:var(--text-muted);font-size:0.9rem">(${d.factor})</span>`;
+        });
+      }
+
+      // ========== SIG FIG SCANNER ==========
+      const sigInput = document.getElementById("sigfigInput");
+      const sigDisplay = document.getElementById("sigfigDisplay");
+      const sigCount = document.getElementById("sigfigCount");
+      const sigRules = document.getElementById("sigfigRules");
+
+      function analyzeSigFigs(numStr) {
+        if (!numStr || numStr.trim() === "")
+          return { digits: [], count: 0, rule: "" };
+        let s = numStr.trim();
+        let hasDecimal = s.includes(".");
+        let digits = [];
+        let cleanDigits = s.replace(".", "");
+
+        // Find first non-zero
+        let firstNonZero = -1;
+        for (let i = 0; i < cleanDigits.length; i++) {
+          if (cleanDigits[i] !== "0") {
+            firstNonZero = i;
+            break;
+          }
+        }
+        // Find last non-zero
+        let lastNonZero = -1;
+        for (let i = cleanDigits.length - 1; i >= 0; i--) {
+          if (cleanDigits[i] !== "0") {
+            lastNonZero = i;
+            break;
+          }
+        }
+
+        if (firstNonZero === -1)
+          return { digits: [], count: 0, rule: "All zeros — no sig figs" };
+
+        let idx = 0;
+        let rule = "";
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === ".") {
+            digits.push({ char: ".", sig: "dot" });
+            continue;
+          }
+          let isSig = false;
+          if (s[i] !== "0") {
+            isSig = true;
+          } else {
+            // it's a zero
+            if (idx < firstNonZero) {
+              isSig = false; // leading zero
+            } else if (idx > lastNonZero) {
+              // trailing zero
+              isSig = hasDecimal;
+            } else {
+              isSig = true; // sandwiched zero
+            }
+          }
+          digits.push({ char: s[i], sig: isSig ? "sig" : "not-sig" });
+          idx++;
+        }
+
+        const count = digits.filter((d) => d.sig === "sig").length;
+
+        // Determine rule
+        if (hasDecimal && s.startsWith("0"))
+          rule = "Leading zeros are NOT significant";
+        else if (hasDecimal && s.endsWith("0"))
+          rule = "Trailing zeros after decimal ARE significant";
+        else if (!hasDecimal && s.endsWith("0"))
+          rule = "Trailing zeros in integers → depends on precision";
+        else rule = "All non-zero digits count";
+
+        return { digits, count, rule };
+      }
+
+      if (sigInput) {
+        sigInput.addEventListener("input", () => {
+          const result = analyzeSigFigs(sigInput.value);
+          sigDisplay.innerHTML = "";
+          result.digits.forEach((d) => {
+            const el = document.createElement("div");
+            el.className = "sigfig-digit " + d.sig;
+            el.textContent = d.char;
+            sigDisplay.appendChild(el);
+          });
+          sigCount.textContent =
+            result.count > 0
+              ? `✨ ${result.count} Significant Figure${result.count > 1 ? "s" : ""}`
+              : "";
+          sigRules.textContent = result.rule;
+        });
+        // Trigger with example
+        sigInput.value = "0.00450";
+        sigInput.dispatchEvent(new Event("input"));
+      }
+
+      // ========== INTERACTIVE RULER ==========
+      const rulerCanvas = document.getElementById("rulerCanvas");
+      let rulerAnimating = false;
+      function drawRuler(highlightLeft = null, highlightRight = null) {
+        if (!rulerCanvas) return;
+        const ctx = rulerCanvas.getContext("2d");
+        const W = rulerCanvas.width,
+          H = rulerCanvas.height;
+        ctx.clearRect(0, 0, W, H);
+
+        // Ruler body
+        const rulerY = 80,
+          rulerH = 60;
+        ctx.fillStyle = "#1a1a2e";
+        ctx.fillRect(30, rulerY, W - 60, rulerH);
+        ctx.strokeStyle = "#00f0ff";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(30, rulerY, W - 60, rulerH);
+
+        // Tick marks (0 to 40 cm)
+        const startX = 40,
+          endX = W - 40;
+        const pxPerCm = (endX - startX) / 40;
+        for (let cm = 0; cm <= 40; cm++) {
+          const x = startX + cm * pxPerCm;
+          const isMajor = cm % 5 === 0;
+          ctx.strokeStyle = isMajor ? "#00f0ff" : "#556";
+          ctx.lineWidth = isMajor ? 1.5 : 0.8;
+          ctx.beginPath();
+          ctx.moveTo(x, rulerY);
+          ctx.lineTo(x, rulerY + (isMajor ? 15 : 8));
+          ctx.stroke();
+          if (isMajor) {
+            ctx.fillStyle = "#00f0ff";
+            ctx.font = "11px Consolas";
+            ctx.textAlign = "center";
+            ctx.fillText(cm, x, rulerY + 30);
+          }
+        }
+
+        // Book being measured (at 10 - 33.5 cm)
+        const bookLeft = startX + 10 * pxPerCm;
+        const bookRight = startX + 33.5 * pxPerCm;
+        ctx.fillStyle = "rgba(255,0,170,0.15)";
+        ctx.fillRect(bookLeft, rulerY - 30, bookRight - bookLeft, 30);
+        ctx.strokeStyle = "#ff00aa";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(bookLeft, rulerY - 30, bookRight - bookLeft, 30);
+        ctx.fillStyle = "#ff00aa";
+        ctx.font = "bold 12px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("📖 BOOK", (bookLeft + bookRight) / 2, rulerY - 10);
+
+        // Arrows and labels
+        if (highlightLeft) {
+          ctx.strokeStyle = "#00ff88";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(bookLeft, rulerY + 45);
+          ctx.lineTo(bookLeft, rulerY + rulerH + 5);
+          ctx.stroke();
+          ctx.fillStyle = "#00ff88";
+          ctx.font = "bold 12px Consolas";
+          ctx.fillText("10.0 cm", bookLeft, rulerY + rulerH + 20);
+        }
+        if (highlightRight) {
+          ctx.strokeStyle = "#ffe600";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(bookRight, rulerY + 45);
+          ctx.lineTo(bookRight, rulerY + rulerH + 5);
+          ctx.stroke();
+          ctx.fillStyle = "#ffe600";
+          ctx.font = "bold 12px Consolas";
+          ctx.fillText("33.5 cm", bookRight, rulerY + rulerH + 20);
+        }
+        if (highlightLeft && highlightRight) {
+          // Length arrow above book
+          ctx.strokeStyle = "#00f0ff";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(bookLeft, rulerY - 45);
+          ctx.lineTo(bookRight, rulerY - 45);
+          ctx.stroke();
+          // Arrowheads
+          ctx.beginPath();
+          ctx.moveTo(bookLeft, rulerY - 45);
+          ctx.lineTo(bookLeft + 6, rulerY - 49);
+          ctx.lineTo(bookLeft + 6, rulerY - 41);
+          ctx.closePath();
+          ctx.fillStyle = "#00f0ff";
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(bookRight, rulerY - 45);
+          ctx.lineTo(bookRight - 6, rulerY - 49);
+          ctx.lineTo(bookRight - 6, rulerY - 41);
+          ctx.closePath();
+          ctx.fill();
+          ctx.font = "bold 14px sans-serif";
+          ctx.fillStyle = "#00f0ff";
+          ctx.fillText(
+            "L = 23.5 ± 0.1 cm",
+            (bookLeft + bookRight) / 2,
+            rulerY - 55,
+          );
+        }
+      }
+      if (rulerCanvas) drawRuler();
+
+      function animateRuler() {
+        if (rulerAnimating) return;
+        rulerAnimating = true;
+        resetRuler();
+        setTimeout(() => drawRuler(true, false), 500);
+        setTimeout(() => drawRuler(true, true), 1200);
+        setTimeout(() => {
+          document.getElementById("rulerReadout").style.display = "flex";
+          rulerAnimating = false;
+        }, 1800);
+      }
+      function resetRuler() {
+        drawRuler();
+        document.getElementById("rulerReadout").style.display = "none";
+      }
+
+      // ========== BALL DROP EXPERIMENT ==========
+      const ballCanvas = document.getElementById("ballCanvas");
+      let ballState = null;
+      function initBall() {
+        ballState = {
+          x: 300,
+          y: 60,
+          vy: 0,
+          startY: 60,
+          groundY: 360,
+          radius: 20,
+          falling: false,
+          time: 0,
+          startTime: 0,
+          trail: [],
+          bouncing: 0,
+        };
+        drawBall();
+      }
+      function drawBall() {
+        if (!ballCanvas || !ballState) return;
+        const ctx = ballCanvas.getContext("2d");
+        const W = ballCanvas.width,
+          H = ballCanvas.height;
+        ctx.clearRect(0, 0, W, H);
+
+        // Grid background
+        ctx.strokeStyle = "rgba(0,240,255,0.05)";
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= W; i += 30) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, H);
+          ctx.stroke();
+        }
+        for (let i = 0; i <= H; i += 30) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(W, i);
+          ctx.stroke();
+        }
+
+        // Height axis
+        ctx.fillStyle = "rgba(0,240,255,0.4)";
+        ctx.font = "10px Consolas";
+        ctx.textAlign = "right";
+        for (let m = 0; m <= 3; m++) {
+          const y =
+            ballState.groundY -
+            (m / 3) * (ballState.groundY - ballState.startY);
+          ctx.fillText(m + " m", 30, y + 3);
+          ctx.strokeStyle = "rgba(0,240,255,0.1)";
+          ctx.beginPath();
+          ctx.moveTo(35, y);
+          ctx.lineTo(W - 20, y);
+          ctx.stroke();
+        }
+
+        // Ground
+        ctx.fillStyle = "#1a1a2e";
+        ctx.fillRect(0, ballState.groundY + ballState.radius, W, H);
+        ctx.strokeStyle = "#00f0ff";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(0, ballState.groundY + ballState.radius);
+        ctx.lineTo(W, ballState.groundY + ballState.radius);
+        ctx.stroke();
+
+        // Trail
+        ballState.trail.forEach((p, i) => {
+          const alpha = (i / ballState.trail.length) * 0.5;
+          ctx.fillStyle = `rgba(255,106,0,${alpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        // Ball
+        const grd = ctx.createRadialGradient(
+          ballState.x - 5,
+          ballState.y - 5,
+          3,
+          ballState.x,
+          ballState.y,
+          ballState.radius,
+        );
+        grd.addColorStop(0, "#ffb366");
+        grd.addColorStop(0.5, "#ff6a00");
+        grd.addColorStop(1, "#8b0000");
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(ballState.x, ballState.y, ballState.radius, 0, Math.PI * 2);
+        ctx.fill();
+        // Ball glow
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#ff6a00";
+        ctx.strokeStyle = "#ffe600";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Instructions if not falling
+        if (!ballState.falling && ballState.time === 0) {
+          ctx.fillStyle = "rgba(0,255,136,0.8)";
+          ctx.font = "bold 14px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("👆 Click the ball to drop it!", W / 2, H - 20);
+        }
+      }
+      function updateBall() {
+        if (!ballState || !ballState.falling) return;
+        const dt = 0.016;
+        const g = 9.81 * 40; // scale for pixels
+        ballState.vy += g * dt;
+        ballState.y += ballState.vy * dt;
+        ballState.time += dt;
+
+        // Add trail
+        if (ballState.trail.length > 30) ballState.trail.shift();
+        ballState.trail.push({ x: ballState.x, y: ballState.y });
+
+        // Bounce
+        if (ballState.y >= ballState.groundY) {
+          ballState.y = ballState.groundY;
+          ballState.vy = -ballState.vy * 0.6;
+          ballState.bouncing++;
+          if (ballState.bouncing > 4 || Math.abs(ballState.vy) < 20) {
+            ballState.falling = false;
+            ballState.vy = 0;
+          }
+        }
+
+        // Update readouts
+        const realHeight =
+          ((ballState.groundY - ballState.y) /
+            (ballState.groundY - ballState.startY)) *
+          3;
+        const realVel = Math.abs(ballState.vy) / 40;
+        document.getElementById("ballTime").textContent =
+          ballState.time.toFixed(2) + " s";
+        document.getElementById("ballHeight").textContent =
+          realHeight.toFixed(2) + " m";
+        document.getElementById("ballVel").textContent =
+          realVel.toFixed(2) + " m/s";
+
+        drawBall();
+        requestAnimationFrame(updateBall);
+      }
+      function dropBall() {
+        if (!ballState) return;
+        if (ballState.y >= ballState.groundY - 5) resetBall();
+        ballState.falling = true;
+        ballState.startTime = performance.now();
+        updateBall();
+      }
+      function resetBall() {
+        initBall();
+        document.getElementById("ballTime").textContent = "0.00 s";
+        document.getElementById("ballHeight").textContent = "3.00 m";
+        document.getElementById("ballVel").textContent = "0.00 m/s";
+      }
+      if (ballCanvas) {
+        initBall();
+        ballCanvas.addEventListener("click", (e) => {
+          const rect = ballCanvas.getBoundingClientRect();
+          const x = (e.clientX - rect.left) * (ballCanvas.width / rect.width);
+          const y = (e.clientY - rect.top) * (ballCanvas.height / rect.height);
+          const dist = Math.hypot(x - ballState.x, y - ballState.y);
+          if (dist < 40 || !ballState.falling) dropBall();
+        });
+      }
+
+      // ========== DARTBOARDS ==========
+      const dartTargets = {
+        1: { cx: 90, cy: 90, spread: 8, offsetX: 0, offsetY: 0 }, // High acc, high prec
+        2: { cx: 90, cy: 90, spread: 8, offsetX: 35, offsetY: -25 }, // Low acc, high prec
+        3: { cx: 90, cy: 90, spread: 35, offsetX: 0, offsetY: 0 }, // High acc, low prec
+        4: { cx: 90, cy: 90, spread: 35, offsetX: 30, offsetY: 20 }, // Low acc, low prec
+      };
+      const dartDarts = { 1: [], 2: [], 3: [], 4: [] };
+
+      function drawDartboard(canvas) {
+        const ctx = canvas.getContext("2d");
+        const W = canvas.width,
+          H = canvas.height;
+        const cx = W / 2,
+          cy = H / 2;
+        ctx.clearRect(0, 0, W, H);
+
+        // Rings
+        const rings = [
+          { r: 85, color: "#0a0a1a" },
+          { r: 70, color: "#1a1a2e" },
+          { r: 55, color: "#00f0ff", fill: "rgba(0,240,255,0.1)" },
+          { r: 40, color: "#ff00aa", fill: "rgba(255,0,170,0.15)" },
+          { r: 25, color: "#ffe600", fill: "rgba(255,230,0,0.2)" },
+          { r: 12, color: "#00ff88", fill: "rgba(0,255,136,0.3)" },
+        ];
+        rings.forEach((r) => {
+          ctx.beginPath();
+          ctx.arc(cx, cy, r.r, 0, Math.PI * 2);
+          if (r.fill) {
+            ctx.fillStyle = r.fill;
+            ctx.fill();
+          }
+          ctx.strokeStyle = r.color;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+        // Bullseye
+        ctx.beginPath();
+        ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff0044";
+        ctx.fill();
+
+        // Draw darts
+        const type = canvas.dataset.type;
+        dartDarts[type].forEach((d) => {
+          // Dart body
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, 4, 0, Math.PI * 2);
+          ctx.fillStyle = "#00ff88";
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = "#00ff88";
+          ctx.fill();
+          ctx.shadowBlur = 0;
+          // Cross
+          ctx.strokeStyle = "#fff";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(d.x - 6, d.y);
+          ctx.lineTo(d.x + 6, d.y);
+          ctx.moveTo(d.x, d.y - 6);
+          ctx.lineTo(d.x, d.y + 6);
+          ctx.stroke();
+        });
+      }
+
+      function throwDart(canvas) {
+        const type = canvas.dataset.type;
+        const t = dartTargets[type];
+        // Generate dart with target's pattern
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * t.spread;
+        const x = t.cx + t.offsetX + Math.cos(angle) * dist;
+        const y = t.cy + t.offsetY + Math.sin(angle) * dist;
+        dartDarts[type].push({ x, y });
+        if (dartDarts[type].length > 8) dartDarts[type].shift();
+        drawDartboard(canvas);
+      }
+
+      function clearAllDarts() {
+        ["1", "2", "3", "4"].forEach((type) => {
+          dartDarts[type] = [];
+          const canvas = document.getElementById("dart" + type);
+          if (canvas) drawDartboard(canvas);
+        });
+      }
+
+      ["1", "2", "3", "4"].forEach((type) => {
+        const canvas = document.getElementById("dart" + type);
+        if (canvas) {
+          drawDartboard(canvas);
+          canvas.addEventListener("click", () => throwDart(canvas));
+        }
+      });
+    </script>
+  </body>
+</html>
