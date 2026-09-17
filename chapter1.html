@@ -729,15 +729,10 @@
     <canvas id="particles-canvas"></canvas>
 
     <nav class="navbar">
-      <a href="index.html" class="nav-logo">⚛️ PHYSICS<span>NOTES</span></a>
-      <ul class="nav-links">
-        <li><a href="index.html#chapters">All Chapters</a></li>
-        <li><a href="#s1">1.1</a></li>
-        <li><a href="#s2">1.2</a></li>
-        <li><a href="#s3">1.3</a></li>
-        <li><a href="#s4">1.4</a></li>
-        <li><a href="#s5">1.5</a></li>
-      </ul>
+      <a href="index.html" class="nav-back">← Home</a>
+      <span class="nav-logo" style="font-size: 0.85rem"
+        >⚛️ <span>CH 1</span></span
+      >
     </nav>
 
     <!-- ===== HERO ===== -->
@@ -1770,43 +1765,147 @@
           <span class="hl-cyan">smallest division</span>, which puts a limit on
           its accuracy.
         </p>
-        <p>
-          The <strong>absolute uncertainty</strong> is the maximum uncertainty —
-          equal to one smallest division of the instrument (the least count).
-        </p>
 
-        <!-- INTERACTIVE RULER -->
-        <div class="interactive-demo">
+        <div class="definition-box">
+          <div class="label">📌 Absolute Uncertainty</div>
+          <p>
+            The maximum uncertainty of a measurement — usually equal to
+            <strong>one smallest division</strong> (the least count) of the
+            instrument.
+          </p>
+        </div>
+
+        <!-- NEW FUN INTERACTIVE: LASER SCANNER -->
+        <div class="interactive-demo" style="padding-bottom: 12px">
           <div class="demo-title">
-            <span class="icon">📏</span>
-            <h3>Interactive Ruler — See Uncertainty</h3>
+            <span class="icon">🔬</span>
+            <h3>Laser Measurement Scanner</h3>
           </div>
           <p class="demo-hint">
-            Click "Measure" to see how uncertainty arises from the ruler's
-            smallest division
+            Drag the laser scanner to measure the Silicon Wafer. Watch the
+            uncertainty fluctuate!
           </p>
-          <div class="demo-canvas-wrap">
-            <canvas id="rulerCanvas" width="700" height="200"></canvas>
-          </div>
-          <div class="demo-controls">
-            <button class="demo-btn" onclick="animateRuler()">
-              📏 Measure!
-            </button>
-            <button class="demo-btn" onclick="resetRuler()">↺ Reset</button>
-          </div>
-          <div class="demo-readout" id="rulerReadout" style="display: none">
-            <div class="readout-item">
-              <div class="readout-label">Left Edge</div>
-              <div class="readout-value">10.00 cm</div>
+
+          <!-- Scanner visual -->
+          <div
+            style="
+              position: relative;
+              background: #05050f;
+              border: 1px solid rgba(0, 240, 255, 0.2);
+              border-radius: 8px;
+              height: 120px;
+              margin: 20px 0;
+              overflow: hidden;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <!-- Ruler Ticks -->
+            <div
+              style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 15px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+              "
+            >
+              <span style="border-left: 1px solid #fff; height: 10px"></span>
+              <span style="border-left: 1px solid #fff; height: 10px"></span>
+              <span style="border-left: 1px solid #fff; height: 10px"></span>
+              <span style="border-left: 1px solid #fff; height: 10px"></span>
+              <span style="border-left: 1px solid #fff; height: 10px"></span>
             </div>
-            <div class="readout-item">
-              <div class="readout-label">Right Edge</div>
-              <div class="readout-value">33.50 cm</div>
+            <!-- Object to measure -->
+            <div
+              style="
+                background: linear-gradient(90deg, #333, #555);
+                width: 65%;
+                height: 60px;
+                margin-left: 20px;
+                border-radius: 4px;
+                border: 2px solid #777;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+              "
+            >
+              <span style="color: #aaa; font-size: 0.8rem; letter-spacing: 2px"
+                >SILICON WAFER</span
+              >
             </div>
+            <!-- Laser Line -->
+            <div
+              id="laserLine"
+              style="
+                position: absolute;
+                top: 0;
+                left: 20px;
+                width: 2px;
+                height: 100%;
+                background: var(--neon-green);
+                box-shadow: 0 0 15px var(--neon-green);
+                pointer-events: none;
+                transition: left 0.1s linear;
+              "
+            ></div>
+          </div>
+
+          <!-- Slider -->
+          <input
+            type="range"
+            class="slider"
+            id="scannerSlider"
+            min="0"
+            max="100"
+            step="1"
+            value="0"
+            style="margin-bottom: 20px"
+          />
+
+          <!-- Live Readout -->
+          <div
+            class="demo-readout"
+            style="
+              background: rgba(0, 255, 136, 0.05);
+              padding: 15px;
+              border-radius: 8px;
+              border: 1px solid rgba(0, 255, 136, 0.2);
+            "
+          >
             <div class="readout-item">
               <div class="readout-label">Length</div>
-              <div class="readout-value" style="color: var(--neon-green)">
-                23.5 ± 0.1 cm
+              <div
+                class="readout-value"
+                id="scanLength"
+                style="color: var(--text-main)"
+              >
+                0.00 cm
+              </div>
+            </div>
+            <div class="readout-item">
+              <div class="readout-label">Uncertainty</div>
+              <div
+                class="readout-value"
+                id="scanUncert"
+                style="color: var(--text-muted)"
+              >
+                ± 0.05 cm
+              </div>
+            </div>
+            <div class="readout-item">
+              <div class="readout-label">% Error</div>
+              <div
+                class="readout-value"
+                id="scanPct"
+                style="color: var(--text-muted)"
+              >
+                —
               </div>
             </div>
           </div>
@@ -1814,7 +1913,7 @@
 
         <div class="formula-box">
           <div class="label">Uncertainty Formulas</div>
-          <div class="formula" style="font-size: 1.2rem">
+          <div class="formula" style="font-size: 1.1rem">
             Fractional = Δx / x
           </div>
           <div class="formula-note" style="margin-top: 8px">
@@ -1830,22 +1929,53 @@
           reading may be influenced by external factors (e.g., air currents).
         </p>
 
-        <!-- DIGITAL SCALE ANIMATION -->
-        <div class="interactive-demo">
-          <div class="demo-title">
-            <span class="icon">⚖️</span>
-            <h3>Digital Scale — Watch the Last Digit</h3>
-          </div>
-          <p class="demo-hint">
-            Notice how the last digit fluctuates — that's your uncertainty!
-          </p>
-          <div class="digital-scale">
-            <div class="digital-display">
-              3.14<span class="fluctuating" id="fluctDigit">5</span>
-              <span class="unit">g</span>
-            </div>
-          </div>
-        </div>
+        <!-- Script for the Laser Scanner embedded right here so it works instantly -->
+        <script>
+          const slider = document.getElementById("scannerSlider");
+          const laser = document.getElementById("laserLine");
+          const lenDisplay = document.getElementById("scanLength");
+          const uncertDisplay = document.getElementById("scanUncert");
+          const pctDisplay = document.getElementById("scanPct");
+          let wobbleInterval;
+
+          slider.addEventListener("input", (e) => {
+            const val = parseInt(e.target.value);
+            // Move laser (maps 0-100 to roughly 20px to 90% width)
+            laser.style.left = `calc(20px + ${val * 0.8}%)`;
+
+            if (val === 65) {
+              // HIT THE TARGET EDGE (65% width)
+              laser.style.background = "var(--neon-magenta)";
+              laser.style.boxShadow = "0 0 20px var(--neon-magenta)";
+              lenDisplay.style.color = "var(--neon-magenta)";
+              uncertDisplay.style.color = "var(--neon-magenta)";
+              pctDisplay.style.color = "var(--neon-magenta)";
+
+              // Wobble effect for uncertainty
+              clearInterval(wobbleInterval);
+              wobbleInterval = setInterval(() => {
+                const wobble = (23.5 + (Math.random() * 0.1 - 0.05)).toFixed(2);
+                lenDisplay.textContent = wobble + " cm";
+              }, 100);
+
+              uncertDisplay.textContent = "± 0.1 cm";
+              pctDisplay.textContent = ((0.1 / 23.5) * 100).toFixed(2) + " %";
+            } else {
+              // Not on target
+              clearInterval(wobbleInterval);
+              laser.style.background = "var(--neon-green)";
+              laser.style.boxShadow = "0 0 15px var(--neon-green)";
+              lenDisplay.style.color = "var(--text-main)";
+              uncertDisplay.style.color = "var(--text-muted)";
+              pctDisplay.style.color = "var(--text-muted)";
+
+              const currentLen = (val / 65) * 23.5;
+              lenDisplay.textContent = currentLen.toFixed(2) + " cm";
+              uncertDisplay.textContent = "± 0.05 cm";
+              pctDisplay.textContent = "—";
+            }
+          });
+        </script>
       </div>
 
       <!-- ===== 1.4 SIGNIFICANT FIGURES ===== -->
@@ -2418,6 +2548,20 @@
         <span class="heart">♥</span> for Physics
       </p>
     </footer>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+      <a href="index.html#chapters"
+        ><span class="icon">📚</span><span>Chapters</span></a
+      >
+      <a href="sandbox.html"
+        ><span class="icon">🧪</span><span>Sandbox</span></a
+      >
+      <a href="chapter1.html" class="active"
+        ><span class="icon">📖</span><span>Study</span></a
+      >
+    </nav>
 
     <script src="script.js"></script>
 

@@ -14,18 +14,32 @@
       body {
         overflow: hidden;
       }
+
       .sandbox-wrap {
         display: flex;
         flex-direction: column;
         height: 100vh;
         height: 100dvh;
         overflow: hidden;
+        padding-top: 56px; /* FIX: Pushes sandbox below the top navbar */
       }
+
       .sandbox-tabs {
         position: relative;
-        top: 0;
         flex-shrink: 0;
+        overflow-x: auto; /* FIX: Enables horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        border-bottom: 1px solid var(--glass-border);
+        background: var(--bg-deep);
       }
+
+      .sandbox-tabs-inner {
+        display: flex;
+        gap: 8px;
+        padding: 10px 12px;
+        width: max-content; /* FIX: Forces pills to stay in a row so they scroll */
+      }
+
       .sandbox-body {
         flex: 1;
         overflow-y: auto;
@@ -33,6 +47,7 @@
         -webkit-overflow-scrolling: touch;
         padding-bottom: 80px;
       }
+
       .sandbox-module {
         display: none;
         padding: 12px;
