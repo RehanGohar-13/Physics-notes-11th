@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#06060f" />
+    <title>Ch 2: Force and Motion — Physics Notes</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* ===== CHAPTER 2 STYLES (same family as Ch1) ===== */
+      .hl-cyan {
+        color: var(--neon-cyan);
+        font-weight: 600;
+      }
+      .hl-magenta {
+        color: var(--neon-magenta);
+        font-weight: 600;
+      }
+      .hl-green {
+        color: var(--neon-green);
+        font-weight: 600;
+      }
+      .hl-yellow {
+        color: var(--neon-yellow);
+        font-weight: 600;
+      }
+      .hl-purple {
+        color: var(--neon-purple);
+        font-weight: 600;
+      }
+      .hl-orange {
+        color: var(--neon-orange);
+        font-weight: 600;
+      }
+
+      .objectives-box {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 170, 0.06),
+          rgba(0, 240, 255, 0.06)
+        );
+        border: 1px solid rgba(255, 0, 170, 0.25);
+        border-radius: var(--radius);
+        padding: 20px;
+        margin: 20px 0 30px;
+        position: relative;
+        overflow: hidden;
+      }
+      .objectives-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--neon-magenta),
+          var(--neon-cyan)
+        );
+      }
+      .objectives-box h3 {
+        color: var(--neon-magenta);
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+      }
+      .objectives-list {
+        list-style: none;
+        display: grid;
+        gap: 6px;
+      }
+      .objectives-list li {
+        padding: 8px 10px 8px 32px;
+        position: relative;
+        color: var(--text-main);
+        font-size: 0.8rem;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        cursor: pointer;
+        line-height: 1.4;
+      }
+      .objectives-list li::before {
+        content: "○";
+        position: absolute;
+        left: 10px;
+        top: 8px;
+        color: var(--neon-magenta);
+      }
+      .objectives-list li.checked::before {
+        content: "●";
+        color: var(--neon-green);
+      }
+      .objectives-list li.checked {
+        color: var(--text-muted);
+        text-decoration: line-through;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 16px 0;
+      }
+      @media (min-width: 640px) {
+        .two-col {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .compare-card {
+        background: var(--bg-card);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+        padding: 16px;
+      }
+      .compare-card h4 {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      .compare-card.scalar h4 {
+        color: var(--neon-cyan);
+      }
+      .compare-card.vector h4 {
+        color: var(--neon-magenta);
+      }
+      .compare-card ul {
+        list-style: none;
+        display: grid;
+        gap: 6px;
+      }
+      .compare-card li {
+        font-size: 0.8rem;
+        color: var(--text-main);
+        padding: 6px 8px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 6px;
+      }
+
+      /* Vector diagram (CSS/SVG style box) */
+      .vector-diagram {
+        background: #08081a;
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin: 16px 0;
+        text-align: center;
+        overflow-x: auto;
+      }
+      .vector-diagram svg {
+        max-width: 100%;
+        height: auto;
+      }
+      .vector-diagram .caption {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 10px;
+        line-height: 1.4;
+      }
+
+      .eq-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        color: var(--neon-purple);
+        background: rgba(168, 85, 247, 0.1);
+        border: 1px solid rgba(168, 85, 247, 0.25);
+        padding: 2px 8px;
+        border-radius: 20px;
+        margin-left: 6px;
+        vertical-align: middle;
+      }
+
+      .example-box {
+        background: linear-gradient(
+          135deg,
+          rgba(168, 85, 247, 0.06),
+          rgba(0, 240, 255, 0.04)
+        );
+        border: 1px solid rgba(168, 85, 247, 0.25);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin: 20px 0;
+      }
+      .example-box .ex-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--neon-purple);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .example-box .ex-problem {
+        font-size: 0.88rem;
+        color: var(--text-bright);
+        margin-bottom: 12px;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <nav class="navbar">
+      <a href="index.html" class="nav-back">← Home</a>
+      <span class="nav-logo" style="font-size: 0.85rem"
+        >⚛️ <span>CH 2</span></span
+      >
+    </nav>
+
+    <section class="chapter-hero" style="padding-top: 80px">
+      <div class="ch-number">Chapter 02</div>
+      <h1>Force and Motion</h1>
+      <p class="subtitle">
+        Scalars, vectors, components, products, and the language of motion.
+      </p>
+    </section>
+
+    <div class="chapter-content">
+      <!-- LEARNING OBJECTIVES -->
+      <div class="objectives-box reveal">
+        <h3>🎯 Learning Objectives</h3>
+        <p
+          style="
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+          "
+        >
+          Tap each to mark as done!
+        </p>
+        <ul class="objectives-list">
+          <li onclick="this.classList.toggle('checked')">
+            Differentiate between scalar and vector quantities
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Represent a vector in 2-D as two perpendicular components
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Describe the product of two vectors (dot and cross-product) along
+            with their properties
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Derive the equations of motion (uniform acceleration; from
+            definitions and graphically)
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Solve problems using equations of motion (straight line, free fall,
+            2-D resolved components)
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Evaluate and analyse projectile motion in the absence of air
+            resistance (height, range, time, angles)
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Predict qualitatively how air resistance affects projectile motion
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Apply conservation of momentum to simple 1-D and 2-D problems
+            (elastic & inelastic)
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Predict and analyse motion for elastic collisions (KE conserved;
+            relative speeds)
+          </li>
+          <li onclick="this.classList.toggle('checked')">
+            Justify that momentum of a closed system is always conserved (KE may
+            change)
+          </li>
+        </ul>
+      </div>
+
+      <!-- CHAPTER INTRO -->
+      <div class="content-section reveal">
+        <h2>📖 Basic Concept of Scalars and Vectors</h2>
+        <p>
+          Scalars and vectors are basic concepts in physics. Many problems in
+          physics require us to distinguish between scalar and vector quantities
+          to apply the correct mathematical and conceptual approaches.
+        </p>
+        <p>
+          Understanding scalars and vectors helps us grasp how Physics applies
+          to real-world situations — such as calculating the total distance
+          travelled (<span class="hl-cyan">scalar</span>) or determining the
+          magnitude and direction of force (<span class="hl-magenta"
+            >vector</span
+          >).
+        </p>
+        <p>
+          Learning these concepts develops critical thinking and problem-solving
+          skills. This chapter is primarily concerned with
+          <strong>vector algebra</strong> and its application in:
+        </p>
+        <ul class="key-points">
+          <li>Uniformly accelerated motion in a straight line</li>
+          <li>
+            Motion of freely falling bodies in a uniform gravitational field
+          </li>
+          <li>Projectile motion</li>
+          <li>Interaction between objects in one and two dimensions</li>
+        </ul>
+      </div>
+
+      <!-- 2.1 SCALARS -->
+      <div class="content-section reveal">
+        <h2>2.1 Scalars</h2>
+        <p>
+          Scalars are physical quantities that are described solely by a
+          <strong>magnitude</strong> (size or amount) without any mention of
+          direction. Thus, scalars are
+          <span class="hl-cyan">directionless</span> and can be fully
+          characterized by a single number and its associated unit.
+        </p>
+
+        <div class="definition-box">
+          <div class="label">📌 Definition</div>
+          <p>
+            A <strong>scalar</strong> has magnitude only. No direction is
+            required for its complete specification.
+          </p>
+        </div>
+
+        <h3>Examples of Scalars</h3>
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Quantity</th>
+                <th>Meaning</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mass</strong></td>
+                <td>Amount of matter in an object</td>
+                <td>2 kg</td>
+              </tr>
+              <tr>
+                <td><strong>Distance</strong></td>
+                <td>Total path length travelled (no direction)</td>
+                <td>50 m</td>
+              </tr>
+              <tr>
+                <td><strong>Speed</strong></td>
+                <td>Rate of covering distance</td>
+                <td>40 km h⁻¹</td>
+              </tr>
+              <tr>
+                <td><strong>Time</strong></td>
+                <td>Duration between two events</td>
+                <td>20 s</td>
+              </tr>
+              <tr>
+                <td><strong>Energy</strong></td>
+                <td>Capacity to do work</td>
+                <td>25 J</td>
+              </tr>
+              <tr>
+                <td><strong>Temperature</strong></td>
+                <td>Average KE of particles</td>
+                <td>20 °C</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2.2 VECTORS -->
+      <div class="content-section reveal">
+        <h2>2.2 Vectors</h2>
+        <p>
+          Those physical quantities which require
+          <strong>magnitude as well as direction</strong> for their complete
+          specification are known as vectors.
+        </p>
+
+        <div
+          class="definition-box"
+          style="border-left-color: var(--neon-magenta)"
+        >
+          <div class="label" style="color: var(--neon-magenta)">
+            📌 Definition
+          </div>
+          <p>
+            A <strong>vector</strong> has both magnitude and direction. Both are
+            needed for complete specification.
+          </p>
+        </div>
+
+        <h3>Examples of Vectors</h3>
+        <div class="neon-table-wrapper">
+          <table class="neon-table">
+            <thead>
+              <tr>
+                <th>Quantity</th>
+                <th>Meaning</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Displacement</strong></td>
+                <td>Change in position (length + direction)</td>
+                <td>10 m towards west</td>
+              </tr>
+              <tr>
+                <td><strong>Velocity</strong></td>
+                <td>Speed in a particular direction</td>
+                <td>50 km h⁻¹ towards west</td>
+              </tr>
+              <tr>
+                <td><strong>Acceleration</strong></td>
+                <td>Rate of change of velocity (speed and/or direction)</td>
+                <td>10 m s⁻² upward</td>
+              </tr>
+              <tr>
+                <td><strong>Force</strong></td>
+                <td>Push or pull (magnitude + direction)</td>
+                <td>20 N to the right</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Side-by-side compare -->
+        <div class="two-col">
+          <div class="compare-card scalar">
+            <h4>📏 Scalars</h4>
+            <ul>
+              <li>Magnitude only</li>
+              <li>No direction</li>
+              <li>Added by ordinary algebra</li>
+              <li>e.g. mass, time, energy</li>
+            </ul>
+          </div>
+          <div class="compare-card vector">
+            <h4>➡️ Vectors</h4>
+            <ul>
+              <li>Magnitude + direction</li>
+              <li>Direction matters</li>
+              <li>Added by vector rules</li>
+              <li>e.g. force, velocity, displacement</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>Graphical Representation of a Vector</h3>
+        <p>
+          A good way to represent a vector quantity is to use a
+          <strong>vector diagram</strong>, in which vectors are often
+          represented by <span class="hl-green">arrows</span>.
+        </p>
+        <ul class="key-points">
+          <li>
+            The <strong>length</strong> of the arrow indicates the
+            <strong>magnitude</strong>
+          </li>
+          <li>
+            The <strong>head</strong> of the arrow shows the
+            <strong>direction</strong>
+          </li>
+          <li>
+            Vectors are typically denoted by
+            <strong>bold face letters</strong> (e.g. <strong>V</strong>,
+            <strong>F</strong>) or an arrow above the symbol (e.g. Ā, F⃗)
+          </li>
+        </ul>
+
+        <h3>Rectangular Components of a Vector</h3>
+        <p>
+          A <strong>component</strong> of a vector is its effective value in a
+          given direction. A vector may be considered as the resultant of its
+          component vectors along specified directions.
+        </p>
+        <p>
+          It is usually convenient to resolve a vector into its components along
+          <span class="hl-cyan">mutually perpendicular directions</span>. Such
+          components are called <strong>rectangular components</strong>.
+        </p>
+
+        <p>
+          Let there be a vector <strong>A</strong> represented by a line OP
+          making an angle θ with the x-axis. Draw projection OM of vector
+          <strong>A</strong> on the x-axis and projection ON of vector
+          <strong>A</strong> on the y-axis (Fig. 2.1).
+        </p>
+        <ul class="key-points">
+          <li>
+            Projection OM along x-direction → <strong>A<sub>x</sub></strong>
+          </li>
+          <li>
+            Projection ON along y-direction → <strong>A<sub>y</sub></strong>
+          </li>
+        </ul>
+
+        <p>By applying head to tail rule:</p>
+        <div class="formula-box">
+          <div class="label">Equation (2.1)</div>
+          <div class="formula">A = A<sub>x</sub> + A<sub>y</sub></div>
+          <div class="formula-note">
+            A<sub>x</sub> and A<sub>y</sub> are rectangular components of A (at
+            right angles)
+          </div>
+        </div>
+
+        <p>Considering the right-angled triangle OMP:</p>
+        <div class="formula-box">
+          <div class="label">Equations (2.2) &amp; (2.3)</div>
+          <div class="formula" style="font-size: 1.15rem; line-height: 1.8">
+            A<sub>x</sub> = A cos θ<br />
+            A<sub>y</sub> = A sin θ
+          </div>
+        </div>
+
+        <!-- Fig 2.1 SVG diagram -->
+        <div class="vector-diagram">
+          <svg
+            viewBox="0 0 320 240"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Fig 2.1 Rectangular components"
+          >
+            <!-- Axes -->
+            <line
+              x1="40"
+              y1="200"
+              x2="300"
+              y2="200"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+              opacity="0.5"
+            />
+            <line
+              x1="40"
+              y1="200"
+              x2="40"
+              y2="20"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+              opacity="0.5"
+            />
+            <text x="290" y="215" fill="#00f0ff" font-size="14">x</text>
+            <text x="20" y="30" fill="#00f0ff" font-size="14">y</text>
+            <text x="28" y="215" fill="#888" font-size="12">O</text>
+
+            <!-- Vector A (OP) -->
+            <line
+              x1="40"
+              y1="200"
+              x2="240"
+              y2="80"
+              stroke="#ff00aa"
+              stroke-width="3"
+            />
+            <polygon points="240,80 228,88 232,76" fill="#ff00aa" />
+            <text
+              x="150"
+              y="120"
+              fill="#ff00aa"
+              font-size="16"
+              font-weight="bold"
+            >
+              A
+            </text>
+
+            <!-- Ax projection OM -->
+            <line
+              x1="40"
+              y1="200"
+              x2="240"
+              y2="200"
+              stroke="#00ff88"
+              stroke-width="2.5"
+            />
+            <text x="130" y="220" fill="#00ff88" font-size="14">
+              Aₓ = A cos θ
+            </text>
+            <text x="235" y="215" fill="#00ff88" font-size="12">M</text>
+
+            <!-- Ay projection -->
+            <line
+              x1="240"
+              y1="200"
+              x2="240"
+              y2="80"
+              stroke="#ffe600"
+              stroke-width="2.5"
+              stroke-dasharray="4 3"
+            />
+            <text x="250" y="150" fill="#ffe600" font-size="14">Aᵧ</text>
+            <text x="248" y="75" fill="#ffe600" font-size="12">P</text>
+
+            <!-- angle arc -->
+            <path
+              d="M 80 200 A 40 40 0 0 0 70 170"
+              fill="none"
+              stroke="#a855f7"
+              stroke-width="1.5"
+            />
+            <text x="85" y="185" fill="#a855f7" font-size="14">θ</text>
+          </svg>
+          <div class="caption">
+            <strong>Fig. 2.1:</strong> Vector A in a 2D Cartesian system with
+            rectangular components Aₓ = A cos θ along x-axis (OM) and Aᵧ = A sin
+            θ along y-axis (MP).
+          </div>
+        </div>
+
+        <h3>Determination of a Vector from its Rectangular Components</h3>
+        <p>
+          If the rectangular components of a vector are given, we can find the
+          <strong>magnitude</strong> of the vector using the Pythagorean
+          theorem.
+        </p>
+        <p>In the right-angled ΔOMP:</p>
+
+        <div class="formula-box">
+          <div class="label">Equation (2.4) — Magnitude</div>
+          <div class="formula" style="font-size: 1.1rem; line-height: 1.8">
+            (OP)² = (OM)² + (MP)²<br />
+            A² = A<sub>x</sub>² + A<sub>y</sub>²<br />
+            A = √(A<sub>x</sub>² + A<sub>y</sub>²)
+          </div>
+        </div>
+
+        <p>The direction θ is given by:</p>
+        <div class="formula-box">
+          <div class="label">Equation (2.5) — Direction</div>
+          <div class="formula" style="font-size: 1.1rem; line-height: 1.8">
+            tan θ = MP / OM = A<sub>y</sub> / A<sub>x</sub><br />
+            θ = tan⁻¹(A<sub>y</sub> / A<sub>x</sub>)
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 2.1 -->
+      <div class="content-section reveal">
+        <h2>📝 Example 2.1</h2>
+        <div class="example-box">
+          <div class="ex-label">Worked Example</div>
+          <div class="ex-problem">
+            Find the angle between two forces of equal magnitude when the
+            magnitude of their resultant is also equal to the magnitude of
+            either of these forces.
+          </div>
+
+          <div class="formula-box" style="margin: 0">
+            <div class="label">Solution</div>
+            <div
+              class="formula"
+              style="font-size: 0.85rem; line-height: 1.75; text-align: left"
+            >
+              Let θ be the angle between two forces F₁ and F₂, where F₁ is along
+              the x-axis.<br /><br />
+              x-component of resultant:<br />
+              Rₓ = F₁ cos 0° + F₂ cos θ<br />
+              Rₓ = F₁ + F₂ cos θ<br /><br />
+              y-component of resultant:<br />
+              Rᵧ = F₁ sin 0° + F₂ sin θ<br />
+              Rᵧ = F₂ sin θ<br /><br />
+              Resultant: R² = Rₓ² + Rᵧ²<br /><br />
+              Given R = F₁ = F₂ = F, hence:<br />
+              F² = (F + F cos θ)² + (F sin θ)²<br />
+              F² = F² + F² cos²θ + 2F² cos θ + F² sin²θ<br />
+              0 = 2F² cos θ + F² (cos²θ + sin²θ)<br />
+              0 = 2F² cos θ + F² · 1<br />
+              0 = F² (2 cos θ + 1)<br /><br />
+              As F ≠ 0: &nbsp; 2 cos θ + 1 = 0<br />
+              cos θ = −0.5<br />
+              θ = cos⁻¹(−0.5)<br /><br />
+              <span class="hl-green" style="font-size: 1.05rem">θ = 120°</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">💡</span>
+          <div class="callout-content">
+            <strong>Exam tip</strong>
+            <p>
+              When two equal vectors have a resultant equal to either one, the
+              angle between them is always <strong>120°</strong>. This is a
+              classic board result.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.3 PRODUCT START -->
+      <div class="content-section reveal">
+        <h2>2.3 Product of Two Vectors</h2>
+        <p>
+          There are two types of vector multiplications. The products of these
+          two types are known as:
+        </p>
+        <ul class="key-points">
+          <li>
+            <span class="hl-cyan">Scalar product</span> (dot product) — result
+            is a <strong>scalar</strong>
+          </li>
+          <li>
+            <span class="hl-magenta">Vector product</span> (cross product) —
+            result is a <strong>vector</strong>
+          </li>
+        </ul>
+
+        <h3>Scalar or Dot Product</h3>
+        <p>
+          The scalar product of two vectors <strong>A</strong> and
+          <strong>B</strong> is written as <strong>A · B</strong> and is defined
+          as:
+        </p>
+
+        <div class="formula-box">
+          <div class="label">Equation (2.6) — Dot Product</div>
+          <div class="formula" style="font-size: 1.25rem">A · B = AB cos θ</div>
+          <div class="formula-note">
+            A and B are magnitudes; θ is the angle between them
+          </div>
+        </div>
+
+        <p>
+          For physical interpretation of the dot product of two vectors
+          <strong>A</strong> and <strong>B</strong>, they are first brought to a
+          common origin (Fig. 2.2-a). Then:
+        </p>
+
+        <div class="formula-box">
+          <div class="label">Interpretation</div>
+          <div class="formula" style="font-size: 1rem; line-height: 1.7">
+            A · B = A × (projection of B on A)<br />
+            <span style="color: var(--text-muted); font-size: 0.9rem"
+              >or equivalently B × (projection of A on B)</span
+            >
+          </div>
+        </div>
+
+        <!-- Fig 2.2a -->
+        <div class="vector-diagram">
+          <svg
+            viewBox="0 0 320 200"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="Fig 2.2a Dot product"
+          >
+            <line
+              x1="40"
+              y1="160"
+              x2="280"
+              y2="160"
+              stroke="#333"
+              stroke-width="1"
+            />
+            <!-- A horizontal -->
+            <line
+              x1="40"
+              y1="160"
+              x2="220"
+              y2="160"
+              stroke="#00f0ff"
+              stroke-width="3"
+            />
+            <polygon points="220,160 208,168 208,152" fill="#00f0ff" />
+            <text
+              x="120"
+              y="180"
+              fill="#00f0ff"
+              font-size="16"
+              font-weight="bold"
+            >
+              A
+            </text>
+            <!-- B at angle -->
+            <line
+              x1="40"
+              y1="160"
+              x2="180"
+              y2="50"
+              stroke="#ff00aa"
+              stroke-width="3"
+            />
+            <polygon points="180,50 168,58 176,62" fill="#ff00aa" />
+            <text
+              x="120"
+              y="90"
+              fill="#ff00aa"
+              font-size="16"
+              font-weight="bold"
+            >
+              B
+            </text>
+            <!-- projection -->
+            <line
+              x1="180"
+              y1="50"
+              x2="180"
+              y2="160"
+              stroke="#ffe600"
+              stroke-width="1.5"
+              stroke-dasharray="4 3"
+            />
+            <line
+              x1="40"
+              y1="160"
+              x2="180"
+              y2="160"
+              stroke="#00ff88"
+              stroke-width="2"
+              opacity="0.7"
+            />
+            <text x="90" y="150" fill="#00ff88" font-size="12">B cos θ</text>
+            <!-- angle -->
+            <path
+              d="M 90 160 A 50 50 0 0 0 75 125"
+              fill="none"
+              stroke="#a855f7"
+              stroke-width="1.5"
+            />
+            <text x="95" y="140" fill="#a855f7" font-size="14">θ</text>
+          </svg>
+          <div class="caption">
+            <strong>Fig. 2.2 (a):</strong> Vector A along horizontal, vector B
+            at angle θ, with projection B cos θ along A. Dot product A · B = A
+            (B cos θ).
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <span class="callout-icon">📌</span>
+          <div class="callout-content">
+            <strong>Coming in Part 2</strong>
+            <p>
+              Full properties of the dot product, physical examples (Work = F ·
+              S), cross product definition, right-hand rule, and properties of A
+              × B — continuing from the rest of page 22 and beyond.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="reveal"
+        style="
+          text-align: center;
+          margin: 40px 0 20px;
+          padding: 20px;
+          border-top: 1px solid var(--glass-border);
+        "
+      >
+        <p
+          style="
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+          "
+        >
+          Chapter 2 · Part 1 of this batch (Pages 19–22 start)
+        </p>
+        <p style="color: var(--neon-cyan); font-size: 0.8rem">
+          Scalars · Vectors · Components · Example 2.1 · Dot product intro
+        </p>
+      </div>
+    </div>
+    <!-- /chapter-content -->
+
+    <footer class="footer">
+      <p>
+        Chapter 2 of 12 — Force and Motion | Made with
+        <span class="heart">♥</span> for Physics
+      </p>
+    </footer>
+
+    <nav class="bottom-nav">
+      <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+      <a href="index.html#chapters"
+        ><span class="icon">📚</span><span>Chapters</span></a
+      >
+      <a href="sandbox.html"
+        ><span class="icon">🧪</span><span>Sandbox</span></a
+      >
+      <a href="chapter2.html" class="active"
+        ><span class="icon">📖</span><span>Study</span></a
+      >
+    </nav>
+
+    <script src="script.js"></script>
+  </body>
+</html>
