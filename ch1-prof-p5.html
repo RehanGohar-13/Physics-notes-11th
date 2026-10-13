@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Page 5</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 40px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: #fff;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .section-label {
+        font-size: 0.78rem;
+        color: var(--accent-alt);
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .example-q {
+        font-size: 0.95rem;
+        color: var(--text-main);
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      /* Summary table */
+      .sum-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+        font-family: Consolas, "Courier New", monospace;
+      }
+      .sum-table th {
+        text-align: left;
+        color: var(--accent-alt);
+        font-size: 0.72rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 6px 8px;
+        border-bottom: 1px solid #333;
+      }
+      .sum-table td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #1f1f1f;
+        color: #ddd;
+        vertical-align: middle;
+      }
+      .sum-table tr:last-child td {
+        border-bottom: none;
+      }
+      .sum-table .qty {
+        color: #fff;
+        font-weight: 600;
+        font-family: inherit;
+      }
+      .sum-table .unit {
+        color: var(--yellow);
+      }
+      .sum-table .dim {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.92rem;
+        line-height: 1.9;
+        color: #ccc;
+      }
+      .calc .dim {
+        color: var(--accent);
+      }
+      .calc .res {
+        color: var(--green);
+        font-weight: 700;
+      }
+      .calc .side {
+        color: var(--text-muted);
+        font-size: 0.8rem;
+      }
+      .calc .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 6px;
+        align-items: baseline;
+      }
+      .calc .step-note {
+        color: #666;
+        font-size: 0.78rem;
+      }
+
+      .bullet-title {
+        color: var(--yellow);
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-btn:active {
+        background: #2a2a35;
+      }
+      .page-indicator {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image-section h3 {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+      .source-image {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 8px;
+        touch-action: pan-y pinch-zoom;
+      }
+      .hint {
+        font-size: 0.72rem;
+        color: #666;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch1-prof-p4.html">← Prev</a>
+      <span class="page-title">Page 5</span>
+      <a href="ch1-prof-p6.html">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">CHAPTER NO 01</div>
+      <div class="page-sub">Summary strip · Force · Pressure</div>
+
+      <!-- SUMMARY TABLE (from notebook top list) -->
+      <div class="concept-card">
+        <div class="concept-title">Summary Table</div>
+        <table class="sum-table">
+          <thead>
+            <tr>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Dimension</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="qty">velocity mean speed</td>
+              <td class="unit">ms⁻¹</td>
+              <td class="dim">[LT⁻¹]</td>
+            </tr>
+            <tr>
+              <td class="qty">Acceleration</td>
+              <td class="unit">ms⁻²</td>
+              <td class="dim">[LT⁻²]</td>
+            </tr>
+            <tr>
+              <td class="qty">Area</td>
+              <td class="unit">m²</td>
+              <td class="dim">[L²]</td>
+            </tr>
+            <tr>
+              <td class="qty">Volumn</td>
+              <td class="unit">m³</td>
+              <td class="dim">[L³]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FORMULAS HEADER -->
+      <div class="concept-card" style="padding-bottom: 8px">
+        <div class="section-label">
+          CALCULATE THE DIMENSIONS OF SOME FORMULAS
+        </div>
+      </div>
+
+      <!-- FORCE -->
+      <div class="concept-card">
+        <div class="bullet-title">• Force :-</div>
+        <div class="calc">
+          <div class="row">
+            <span>F = ma</span>
+            <span class="side">∵ m = mass</span>
+          </div>
+          <div class="row">
+            <span>F = <span class="dim">[M][LT⁻²]</span></span>
+            <span class="side">∵ a = acceleration</span>
+          </div>
+          <div>F = <span class="res">[MLT⁻²]</span></div>
+        </div>
+      </div>
+
+      <!-- PRESSURE -->
+      <div class="concept-card">
+        <div class="bullet-title">• Pressure :-</div>
+        <div class="calc">
+          <div class="row">
+            <span>P = F / A</span>
+            <span class="side">∵ F = Force<br />∵ A = Area</span>
+          </div>
+          <div>P = ma / [L²]</div>
+          <div>
+            P = <span class="dim">[M][LT⁻²]</span> /
+            <span class="dim">[L²]</span>
+          </div>
+          <div>
+            P = <span class="dim">[MLT⁻²]</span> / <span class="dim">[L²]</span>
+          </div>
+          <div class="step-note">→ cancel one L from top and bottom</div>
+          <div>P = <span class="res">[ML⁻¹T⁻²]</span></div>
+        </div>
+      </div>
+
+      <!-- Quick strip -->
+      <div class="concept-card">
+        <div class="concept-title">Board strip</div>
+        <div class="calc">
+          Force &nbsp;&nbsp;&nbsp; F = ma &nbsp;&nbsp;&nbsp;&nbsp;→
+          <span class="res">[MLT⁻²]</span><br />
+          Pressure P = F/A &nbsp;&nbsp;→ <span class="res">[ML⁻¹T⁻²]</span>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch1-prof-p4.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Page 5</span>
+        <a href="ch1-prof-p6.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3>Original Notebook Page 5</h3>
+        <img
+          src="page5.jpg"
+          alt="Original Page 5"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 40px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>page5.jpg</strong> next to this HTML file
+        </div>
+        <div class="hint">Pinch to zoom · Original notebook proof</div>
+      </div>
+    </div>
+  </body>
+</html>

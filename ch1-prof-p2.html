@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Page 2</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 40px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: #fff;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        background: rgba(255, 0, 170, 0.15);
+        color: var(--pink);
+        font-size: 0.62rem;
+        padding: 2px 7px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+      .badge.dim {
+        background: rgba(168, 85, 247, 0.15);
+        color: #c4b5fd;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 2px;
+      }
+      li {
+        margin-bottom: 8px;
+        position: relative;
+        padding-left: 14px;
+        font-size: 0.92rem;
+      }
+      li::before {
+        content: "•";
+        color: var(--accent-alt);
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: bold;
+      }
+
+      .urdu {
+        font-family:
+          "Jameel Noori Nastaleeq", "Noto Nastaliq Urdu", "Arial", sans-serif;
+        color: #c4b5fd;
+        background: rgba(168, 85, 247, 0.12);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        padding: 1px 8px;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        margin-left: 6px;
+        white-space: nowrap;
+      }
+
+      .def {
+        font-size: 0.92rem;
+        color: var(--text-main);
+        margin-bottom: 8px;
+      }
+      .eg {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        border-left: 2px solid #333;
+        padding-left: 10px;
+        margin: 6px 0 4px;
+      }
+
+      /* Prefix structure tree */
+      .tree {
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.88rem;
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 12px 14px;
+        line-height: 1.7;
+      }
+      .tree .pre {
+        color: var(--green);
+      }
+      .tree .fix {
+        color: var(--accent);
+      }
+      .tree .lbl {
+        color: var(--text-muted);
+      }
+
+      /* Symbol chips */
+      .symbols {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .chip {
+        font-family: Consolas, monospace;
+        background: rgba(0, 240, 255, 0.08);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        color: var(--accent);
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      /* Two column mass/weight */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 480px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .mini {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .mini h4 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+      .mini.mass h4 {
+        color: var(--green);
+      }
+      .mini.weight h4 {
+        color: var(--yellow);
+      }
+
+      /* Velocity example skeleton (from incomplete right page) */
+      .calc-box {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 12px 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.9rem;
+        color: #ccc;
+        line-height: 1.8;
+      }
+      .calc-box .hl {
+        color: var(--accent);
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-btn:active {
+        background: #2a2a35;
+      }
+      .page-indicator {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image-section h3 {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+      .source-image {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 8px;
+        touch-action: pan-y pinch-zoom;
+      }
+      .hint {
+        font-size: 0.72rem;
+        color: #666;
+        margin-top: 8px;
+      }
+
+      .note-incomplete {
+        font-size: 0.78rem;
+        color: #666;
+        font-style: italic;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch1-prof.html">← Prev</a>
+      <span class="page-title">Page 2</span>
+      <a href="ch1-prof-p3.html">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">CHAPTER NO 01</div>
+      <div class="page-sub">Entry test · Mass/Weight · Dimensions</div>
+
+      <!-- Entry test MCQs - Prefix -->
+      <div class="concept-card">
+        <div class="concept-title">
+          Prefix Structure
+          <span class="badge">Entry test MCQ</span>
+        </div>
+        <p class="def" style="color: var(--text-muted); margin-bottom: 10px">
+          Break the word <strong style="color: #fff">Prefix</strong> into
+          meaning:
+        </p>
+        <div class="tree">
+          <div><span class="lbl">Prefix</span></div>
+          <div>
+            ├── <span class="pre">Pre</span> —
+            <span class="lbl">[E] [L T]</span> —
+            <span class="urdu" style="margin-left: 4px">پہلے</span>
+          </div>
+          <div>
+            └── <span class="fix">fix</span> —
+            <span class="urdu" style="margin-left: 4px">آنا</span>
+          </div>
+        </div>
+        <p
+          class="def"
+          style="margin-top: 12px; font-size: 0.88rem; color: var(--text-muted)"
+        >
+          → Something that
+          <strong style="color: var(--green)">comes before</strong> (the unit).
+        </p>
+      </div>
+
+      <!-- Mass vs Weight -->
+      <div class="concept-card">
+        <div class="concept-title">Mass &amp; Weight</div>
+        <div class="grid-2">
+          <div class="mini mass">
+            <h4>Mass</h4>
+            <p class="def">The measurement of matter in a body.</p>
+            <div class="eg">Eg:- 10 kg of sugar.</div>
+          </div>
+          <div class="mini weight">
+            <h4>Weight</h4>
+            <p class="def">Force of attraction due to gravity.</p>
+            <div class="eg">Eg:- (W = mg)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dimensions -->
+      <div class="concept-card">
+        <div class="concept-title">
+          Dimension of Physical Quantity
+          <span class="badge dim">Core</span>
+        </div>
+
+        <p
+          style="
+            font-size: 0.8rem;
+            color: var(--accent-alt);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+          "
+        >
+          DEFINITION
+        </p>
+        <ul>
+          <li>
+            Dimensions are <strong>symbols</strong> that define the measurable
+            properties of physical quantities.
+          </li>
+          <li>
+            They give the <strong>qualitative</strong>
+            <span class="urdu">پہچان</span> nature of physical quantities.
+          </li>
+        </ul>
+
+        <p
+          style="
+            font-size: 0.8rem;
+            color: var(--accent-alt);
+            margin: 14px 0 8px;
+            letter-spacing: 0.5px;
+          "
+        >
+          BASIC SYMBOLS
+        </p>
+        <div class="symbols">
+          <span class="chip">Length [L]</span>
+          <span class="chip">Time [T]</span>
+          <span class="chip">Mass [M]</span>
+          <span class="chip">Temperature [θ]</span>
+          <span class="chip">Electric current [A]</span>
+          <span class="chip">Amount of substance [N]</span>
+          <span class="chip">Intensity of light [J]</span>
+        </div>
+        <p class="note-incomplete">
+          (Right page of notebook lists Mass, Temperature, Electric current,
+          Amount of…, Intensity of… — completed here as standard base
+          dimensions.)
+        </p>
+      </div>
+
+      <!-- Velocity example (from partial right page) -->
+      <div class="concept-card">
+        <div class="concept-title">Example — Dimensions of Velocity</div>
+        <p class="def" style="color: var(--text-muted); margin-bottom: 10px">
+          From notebook “Example of velocity / Calculation”:
+        </p>
+        <div class="calc-box">
+          V = displacement / time<br />
+          V = <span class="hl">[L]</span> / <span class="hl">[T]</span><br />
+          V = <span class="hl">[L T⁻¹]</span>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Example — Dimensions of Acceleration</div>
+        <div class="calc-box">
+          a = Δv / Δt<br />
+          a = <span class="hl">[L T⁻¹]</span> / <span class="hl">[T]</span
+          ><br />
+          a = <span class="hl">[L T⁻²]</span>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="ch1-prof.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Page 2</span>
+        <a href="ch1-prof-p3.html" class="page-btn">Next →</a>
+      </div>
+
+      <!-- Original image slot -->
+      <div class="source-image-section">
+        <h3>Original Notebook Page 2</h3>
+        <!-- Put your photo as page2.jpg in the same folder -->
+        <img
+          src="page2.jpg"
+          alt="Original Page 2"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 40px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>page2.jpg</strong> next to this HTML file
+        </div>
+        <div class="hint">Pinch to zoom · Original notebook proof</div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Page 12</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --red-ink: #ff4d6d;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 40px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: #fff;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.15rem;
+        color: var(--blue-ink);
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .red-ink {
+        color: var(--red-ink);
+        font-weight: 700;
+      }
+      .blue-ink {
+        color: var(--blue-ink);
+        font-weight: 700;
+      }
+      .green-ink {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 2px;
+      }
+      li {
+        margin-bottom: 6px;
+        position: relative;
+        padding-left: 14px;
+        font-size: 0.92rem;
+      }
+      li::before {
+        content: "•";
+        color: var(--accent);
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: bold;
+      }
+
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.92rem;
+        line-height: 2;
+        color: #ccc;
+      }
+      .calc .dim {
+        color: var(--accent);
+      }
+
+      /* Two Column Layout for Comparing Powers */
+      .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 12px;
+        position: relative;
+      }
+      .compare-col {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 12px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        line-height: 1.8;
+      }
+      .boxed-res {
+        display: inline-block;
+        border: 1.5px solid var(--blue-ink);
+        padding: 2px 8px;
+        border-radius: 4px;
+        color: var(--green);
+        font-weight: bold;
+        margin-top: 4px;
+      }
+
+      .board-check {
+        margin-top: 14px;
+        font-size: 0.82rem;
+        color: #aaa;
+        border: 1px dashed #444;
+        padding: 10px 12px;
+        border-radius: 6px;
+        line-height: 1.5;
+        background: rgba(0, 240, 255, 0.03);
+      }
+      .board-check strong {
+        color: var(--accent);
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-btn:active {
+        background: #2a2a35;
+      }
+      .page-indicator {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image-section h3 {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+      .source-image {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 8px;
+        touch-action: pan-y pinch-zoom;
+      }
+      .hint {
+        font-size: 0.72rem;
+        color: #666;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch1-prof-p11.html">← Prev</a>
+      <span class="page-title">Page 12</span>
+      <a href="ch1-prof-p13.html">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">CHAPTER NO 01</div>
+      <div class="page-sub">Deriving a Formula · Centripetal Force</div>
+
+      <!-- Section 1: Setup -->
+      <div class="concept-card">
+        <div class="concept-title">Deriving a Formula:</div>
+        <p style="font-size: 0.95rem; color: #ddd; margin-bottom: 8px">
+          The formula for centripetal force is derived based on the following
+          factors:
+        </p>
+        <ul>
+          <li>mass (m)</li>
+          <li>velocity (v)</li>
+          <li>Radius of circle (r)</li>
+        </ul>
+      </div>
+
+      <!-- Section 2: Mathematical Derivation -->
+      <div class="concept-card">
+        <div class="green-ink" style="font-size: 1rem; margin-bottom: 8px">
+          Solution:
+        </div>
+        <div class="calc">
+          F ∝ mᵃ vᵇ rᶜ<br />
+          F = <span class="red-ink">[constant]</span> mᵃ vᵇ rᶜ &nbsp;&nbsp;—————
+          (i)
+        </div>
+
+        <br />
+
+        <div class="green-ink" style="font-size: 1rem; margin-bottom: 8px">
+          Using dimensions :-
+        </div>
+        <div class="calc">
+          <span class="dim">[MLT⁻²]</span> =
+          <span class="red-ink">(constant)</span> <span class="dim">[Mᵃ]</span>
+          <span class="dim">[LT⁻¹]ᵇ</span> <span class="dim">[Lᶜ]</span><br />
+          <span class="dim">[MLT⁻²]</span> =
+          <span class="red-ink">(constant)</span> <span class="dim">[Mᵃ]</span>
+          <span class="dim">[Lᵇ]</span> <span class="dim">[T⁻ᵇ]</span>
+          <span class="dim">[Lᶜ]</span><br />
+          <span class="dim">[MLT⁻²]</span> =
+          <span class="red-ink">(Constant)</span> <span class="dim">[Mᵃ]</span>
+          <span class="dim">[Lᵇ⁺ᶜ]</span> <span class="dim">[T⁻ᵇ]</span>
+        </div>
+      </div>
+
+      <!-- Section 3: Exponent Comparison Grid -->
+      <div class="concept-card">
+        <div class="blue-ink" style="font-size: 1.05rem; margin-bottom: 8px">
+          By comparing power:-
+        </div>
+
+        <div class="compare-grid">
+          <!-- Left Column -->
+          <div
+            class="compare-col"
+            style="border-right: 2px dashed var(--red-ink)"
+          >
+            <div class="blue-ink">⇒ M</div>
+            <div><span class="boxed-res">a = 1</span></div>
+            <br />
+            <div class="red-ink">⇒ T</div>
+            <div>-2 = -b</div>
+            <div><span class="boxed-res">b = 2</span></div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="compare-col">
+            <div class="red-ink">⇒ L</div>
+            <div>+1 = b + c</div>
+            <div>+1 = 2 + c</div>
+            <div>+1 - 2 = c</div>
+            <div><span class="boxed-res">c = -1</span></div>
+          </div>
+        </div>
+
+        <div class="board-check">
+          <strong>Next Step Preview:</strong> Substituting <code>a = 1</code>,
+          <code>b = 2</code>, <code>c = -1</code> back into equation (i)
+          yields:<br />
+          <code>F = (constant) m¹ v² r⁻¹ = m v² / r</code>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="ch1-prof-p11.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Page 12</span>
+        <a href="ch1-prof-p13.html" class="page-btn">Next →</a>
+      </div>
+
+      <!-- Original Image -->
+      <div class="source-image-section">
+        <h3>Original Notebook Page 12</h3>
+        <img
+          src="page12.jpg"
+          alt="Original Page 12"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 40px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>page12.jpg</strong> next to this HTML file
+        </div>
+        <div class="hint">Pinch to zoom · Original notebook proof</div>
+      </div>
+    </div>
+  </body>
+</html>

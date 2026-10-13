@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Removed maximum-scale=1.0 so the professor CAN pinch-to-zoom the image -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Page 1</title>
+    <style>
+      /* =============================================
+       PREMIUM "E-READER" STUDY STYLE (Dark Mode)
+       ============================================= */
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 40px;
+      }
+
+      /* Top Navigation (Book Style) */
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+
+      /* Content Container */
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+
+      .chapter-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+        color: #fff;
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 10px;
+      }
+
+      /* Concept Cards */
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .concept-title {
+        font-size: 1.1rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .mcq-badge {
+        background: rgba(255, 0, 170, 0.15);
+        color: #ff00aa;
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Clean Lists */
+      ul {
+        list-style: none;
+        padding-left: 10px;
+      }
+      li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 16px;
+      }
+      li::before {
+        content: "•";
+        color: var(--accent-alt);
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: bold;
+      }
+
+      .urdu-text {
+        font-family: "Jameel Noori Nastaleeq", "Arial", sans-serif;
+        color: var(--text-muted);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 1rem;
+        margin-left: 8px;
+      }
+
+      /* Measurement Steps (Process Flow) */
+      .step-box {
+        background: rgba(0, 240, 255, 0.05);
+        border-left: 2px solid var(--accent);
+        padding: 10px 14px;
+        margin-top: 8px;
+        font-size: 0.95rem;
+      }
+      .step-box strong {
+        color: #fff;
+      }
+
+      /* Prefixes & SI Layout */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .info-block {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-color);
+        padding: 12px;
+        border-radius: 8px;
+      }
+      .info-block h4 {
+        color: var(--accent-alt);
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+      }
+      .code-style {
+        font-family: "Consolas", monospace;
+        color: #4ade80;
+        font-weight: bold;
+      }
+
+      /* Breakdown Diagram */
+      .breakdown {
+        margin-top: 12px;
+        text-align: center;
+        background: #000;
+        padding: 12px;
+        border-radius: 8px;
+      }
+      .breakdown-main {
+        font-size: 1.5rem;
+        font-family: "Consolas", monospace;
+        font-weight: bold;
+      }
+      .breakdown-labels {
+        display: flex;
+        justify-content: space-around;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      /* Book Pagination */
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 40px 0;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: background 0.2s;
+      }
+      .page-btn.disabled {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+      .page-btn:active {
+        background: #2a2a35;
+      }
+      .page-indicator {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      /* Original Image Section */
+      .source-image-section {
+        margin-top: 40px;
+        background: #000;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image-section h3 {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+      .source-image {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 8px;
+        /* Allows native browser pinch-to-zoom */
+        touch-action: pan-y pinch-zoom;
+      }
+      .hint {
+        font-size: 0.75rem;
+        color: #666;
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <div class="top-bar">
+      <a href="index.html">← Back</a>
+      <span class="page-title">Page 1</span>
+      <a href="ch1-prof-p2.html">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">CHAPTER NO 01</div>
+
+      <!-- Concept 1 -->
+      <div class="concept-card">
+        <div class="concept-title">Ideal Standard</div>
+        <p
+          style="
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+          "
+        >
+          An ideal measurement standard requires a unit and specific properties:
+        </p>
+        <ul>
+          <li>
+            <strong>Invariable</strong>
+            <span class="urdu-text">جو تبدیل نہ ہو</span>
+          </li>
+          <li>
+            <strong>Accessible</strong>
+            <span style="color: var(--text-muted); font-size: 0.9rem"
+              >(Easily acquired in the world)</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Concept 2 -->
+      <div class="concept-card">
+        <div class="concept-title">
+          Physical Quantity <span class="mcq-badge">Special MCQ</span>
+        </div>
+        <p
+          style="
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+          "
+        >
+          The steps involved in the measurement of a physical quantity:
+        </p>
+
+        <div class="step-box">
+          Step 1: <strong>Choice of standard / unit</strong>
+        </div>
+        <div class="step-box">
+          Step 2: <strong>Procedure of Measurement</strong> (The Product)
+        </div>
+      </div>
+
+      <!-- Concept 3 -->
+      <div class="concept-card">
+        <div class="concept-title">SI Units & Prefixes</div>
+
+        <div class="grid-2">
+          <div class="info-block">
+            <h4>SI System (1960)</h4>
+            <ul>
+              <li><span class="code-style">m</span> (metre)</li>
+              <li><span class="code-style">s</span> (second)</li>
+              <li><span class="code-style">kg</span> (kilogram)</li>
+            </ul>
+            <h4 style="margin-top: 12px">Scientist Names (Capitalized)</h4>
+            <ul>
+              <li><span class="code-style">N</span> (Newton)</li>
+              <li><span class="code-style">K</span> (Kelvin)</li>
+              <li><span class="code-style">W</span> (Watt)</li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h4>Prefixes</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted)">
+              Numbers or letters added before SI unit in the power of 10.
+            </p>
+
+            <div
+              class="breakdown"
+              style="
+                margin-top: 12px;
+                text-align: center;
+                background: #000;
+                padding: 14px 10px;
+                border-radius: 8px;
+              "
+            >
+              <!-- row: 5 k g -->
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: flex-end;
+                  gap: 4px;
+                  font-family: Consolas, monospace;
+                  font-size: 1.5rem;
+                  font-weight: 900;
+                "
+              >
+                <span style="width: 2.2em; text-align: center; color: #fff"
+                  >5</span
+                >
+                <span style="width: 2.2em; text-align: center; color: #a855f7"
+                  >k</span
+                >
+                <span style="width: 2.2em; text-align: center; color: #00f0ff"
+                  >g</span
+                >
+              </div>
+              <!-- row: arrows -->
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  gap: 4px;
+                  margin-top: 2px;
+                  font-size: 0.9rem;
+                "
+              >
+                <span
+                  style="width: 2.2em; text-align: center; color: transparent"
+                  >·</span
+                >
+                <span style="width: 5em; text-align: center; color: #a855f7"
+                  >↑</span
+                >
+                <span style="width: 2.2em; text-align: center; color: #00f0ff"
+                  >↑</span
+                >
+              </div>
+              <!-- row: labels — wider so they don't overlap -->
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  gap: 4px;
+                  margin-top: 2px;
+                  font-family: Consolas, monospace;
+                  font-size: 0.75rem;
+                  font-weight: 700;
+                "
+              >
+                <span
+                  style="width: 2.2em; text-align: center; color: transparent"
+                  >·</span
+                >
+                <span style="width: 7em; text-align: center; color: #a855f7"
+                  >10³</span
+                >
+                <span style="width: 2.2em; text-align: center; color: #00f0ff"
+                  >unit</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination (Book Style) -->
+      <div class="pagination">
+        <a href="#" class="page-btn disabled">← Prev</a>
+        <span class="page-indicator">Page 1</span>
+        <!-- When you give me page 2, this will link to ch1-prof-p2.html -->
+        <a href="ch1-prof-p2.html" class="page-btn">Next →</a>
+      </div>
+
+      <!-- Original Notebook Image -->
+      <div class="source-image-section">
+        <h3>Original Notebook Page</h3>
+        <!-- CHANGE THE SRC BELOW to your actual image file name, e.g., page1.jpg -->
+        <img src="page1.jpg" alt="Original Page 1" class="source-image" />
+        <div class="hint">Pinch to zoom in and out</div>
+      </div>
+    </div>
+  </body>
+</html>

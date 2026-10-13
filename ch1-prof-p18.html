@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Page 18</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --green: #4ade80;
+        --yellow: #fbbf24;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        line-height: 1.6;
+        min-height: 100vh;
+        padding-bottom: 80px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px 20px 24px;
+      }
+
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 36px 24px;
+        text-align: center;
+      }
+      .icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+      }
+      .card h1 {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .card .tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--yellow);
+        border: 1px dashed rgba(251, 191, 36, 0.4);
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+      }
+      .card p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+      .card .sub {
+        font-size: 0.82rem;
+        color: #666;
+        margin-top: 16px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 24px;
+      }
+      .btn {
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        border: 1px solid var(--border-color);
+        background: #1a1a22;
+        color: #fff;
+      }
+      .btn.primary {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(0, 240, 255, 0.08);
+      }
+      .btn:active {
+        opacity: 0.85;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 32px 0 16px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-btn.disabled {
+        opacity: 0.35;
+        pointer-events: none;
+      }
+      .page-indicator {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch1-prof-p17.html">← Prev</a>
+      <span class="page-title">Page 18</span>
+      <a href="#" style="opacity: 0.35; pointer-events: none">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="icon">🚧</div>
+        <div class="tag">Under construction</div>
+        <h1>Page 18</h1>
+        <p>Final topic of Chapter 1 is coming tomorrow.</p>
+        <p class="sub">Professor notes book · CH # 01 · not finished yet</p>
+
+        <div class="actions">
+          <a class="btn" href="ch1-prof-p17.html">← Page 17</a>
+          <a class="btn primary" href="ch1-prof.html">Start of book</a>
+          <a class="btn" href="index.html">Home</a>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch1-prof-p17.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Page 18</span>
+        <a href="#" class="page-btn disabled">Next →</a>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="ch1-prof.html" class="active"><span class="ico">📝</span>Prof</a>
+      <a href="chapter1.html"><span class="ico">📖</span>Full Ch1</a>
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>
