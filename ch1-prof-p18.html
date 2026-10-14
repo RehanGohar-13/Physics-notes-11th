@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prof Notes - Page 18</title>
+    <title>Prof Notes - Page 18 (Ch1 Final)</title>
     <style>
       :root {
         --bg-main: #0d0d12;
@@ -12,8 +12,10 @@
         --text-main: #f3f3f6;
         --text-muted: #9494a0;
         --accent: #00f0ff;
+        --accent-alt: #a855f7;
         --green: #4ade80;
         --yellow: #fbbf24;
+        --pink: #ff00aa;
       }
       * {
         margin: 0;
@@ -27,7 +29,6 @@
           -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
           Arial, sans-serif;
         line-height: 1.6;
-        min-height: 100vh;
         padding-bottom: 80px;
       }
       a {
@@ -56,71 +57,164 @@
       .container {
         max-width: 600px;
         margin: 0 auto;
-        padding: 40px 20px 24px;
+        padding: 24px 20px;
       }
 
-      .card {
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: #fff;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .concept-card {
         background: var(--bg-card);
         border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 36px 24px;
-        text-align: center;
-      }
-      .icon {
-        font-size: 3rem;
-        margin-bottom: 12px;
-      }
-      .card h1 {
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: #fff;
-        margin-bottom: 8px;
-      }
-      .card .tag {
-        display: inline-block;
-        font-size: 0.7rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--yellow);
-        border: 1px dashed rgba(251, 191, 36, 0.4);
-        padding: 4px 10px;
-        border-radius: 20px;
+        border-radius: 12px;
+        padding: 18px;
         margin-bottom: 16px;
       }
-      .card p {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        margin-bottom: 8px;
-      }
-      .card .sub {
-        font-size: 0.82rem;
-        color: #666;
-        margin-top: 16px;
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 12px;
       }
 
+      .everything-box {
+        text-align: center;
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 14px;
+      }
+      .everything-box .big {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--yellow);
+      }
+      .everything-box .sub {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      @media (max-width: 480px) {
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .pill {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 12px;
+      }
+      .pill .letter {
+        font-weight: 800;
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+      }
+      .pill.a .letter {
+        color: var(--green);
+      }
+      .pill.b .letter {
+        color: var(--accent);
+      }
+      .pill.c .letter {
+        color: var(--accent-alt);
+      }
+      .pill.d .letter {
+        color: var(--pink);
+      }
+      .pill .name {
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .pill .desc {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      .struck {
+        text-decoration: line-through;
+        color: #666;
+        font-size: 0.8rem;
+      }
+
+      .def-quote {
+        font-size: 0.95rem;
+        color: var(--text-main);
+        background: rgba(0, 240, 255, 0.05);
+        border-left: 3px solid var(--accent);
+        padding: 12px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-top: 8px;
+      }
+      .def-quote strong {
+        color: #fff;
+      }
+
+      .finish-box {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 136, 0.1),
+          rgba(0, 240, 255, 0.08)
+        );
+        border: 1px solid rgba(0, 255, 136, 0.3);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 8px;
+      }
+      .finish-box h2 {
+        color: var(--green);
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+      .finish-box p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
       .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
         justify-content: center;
-        margin-top: 24px;
       }
       .btn {
-        padding: 10px 18px;
+        padding: 10px 14px;
         border-radius: 8px;
-        font-size: 0.88rem;
+        font-size: 0.82rem;
         font-weight: 600;
         border: 1px solid var(--border-color);
         background: #1a1a22;
         color: #fff;
       }
-      .btn.primary {
+      .btn.cyan {
         border-color: var(--accent);
         color: var(--accent);
         background: rgba(0, 240, 255, 0.08);
       }
-      .btn:active {
-        opacity: 0.85;
+      .btn.green {
+        border-color: var(--green);
+        color: var(--green);
+        background: rgba(0, 255, 136, 0.1);
       }
 
       .pagination {
@@ -146,6 +240,31 @@
       .page-indicator {
         font-size: 0.82rem;
         color: var(--text-muted);
+      }
+
+      .source-image-section {
+        margin-top: 20px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image-section h3 {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+      .source-image {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 8px;
+        touch-action: pan-y pinch-zoom;
+      }
+      .hint {
+        font-size: 0.72rem;
+        color: #666;
+        margin-top: 8px;
       }
 
       .bottom {
@@ -184,24 +303,96 @@
     </div>
 
     <div class="container">
-      <div class="card">
-        <div class="icon">🚧</div>
-        <div class="tag">Under construction</div>
-        <h1>Page 18</h1>
-        <p>Final topic of Chapter 1 is coming tomorrow.</p>
-        <p class="sub">Professor notes book · CH # 01 · not finished yet</p>
+      <div class="chapter-title">CHAPTER NO 01</div>
+      <div class="page-sub">
+        What is Physics? · Matter · Space · Time · Energy
+      </div>
 
+      <div class="concept-card">
+        <div class="concept-title">Everything :-</div>
+        <div class="everything-box">
+          <div class="big">Everything</div>
+          <div class="sub">(Occupies Space &amp; has some Mass)</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="pill a">
+            <div class="letter">A ✓</div>
+            <div class="name">Matter</div>
+            <div class="desc">Occupies space and has some mass.</div>
+          </div>
+          <div class="pill b">
+            <div class="letter">B ✓</div>
+            <div class="name">Space</div>
+            <div class="desc">Distance between 2 or more points / objects.</div>
+          </div>
+          <div class="pill c">
+            <div class="letter">C ✓</div>
+            <div class="name">Time</div>
+            <div class="desc">Ongoing sequence of events.</div>
+          </div>
+          <div class="pill d">
+            <div class="letter">D</div>
+            <div class="name">Energy</div>
+            <div class="desc">Ability to do work.</div>
+            <div class="struck" style="margin-top: 4px">
+              (crossed out once, then rewritten)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Definition of Physics</div>
+        <div class="def-quote">
+          <strong>Physics</strong> is the study of Matter, Energy, Time and
+          Space.<br /><br />
+          <strong>Physics is the study of Everything.</strong>
+        </div>
+      </div>
+
+      <div class="finish-box">
+        <h2>Chapter 1 Professor Book — Complete</h2>
+        <p>
+          Pages 1–18 digitized. Full interactive Ch1 + Sandbox still available.
+        </p>
         <div class="actions">
-          <a class="btn" href="ch1-prof-p17.html">← Page 17</a>
-          <a class="btn primary" href="ch1-prof.html">Start of book</a>
-          <a class="btn" href="index.html">Home</a>
+          <a class="btn" href="ch1-prof.html">📝 Start of book</a>
+          <a class="btn cyan" href="chapter1.html">📖 Full Ch1 notes</a>
+          <a class="btn green" href="sandbox.html">🧪 Sandbox</a>
+          <a class="btn" href="index.html">🏠 Home</a>
         </div>
       </div>
 
       <div class="pagination">
         <a href="ch1-prof-p17.html" class="page-btn">← Prev</a>
-        <span class="page-indicator">Page 18</span>
+        <span class="page-indicator">Page 18 of 18</span>
         <a href="#" class="page-btn disabled">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3>Original Notebook Page (Physics intro)</h3>
+        <img
+          src="page18.jpg"
+          alt="Original Physics definition page"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 40px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>page18.jpg</strong> next to this HTML file
+        </div>
+        <div class="hint">Pinch to zoom · Original notebook proof</div>
       </div>
     </div>
 

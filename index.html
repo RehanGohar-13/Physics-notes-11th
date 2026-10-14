@@ -16,9 +16,17 @@
 
     <nav class="navbar">
       <a href="index.html" class="nav-logo">⚛️ PHYSICS<span>NOTES</span></a>
-      <a href="sandbox.html" class="nav-back" style="color: var(--neon-green)"
-        >🧪 Sandbox</a
-      >
+      <div style="display: flex; gap: 8px; align-items: center">
+        <a
+          href="prof-hub.html"
+          class="nav-back"
+          style="color: var(--neon-magenta)"
+          >📝 Prof</a
+        >
+        <a href="sandbox.html" class="nav-back" style="color: var(--neon-green)"
+          >🧪 Sandbox</a
+        >
+      </div>
     </nav>
 
     <div class="page-wrap">
@@ -26,37 +34,53 @@
         <div class="hero-badge">Inter / HSSC · Pakistan</div>
         <h1>Physics<br />Notes</h1>
         <p>
-          Complete interactive notes + a full physics sandbox to experiment with
-          real simulations.
+          Interactive study notes, professor board books, and a live physics
+          sandbox.
         </p>
-        <a href="sandbox.html" class="hero-cta">Open Sandbox 🧪</a>
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+          "
+        >
+          <a
+            href="prof-hub.html"
+            class="hero-cta"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--neon-magenta),
+                var(--neon-purple)
+              );
+            "
+            >📝 Prof Notes</a
+          >
+          <a href="sandbox.html" class="hero-cta">🧪 Sandbox</a>
+        </div>
       </section>
 
       <div class="quick-access">
+        <a href="prof-hub.html" class="quick-btn">
+          <span class="icon">📝</span>
+          <span class="label">Prof Notes</span>
+          <span class="desc">Ch1 book · Ch7 waves</span>
+        </a>
         <a href="sandbox.html" class="quick-btn sandbox">
           <span class="icon">🧪</span>
           <span class="label">Sandbox</span>
           <span class="desc">5 physics tools</span>
         </a>
-        <a href="ch1-prof.html" class="quick-btn">
-          <span class="icon">📝</span>
-          <span class="label">Prof Notes</span>
-          <span class="desc">Ch 1 board book</span>
-        </a>
         <a href="chapter1.html" class="quick-btn">
           <span class="icon">📖</span>
-          <span class="label">Chapter 1</span>
+          <span class="label">Full Ch 1</span>
           <span class="desc">Measurements</span>
         </a>
         <a href="chapter2.html" class="quick-btn">
           <span class="icon">🚀</span>
           <span class="label">Chapter 2</span>
           <span class="desc">Force & Motion</span>
-        </a>
-        <a href="#chapters" class="quick-btn">
-          <span class="icon">📚</span>
-          <span class="label">All Chapters</span>
-          <span class="desc">12 topics</span>
         </a>
       </div>
 
@@ -137,14 +161,12 @@
             <div class="card-arrow-mobile">›</div>
           </a>
 
-          <a href="#" class="chapter-card reveal">
+          <a href="ch7-prof-p1.html" class="chapter-card reveal">
             <div class="card-number-mobile">07</div>
             <div class="card-icon-mobile">🌊</div>
             <div class="card-content-mobile">
               <div class="card-title">Waves and Vibrations</div>
-              <div class="card-desc">
-                SHM, resonance, standing waves, Doppler
-              </div>
+              <div class="card-desc">SHM, superposition, beats, wave speed</div>
             </div>
             <div class="card-arrow-mobile">›</div>
           </a>
@@ -216,22 +238,27 @@
           Made with <span class="heart">♥</span> for Physics · Inter/HSSC
           Pakistan
         </p>
-        <p style="margin-top: 4px">Deployed on Vercel · Mobile-first design</p>
+        <p style="margin-top: 4px">Prof books · Full notes · Sandbox</p>
       </footer>
     </div>
 
-    <!-- BOTTOM MOBILE NAV -->
     <nav class="bottom-nav">
-      <a href="index.html" class="active"
-        ><span class="icon">🏠</span><span>Home</span></a
-      >
-      <a href="ch1-prof.html"><span class="icon">📝</span><span>Prof</span></a>
-      <a href="sandbox.html"
-        ><span class="icon">🧪</span><span>Sandbox</span></a
-      >
-      <a href="chapter1.html"
-        ><span class="icon">📖</span><span>Full Ch1</span></a
-      >
+      <a href="index.html" class="active">
+        <span class="icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="prof-hub.html">
+        <span class="icon">📝</span>
+        <span>Prof</span>
+      </a>
+      <a href="sandbox.html">
+        <span class="icon">🧪</span>
+        <span>Sandbox</span>
+      </a>
+      <a href="chapter1.html">
+        <span class="icon">📖</span>
+        <span>Study</span>
+      </a>
     </nav>
 
     <script src="script.js"></script>

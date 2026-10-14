@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0d0d12" />
+    <title>Prof Notes — TOC</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .hub-wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 80px 16px 100px;
+      }
+      .hub-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+      .hub-sub {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+      }
+      .hub-section {
+        margin-bottom: 28px;
+      }
+      .hub-section h2 {
+        font-size: 1rem;
+        color: var(--neon-cyan);
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+      }
+      .hub-list {
+        display: grid;
+        gap: 8px;
+      }
+      .hub-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        background: var(--bg-card);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .hub-item:active {
+        background: var(--bg-card-hover);
+        transform: scale(0.99);
+      }
+      .hub-num {
+        font-weight: 800;
+        color: var(--neon-magenta);
+        min-width: 52px;
+        font-size: 0.85rem;
+      }
+      .hub-item .t {
+        font-weight: 700;
+        color: #fff;
+        font-size: 0.92rem;
+      }
+      .hub-item .d {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .hub-item .arrow {
+        margin-left: auto;
+        color: var(--neon-cyan);
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+    <canvas id="particles-canvas"></canvas>
+
+    <nav class="navbar">
+      <a href="index.html" class="nav-back">← Home</a>
+      <span class="nav-logo" style="font-size: 0.85rem"
+        >📝 <span>PROF NOTES</span></span
+      >
+    </nav>
+
+    <div class="hub-wrap">
+      <h1 class="hub-title">Professor Notes</h1>
+      <p class="hub-sub">
+        Board-style book pages · flip page by page · original notebook at the
+        bottom of each page
+      </p>
+
+      <!-- CHAPTER 1 -->
+      <div class="hub-section">
+        <h2>📘 Chapter 1 — Measurements</h2>
+        <div class="hub-list">
+          <a class="hub-item" href="ch1-prof.html">
+            <span class="hub-num">Start</span>
+            <div>
+              <div class="t">Open Chapter 1 Book</div>
+              <div class="d">Pages 1–18 · Ideal standard → exercise</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+          <a class="hub-item" href="chapter1.html">
+            <span class="hub-num">Full</span>
+            <div>
+              <div class="t">Full Interactive Ch1</div>
+              <div class="d">Long study notes + tools</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- CHAPTER 7 -->
+      <div class="hub-section">
+        <h2>🌊 Chapter 7 — Waves &amp; Vibration</h2>
+        <div class="hub-list">
+          <a class="hub-item" href="ch7-prof-p1.html">
+            <span class="hub-num">P1</span>
+            <div>
+              <div class="t">Waves, disturbance, types, diagram</div>
+              <div class="d">Crest, wavelength, equilibrium, y</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+          <a class="hub-item" href="ch7-prof-p2.html">
+            <span class="hub-num">P2</span>
+            <div>
+              <div class="t">T, f, λ, wave speed</div>
+              <div class="d">v = fλ</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+          <a class="hub-item" href="ch7-prof-p3.html">
+            <span class="hub-num">P3</span>
+            <div>
+              <div class="t">Superposition &amp; phase</div>
+              <div class="d">Y = y₁ ± y₂</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+          <a class="hub-item" href="ch7-prof-p4.html">
+            <span class="hub-num">P4</span>
+            <div>
+              <div class="t">Y(x,t) &amp; special cases</div>
+              <div class="d">Interference · Stationary · Beats</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+          <a class="hub-item" href="ch7-prof-p5.html">
+            <span class="hub-num">P5</span>
+            <div>
+              <div class="t">Noise cancellation headphones</div>
+              <div class="d">Destructive interference application</div>
+            </div>
+            <span class="arrow">›</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- MORE LATER -->
+      <div class="hub-section">
+        <h2>📌 More chapters</h2>
+        <div class="hub-list">
+          <div class="hub-item" style="opacity: 0.55">
+            <span class="hub-num">—</span>
+            <div>
+              <div class="t">Chapter 2+ Prof books</div>
+              <div class="d">Add when you have class notes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+      <a href="prof-hub.html" class="active"
+        ><span class="icon">📝</span><span>Prof</span></a
+      >
+      <a href="sandbox.html"
+        ><span class="icon">🧪</span><span>Sandbox</span></a
+      >
+      <a href="chapter1.html"><span class="icon">📖</span><span>Study</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+  </body>
+</html>

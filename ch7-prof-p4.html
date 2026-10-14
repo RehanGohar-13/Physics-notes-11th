@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 4</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 16px;
+      }
+
+      /* VISUAL CASE CARDS */
+      .case-box {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+        background: #05050a;
+      }
+      .case-box h4 {
+        margin-bottom: 4px;
+        font-size: 0.95rem;
+      }
+      .case-box p {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+
+      .wave-math {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+      }
+      .wave-math svg {
+        width: 50px;
+        height: 30px;
+        overflow: visible;
+      }
+      .wave-math span {
+        font-weight: 900;
+        font-size: 1rem;
+        color: #666;
+      }
+      .wave-math .result-svg {
+        width: 80px;
+        height: 40px;
+      }
+
+      .flow-right {
+        animation: flowR 2s linear infinite;
+      }
+      .flow-left {
+        animation: flowL 2s linear infinite;
+      }
+      @keyframes flowR {
+        to {
+          stroke-dashoffset: -40;
+        }
+      }
+      @keyframes flowL {
+        to {
+          stroke-dashoffset: 40;
+        }
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p3.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 4</span>
+      <a href="ch7-prof-p5.html">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">General Equation &amp; Visual Cases</div>
+      <div class="page-sub">
+        Superposition for N waves &amp; Wave Phenomenon
+      </div>
+
+      <!-- General Equation -->
+      <div class="concept-card">
+        <div class="concept-title">General Superposition Formula:</div>
+        <div class="calc">
+          For "n" number of Waves:<br />
+          <strong style="color: var(--accent)"
+            >Y = y₁ + y₂ + y₃ + .... + yₙ</strong
+          ><br /><br />
+          Wave Function Notation:<br />
+          <strong style="color: var(--green)"
+            >Y(x, t) = y₁(x, t) + y₂(x, t) + .... + yₙ(x, t)</strong
+          >
+        </div>
+      </div>
+
+      <!-- Special Cases with Visuals -->
+      <div class="concept-card">
+        <div class="concept-title">Special Cases (Visualized):</div>
+
+        <!-- Interference -->
+        <div class="case-box" style="border-left: 3px solid var(--accent)">
+          <h4 style="color: var(--accent)">1. Interference</h4>
+          <p>Same Direction (→) · Same Frequency</p>
+          <div class="wave-math">
+            <svg viewBox="0 0 40 20">
+              <path
+                class="flow-right"
+                d="M 0 10 Q 10 0, 20 10 T 40 10"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+                stroke-dasharray="40"
+              />
+            </svg>
+            <span>+</span>
+            <svg viewBox="0 0 40 20">
+              <path
+                class="flow-right"
+                d="M 0 10 Q 10 0, 20 10 T 40 10"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+                stroke-dasharray="40"
+              />
+            </svg>
+            <span>=</span>
+            <!-- Bigger constructive wave -->
+            <svg class="result-svg" viewBox="0 0 40 40">
+              <path
+                class="flow-right"
+                d="M 0 20 Q 10 -5, 20 20 T 40 20"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="3"
+                stroke-dasharray="40"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Stationary Waves -->
+        <div class="case-box" style="border-left: 3px solid var(--pink)">
+          <h4 style="color: var(--pink)">2. Stationary / Standing Waves</h4>
+          <p>Opposite Direction (→ + ←) · Same Frequency</p>
+          <div class="wave-math">
+            <svg viewBox="0 0 40 20">
+              <path
+                class="flow-right"
+                d="M 0 10 Q 10 0, 20 10 T 40 10"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+                stroke-dasharray="40"
+              />
+            </svg>
+            <span>+</span>
+            <svg viewBox="0 0 40 20">
+              <path
+                class="flow-left"
+                d="M 0 10 Q 10 0, 20 10 T 40 10"
+                fill="none"
+                stroke="#ff00aa"
+                stroke-width="2"
+                stroke-dasharray="40"
+              />
+            </svg>
+            <span>=</span>
+            <!-- Standing wave loops (overlapping waves) -->
+            <svg class="result-svg" viewBox="0 0 40 40">
+              <path
+                d="M 0 20 Q 10 0, 20 20 T 40 20"
+                fill="none"
+                stroke="#ff00aa"
+                stroke-width="2"
+              />
+              <path
+                d="M 0 20 Q 10 40, 20 20 T 40 20"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+                stroke-dasharray="3 2"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Beats -->
+        <div class="case-box" style="border-left: 3px solid var(--yellow)">
+          <h4 style="color: var(--yellow)">3. Beats</h4>
+          <p>Same Direction (→) · Slightly Different Frequency</p>
+          <div class="wave-math">
+            <!-- Normal freq -->
+            <svg viewBox="0 0 40 20">
+              <path
+                class="flow-right"
+                d="M 0 10 Q 5 0, 10 10 T 20 10 T 30 10 T 40 10"
+                fill="none"
+                stroke="#4ade80"
+                stroke-width="1.5"
+                stroke-dasharray="40"
+              />
+            </svg>
+            <span>+</span>
+            <!-- Slightly faster freq -->
+            <svg viewBox="0 0 40 20">
+              <path
+                class="flow-right"
+                d="M 0 10 Q 4 0, 8 10 T 16 10 T 24 10 T 32 10 T 40 10"
+                fill="none"
+                stroke="#a855f7"
+                stroke-width="1.5"
+                stroke-dasharray="40"
+              />
+            </svg>
+            <span>=</span>
+            <!-- Beating envelope -->
+            <svg class="result-svg" viewBox="0 0 60 40">
+              <path
+                class="flow-right"
+                d="M 0 20 Q 3 15, 6 20 T 12 20 T 18 20 T 24 20 T 30 20 T 36 20 T 42 20 T 48 20 T 54 20 T 60 20"
+                fill="none"
+                stroke="#fbbf24"
+                stroke-width="1.5"
+                stroke-dasharray="60"
+              />
+              <!-- Envelope wrapper showing the "beat" -->
+              <path
+                d="M 0 20 Q 15 -10, 30 20 T 60 20"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-dasharray="2 2"
+              />
+              <path
+                d="M 0 20 Q 15 50, 30 20 T 60 20"
+                fill="none"
+                stroke="rgba(255,255,255,0.3)"
+                stroke-width="1"
+                stroke-dasharray="2 2"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <a href="ch7-prof-p3.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 4</span>
+        <a href="ch7-prof-p5.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3>Original Notebook Page</h3>
+        <img
+          src="ch7_p4.jpg"
+          alt="Ch 7 Page 4"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_p4.jpg</strong>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="ch1-prof.html"><span class="ico">📝</span>Ch1 Prof</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>
