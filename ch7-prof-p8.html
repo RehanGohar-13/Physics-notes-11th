@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 8</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .board-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        border-left: 3px solid var(--green);
+        padding-left: 10px;
+        margin-top: 10px;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p7.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 8</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Destructive &amp; Stationary Waves</div>
+      <div class="page-sub">
+        Absent Day 3 · Path difference · Standing waves intro
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Destructive interference :-</div>
+        <div class="calc">
+          In this type of interference crest lies of troug. In this way
+          amplitude of wave vanishes.
+        </div>
+        <div class="svg-wrap">
+          <svg viewBox="0 0 480 120" width="100%" height="auto">
+            <line
+              x1="30"
+              y1="60"
+              x2="450"
+              y2="60"
+              stroke="#333"
+              stroke-dasharray="4,4"
+            />
+            <path
+              d="M 40 60 Q 140 15, 240 60 T 440 60"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="2.5"
+            />
+            <text
+              x="130"
+              y="28"
+              fill="#ff00aa"
+              font-size="12"
+              font-weight="700"
+            >
+              w₂
+            </text>
+            <path
+              d="M 40 60 Q 140 105, 240 60 T 440 60"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.5"
+            />
+            <text
+              x="130"
+              y="108"
+              fill="#00f0ff"
+              font-size="12"
+              font-weight="700"
+            >
+              w₁
+            </text>
+          </svg>
+        </div>
+        <div class="calc">
+          <strong style="color: var(--pink); font-size: 1.15rem"
+            >ΔS = (2n+1) λ/2</strong
+          ><br /><br />
+          In this case path difference is odd integeral multiple of half of
+          wavelength.
+        </div>
+        <div class="board-note">
+          <strong style="color: var(--green)">Board Check:</strong> n = 0, 1, 2…
+          → ΔS = λ/2, 3λ/2, 5λ/2… → amplitude cancels (dark / quiet). Spelling
+          on board “troug / integeral” kept as written; mean trough / integral.
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Stationary Waves :-</div>
+        <div class="calc">
+          Superposition of two waves having same frequency and amplitude but
+          travelling in opposite direction. These wave cannot travel or
+          propagates but confined in fixed position. They are also called
+          <strong style="color: var(--accent)">standing waves</strong>.
+        </div>
+        <div class="svg-wrap">
+          <svg viewBox="0 0 480 120" width="100%" height="auto">
+            <rect x="24" y="20" width="8" height="80" fill="#333" />
+            <rect x="448" y="20" width="8" height="80" fill="#333" />
+            <path
+              d="M 32 60 Q 130 15, 240 60 Q 350 105, 448 60"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2.5"
+            />
+            <path
+              d="M 32 60 Q 130 105, 240 60 Q 350 15, 448 60"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2"
+              stroke-dasharray="5 3"
+            />
+            <circle cx="240" cy="60" r="4" fill="#ff00aa" />
+            <text
+              x="222"
+              y="80"
+              fill="#ff00aa"
+              font-size="10"
+              font-weight="700"
+            >
+              NODE
+            </text>
+            <circle cx="130" cy="38" r="3" fill="#00f0ff" />
+            <text
+              x="100"
+              y="28"
+              fill="#00f0ff"
+              font-size="10"
+              font-weight="700"
+            >
+              ANTINODE
+            </text>
+          </svg>
+        </div>
+        <div class="board-note">
+          Confined between boundaries · nodes stay fixed · energy doesn’t
+          propagate forward like a normal travelling wave.
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p7.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 8 of 8</span>
+        <a href="prof-hub.html" class="page-btn">Prof Hub 🏠</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Notebook Page
+        </h3>
+        <img
+          src="ch7_p8.jpg"
+          alt="Ch 7 Page 8"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_p8.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>

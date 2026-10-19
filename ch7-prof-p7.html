@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 7</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 12px 0;
+        overflow-x: auto;
+      }
+      .board-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        border-left: 3px solid var(--green);
+        padding-left: 10px;
+        margin-top: 10px;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+      ol.setup {
+        padding-left: 20px;
+        color: #ccc;
+        font-size: 0.92rem;
+      }
+      ol.setup li {
+        margin-bottom: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p6.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 7</span>
+      <a href="ch7-prof-p8.html">Next →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Interference of wave</div>
+      <div class="page-sub">
+        Absent Day 2 · Experimental setup · Constructive
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Definition (board):</div>
+        <div class="calc">
+          Type of superposition in which waves of same frequency and traveling
+          in same direction overlaps.
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Experimental setup :-</div>
+        <ol class="setup">
+          <li>
+            <strong style="color: var(--accent)">A.G</strong> (Audio Generator)
+          </li>
+          <li>
+            <strong style="color: var(--accent)">P.A</strong> (Power Amplifier)
+          </li>
+          <li>
+            <strong style="color: var(--green)">S₁, S₂</strong> (Speakers)
+          </li>
+          <li>Sensitive microphones</li>
+          <li>
+            <strong style="color: var(--yellow)">C.R.O</strong> (Cathode ray
+            oscilloscope) — it convert input signals into graph
+          </li>
+        </ol>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Diagram :-</div>
+        <div class="svg-wrap">
+          <svg viewBox="0 0 680 300" width="100%" height="auto">
+            <!-- AG PA -->
+            <rect
+              x="16"
+              y="16"
+              width="56"
+              height="32"
+              rx="4"
+              fill="#15151c"
+              stroke="#00f0ff"
+            />
+            <text x="30" y="37" fill="#00f0ff" font-size="12" font-weight="700">
+              A.G
+            </text>
+            <line
+              x1="72"
+              y1="32"
+              x2="100"
+              y2="32"
+              stroke="#666"
+              stroke-width="2"
+            />
+            <rect
+              x="100"
+              y="16"
+              width="56"
+              height="32"
+              rx="4"
+              fill="#15151c"
+              stroke="#00f0ff"
+            />
+            <text
+              x="114"
+              y="37"
+              fill="#00f0ff"
+              font-size="12"
+              font-weight="700"
+            >
+              P.A
+            </text>
+            <line
+              x1="156"
+              y1="32"
+              x2="190"
+              y2="22"
+              stroke="#666"
+              stroke-width="2"
+            />
+            <line
+              x1="156"
+              y1="32"
+              x2="190"
+              y2="48"
+              stroke="#666"
+              stroke-width="2"
+            />
+            <!-- Speakers -->
+            <polygon
+              points="190,12 208,22 208,32 190,42"
+              fill="#1a1a22"
+              stroke="#4ade80"
+              stroke-width="2"
+            />
+            <text
+              x="168"
+              y="30"
+              fill="#4ade80"
+              font-size="11"
+              font-weight="700"
+            >
+              S₁
+            </text>
+            <polygon
+              points="190,44 208,54 208,64 190,74"
+              fill="#1a1a22"
+              stroke="#ff00aa"
+              stroke-width="2"
+            />
+            <text
+              x="168"
+              y="62"
+              fill="#ff00aa"
+              font-size="11"
+              font-weight="700"
+            >
+              S₂
+            </text>
+            <!-- CRO -->
+            <rect
+              x="560"
+              y="14"
+              width="100"
+              height="56"
+              rx="6"
+              fill="#0a0a0f"
+              stroke="#fbbf24"
+              stroke-width="2"
+            />
+            <text
+              x="590"
+              y="36"
+              fill="#fbbf24"
+              font-size="12"
+              font-weight="700"
+            >
+              C.R.O
+            </text>
+            <path
+              d="M572 52 Q595 40 610 52 T648 52"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2"
+            />
+
+            <!-- Green wavefronts S1 -->
+            <circle
+              cx="250"
+              cy="190"
+              r="28"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.8"
+              stroke-dasharray="4 2"
+            />
+            <circle
+              cx="250"
+              cy="190"
+              r="56"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.8"
+            />
+            <circle
+              cx="250"
+              cy="190"
+              r="84"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.8"
+              stroke-dasharray="4 2"
+            />
+            <circle
+              cx="250"
+              cy="190"
+              r="112"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.8"
+            />
+            <text
+              x="242"
+              y="194"
+              fill="#4ade80"
+              font-size="12"
+              font-weight="700"
+            >
+              S₁
+            </text>
+
+            <!-- Red wavefronts S2 -->
+            <circle
+              cx="370"
+              cy="190"
+              r="28"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="1.8"
+              stroke-dasharray="4 2"
+            />
+            <circle
+              cx="370"
+              cy="190"
+              r="56"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="1.8"
+            />
+            <circle
+              cx="370"
+              cy="190"
+              r="84"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="1.8"
+              stroke-dasharray="4 2"
+            />
+            <circle
+              cx="370"
+              cy="190"
+              r="112"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="1.8"
+            />
+            <text
+              x="362"
+              y="194"
+              fill="#ff00aa"
+              font-size="12"
+              font-weight="700"
+            >
+              S₂
+            </text>
+
+            <!-- Points -->
+            <circle cx="310" cy="130" r="4" fill="#fbbf24" />
+            <text x="300" y="120" fill="#fbbf24" font-size="11">P₁</text>
+            <circle cx="310" cy="250" r="4" fill="#fbbf24" />
+            <text x="300" y="268" fill="#fbbf24" font-size="11">P₂</text>
+            <circle cx="310" cy="190" r="4" fill="#fbbf24" />
+            <text x="318" y="194" fill="#fbbf24" font-size="11">P₃</text>
+            <circle cx="280" cy="158" r="4" fill="#fbbf24" />
+            <text x="262" y="155" fill="#fbbf24" font-size="11">P₄</text>
+            <circle cx="340" cy="158" r="4" fill="#fbbf24" />
+            <text x="348" y="155" fill="#fbbf24" font-size="11">P₅</text>
+          </svg>
+        </div>
+        <div class="board-note">
+          Green rings = S₁ · Red rings = S₂ · P₁…P₅ = intersection / observation
+          points (board diagram).
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-title">Constructive interference :-</div>
+        <div class="calc">
+          Type of interference in which crest lies on crest and trough lies on
+          trough. In this way displacement / Amplitude increases.<br /><br />
+          <strong style="color: var(--green); font-size: 1.15rem"
+            >ΔS = nλ</strong
+          ><br />
+          <span style="color: #888"
+            >(ΔS space between waves) (λ wavelength) (n integers)</span
+          ><br /><br />
+          In this case Path differen (ΔS) is integral (n) multiple of wavelength
+          (λ).
+        </div>
+        <div class="board-note">
+          <strong style="color: var(--green)">Board Check:</strong> n = 0, 1, 2,
+          3… → path difference is whole number of wavelengths → bright / loud.
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p6.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 7 of 8</span>
+        <a href="ch7-prof-p8.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Notebook Page
+        </h3>
+        <img
+          src="ch7_p7.jpg"
+          alt="Ch 7 Page 7"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_p7.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>
