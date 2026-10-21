@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 9</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.35rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.92rem;
+        line-height: 1.85;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .mode-label {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+      .board-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        border-left: 3px solid var(--green);
+        padding-left: 10px;
+        margin-top: 10px;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-bottom: 8px;
+        border: 1px solid;
+      }
+      .tag-a {
+        color: var(--accent);
+        border-color: var(--accent);
+        background: rgba(0, 240, 255, 0.08);
+      }
+      .tag-b {
+        color: var(--pink);
+        border-color: var(--pink);
+        background: rgba(255, 0, 170, 0.08);
+      }
+      .tag-c {
+        color: var(--yellow);
+        border-color: var(--yellow);
+        background: rgba(251, 191, 36, 0.08);
+      }
+      .summary {
+        background: rgba(74, 222, 128, 0.06);
+        border: 1px solid rgba(74, 222, 128, 0.35);
+        border-radius: 10px;
+        padding: 14px;
+        margin-top: 8px;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p8.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 9</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Stationary Waves In Stretched String</div>
+      <div class="page-sub">
+        College notes · One long derivation (3 physical pages combined) ·
+        Harmonics on a string
+      </div>
+
+      <!-- SETUP -->
+      <div class="concept-card">
+        <div class="concept-title">Setup (board):</div>
+        <div class="calc">
+          Consider a string of Length
+          <strong style="color: var(--accent)">l</strong> clamped by both
+          ends.<br />
+          <strong style="color: var(--yellow)">F</strong> is force by
+          tension.<br /><br />
+          <span style="color: #888; font-size: 0.85rem">
+            Wave speed on string:&nbsp;
+            <strong style="color: var(--green)">v = √(F / m)</strong>
+            &nbsp; where m = mass per unit length
+          </span>
+        </div>
+        <div class="board-note">
+          Board spelling “Streched” → <strong>Stretched</strong>. Ends fixed =
+          nodes at both ends.
+        </div>
+      </div>
+
+      <!-- A: FUNDAMENTAL -->
+      <div class="concept-card">
+        <span class="tag tag-a">A · Plucked from centre</span>
+        <div class="concept-title">Fundamental mode (1st harmonic):</div>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 520 110" width="100%" height="auto">
+            <!-- supports -->
+            <rect x="30" y="20" width="8" height="70" fill="#333" />
+            <rect x="482" y="20" width="8" height="70" fill="#333" />
+            <!-- string rest -->
+            <line
+              x1="38"
+              y1="55"
+              x2="482"
+              y2="55"
+              stroke="#333"
+              stroke-dasharray="3,3"
+            />
+            <!-- one loop -->
+            <path
+              d="M 38 55 Q 260 10, 482 55"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="3"
+            />
+            <path
+              d="M 38 55 Q 260 100, 482 55"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2"
+              stroke-dasharray="5 3"
+              opacity="0.5"
+            />
+            <!-- labels -->
+            <circle cx="38" cy="55" r="4" fill="#ff00aa" />
+            <circle cx="482" cy="55" r="4" fill="#ff00aa" />
+            <circle cx="260" cy="18" r="4" fill="#4ade80" />
+            <text x="28" y="78" fill="#ff00aa" font-size="11" font-weight="700">
+              N
+            </text>
+            <text
+              x="472"
+              y="78"
+              fill="#ff00aa"
+              font-size="11"
+              font-weight="700"
+            >
+              N
+            </text>
+            <text
+              x="248"
+              y="14"
+              fill="#4ade80"
+              font-size="11"
+              font-weight="700"
+            >
+              A
+            </text>
+            <text x="200" y="100" fill="#9494a0" font-size="11">
+              l = λ₁ / 2
+            </text>
+          </svg>
+          <div class="mode-label">
+            N — node · A — antinode · single loop between ends
+          </div>
+        </div>
+
+        <div class="calc">
+          String is Plucked from centre, two transverse waves travelling in
+          opposite direction Combine and give rise to standing waves.<br />
+          Distance b/w two consecutive nodes are half of wavelength.<br /><br />
+          <strong style="color: var(--accent)">l = λ₁ / 2</strong><br />
+          <strong style="color: var(--accent)">( 2l = λ₁ )</strong><br /><br />
+          As we know, &nbsp; f₁ λ₁ = v<br />
+          f₁ = v / λ₁<br />
+          <strong style="color: var(--green)">f₁ = v / (2l)</strong>
+          &nbsp;&nbsp;…… (i) &nbsp; [∵ λ₁ = 2l]<br /><br />
+          We know v = √(F / m)<br /><br />
+          From Eq (i):<br />
+          <strong style="color: var(--green); font-size: 1.05rem"
+            >f₁ = (1 / 2l) √(F / m)</strong
+          >
+        </div>
+        <div class="board-note">
+          This is the <strong>fundamental frequency</strong> (1st harmonic).
+          Lowest possible frequency for the string.
+        </div>
+      </div>
+
+      <!-- B: SECOND HARMONIC -->
+      <div class="concept-card">
+        <span class="tag tag-b">B · Plucked from quarter length</span>
+        <div class="concept-title">Second harmonic (two loops):</div>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 520 110" width="100%" height="auto">
+            <rect x="30" y="20" width="8" height="70" fill="#333" />
+            <rect x="482" y="20" width="8" height="70" fill="#333" />
+            <line
+              x1="38"
+              y1="55"
+              x2="482"
+              y2="55"
+              stroke="#333"
+              stroke-dasharray="3,3"
+            />
+            <!-- two loops -->
+            <path
+              d="M 38 55 Q 149 12, 260 55 Q 371 98, 482 55"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="3"
+            />
+            <path
+              d="M 38 55 Q 149 98, 260 55 Q 371 12, 482 55"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="2"
+              stroke-dasharray="5 3"
+              opacity="0.45"
+            />
+            <circle cx="38" cy="55" r="4" fill="#ff00aa" />
+            <circle cx="260" cy="55" r="4" fill="#ff00aa" />
+            <circle cx="482" cy="55" r="4" fill="#ff00aa" />
+            <circle cx="149" cy="18" r="3.5" fill="#4ade80" />
+            <circle cx="371" cy="92" r="3.5" fill="#4ade80" />
+            <text x="28" y="78" fill="#ff00aa" font-size="11" font-weight="700">
+              N
+            </text>
+            <text
+              x="250"
+              y="78"
+              fill="#ff00aa"
+              font-size="11"
+              font-weight="700"
+            >
+              N
+            </text>
+            <text
+              x="472"
+              y="78"
+              fill="#ff00aa"
+              font-size="11"
+              font-weight="700"
+            >
+              N
+            </text>
+            <text
+              x="140"
+              y="12"
+              fill="#4ade80"
+              font-size="10"
+              font-weight="700"
+            >
+              A
+            </text>
+            <text
+              x="362"
+              y="108"
+              fill="#4ade80"
+              font-size="10"
+              font-weight="700"
+            >
+              A
+            </text>
+            <text x="90" y="100" fill="#9494a0" font-size="10">← λ₂/2 →</text>
+            <text x="300" y="100" fill="#9494a0" font-size="10">← λ₂/2 →</text>
+          </svg>
+          <div class="mode-label">
+            Now string is vibrating two loops (2 antinodes, 3 nodes)
+          </div>
+        </div>
+
+        <div class="calc">
+          l = λ₂/2 + λ₂/2 = λ₂<br />
+          <strong style="color: var(--accent)">l = λ₂</strong><br /><br />
+          Again: f₂ λ₂ = v<br />
+          f₂ = v / λ₂<br />
+          <strong style="color: var(--accent)">f₂ = v / l</strong>
+          &nbsp;&nbsp; [∵ λ₂ = l]<br /><br />
+          Multiply and Divide by "2":<br />
+          f₂ = 2v / (2l) = 2 (v / 2l)<br />
+          <strong style="color: var(--green); font-size: 1.05rem"
+            >f₂ = 2 f₁</strong
+          >
+          &nbsp;&nbsp; [∵ f₁ = v / 2l]
+        </div>
+      </div>
+
+      <!-- C: GENERAL -->
+      <div class="concept-card">
+        <span class="tag tag-c">C · Plucked from arbitrary length</span>
+        <div class="concept-title">General / nth harmonic:</div>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 520 100" width="100%" height="auto">
+            <rect x="30" y="18" width="8" height="64" fill="#333" />
+            <rect x="482" y="18" width="8" height="64" fill="#333" />
+            <line
+              x1="38"
+              y1="50"
+              x2="482"
+              y2="50"
+              stroke="#333"
+              stroke-dasharray="3,3"
+            />
+            <!-- 3 loops sketch -->
+            <path
+              d="M 38 50 Q 112 12, 186 50 Q 260 88, 334 50 Q 408 12, 482 50"
+              fill="none"
+              stroke="#fbbf24"
+              stroke-width="2.8"
+            />
+            <circle cx="38" cy="50" r="3.5" fill="#ff00aa" />
+            <circle cx="186" cy="50" r="3.5" fill="#ff00aa" />
+            <circle cx="334" cy="50" r="3.5" fill="#ff00aa" />
+            <circle cx="482" cy="50" r="3.5" fill="#ff00aa" />
+            <text x="210" y="92" fill="#9494a0" font-size="11">
+              n loops · n+1 nodes
+            </text>
+          </svg>
+        </div>
+
+        <div class="calc">
+          String is plucked from arbitrary Length. It vibrates in
+          <strong style="color: var(--yellow)">"n" Antinode (Loop)</strong>
+          and <strong style="color: var(--pink)">"n+1" nodes</strong>. So,<br /><br />
+          <strong style="color: var(--accent)">( λₙ = 2l / n )</strong
+          ><br /><br />
+          and<br /><br />
+          <strong style="color: var(--green); font-size: 1.05rem"
+            >( fₙ = n f₁ )</strong
+          >
+          &nbsp;&nbsp; [∵ f₁ = v / 2l]
+        </div>
+      </div>
+
+      <!-- MASTER SUMMARY -->
+      <div class="concept-card">
+        <div class="concept-title">Master result (exam box):</div>
+        <div class="summary">
+          <div
+            class="calc"
+            style="margin: 0; border-color: rgba(74, 222, 128, 0.3)"
+          >
+            f₁ = (1 / 2l) √(F / m)<br /><br />
+            <strong style="color: var(--green); font-size: 1.1rem">
+              fₙ = n / (2l) · √(F / m) = n f₁ </strong
+            ><br /><br />
+            <span style="color: #888; font-size: 0.85rem">
+              n = 1, 2, 3, … &nbsp;|&nbsp; n = 1 fundamental &nbsp;|&nbsp; n = 2
+              octave / 2nd harmonic
+            </span>
+          </div>
+        </div>
+        <div class="board-note">
+          <strong style="color: var(--green)">Board Check:</strong>
+          Teacher’s <em>m</em> = linear density (often written μ in textbooks).
+          Fixed–fixed string → only integer harmonics (no even/odd restriction
+          like open organ pipes). Wavelength fit: length holds
+          <em>n</em> half-wavelengths → L = n (λ/2) → λ = 2L/n.
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p8.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 9</span>
+        <a href="prof-hub.html" class="page-btn">Prof Hub 🏠</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 12px">
+          Original Notebook Pages (3 physical sheets)
+        </h3>
+        <img
+          src="ch7_p9a.jpg"
+          alt="Ch 7 String page 1"
+          class="source-image"
+          onerror="this.style.display = 'none'"
+        />
+        <img
+          src="ch7_p9b.jpg"
+          alt="Ch 7 String page 2"
+          class="source-image"
+          onerror="this.style.display = 'none'"
+        />
+        <img
+          src="ch7_p9c.jpg"
+          alt="Ch 7 String page 3"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Optional: add <strong>ch7_p9a.jpg</strong>,
+          <strong>ch7_p9b.jpg</strong>, <strong>ch7_p9c.jpg</strong>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>

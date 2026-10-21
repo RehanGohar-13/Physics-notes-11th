@@ -225,6 +225,17 @@
         gap: 10px;
         box-shadow: 0 0 15px rgba(255, 0, 170, 0.2);
       }
+
+      .typo-box {
+        background: rgba(255, 0, 85, 0.08);
+        border-left: 3px solid var(--neon-magenta);
+        padding: 12px;
+        margin: 16px 0;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: #ffb3c6;
+        line-height: 1.5;
+      }
     </style>
   </head>
   <body>
@@ -500,17 +511,15 @@
 
         <div class="formula-box">
           <div class="label">Equations (2.1), (2.2), (2.3)</div>
-          <div class="formula" style="font-size: 1.1rem; line-height: 1.8">
+          <div class="formula" style="font-size: 1rem; line-height: 1.8">
             A = Aₓ + Aᵧ &nbsp;&nbsp;(Vector sum)<br />
             Aₓ = A cos θ &nbsp;&nbsp;(x-component)<br />
             Aᵧ = A sin θ &nbsp;&nbsp;(y-component)
           </div>
         </div>
 
-        <!-- FIXED Fig 2.1 SVG -->
         <div class="vector-diagram">
           <svg viewBox="0 0 340 250" xmlns="http://www.w3.org/2000/svg">
-            <!-- Axes -->
             <line
               x1="40"
               y1="200"
@@ -532,8 +541,6 @@
             <text x="300" y="215" fill="#00f0ff" font-size="14">x</text>
             <text x="20" y="30" fill="#00f0ff" font-size="14">y</text>
             <text x="25" y="215" fill="#888" font-size="12">O</text>
-
-            <!-- Vector A -->
             <line
               x1="40"
               y1="200"
@@ -552,8 +559,6 @@
             >
               A
             </text>
-
-            <!-- x-component -->
             <line
               x1="40"
               y1="200"
@@ -562,13 +567,10 @@
               stroke="#00ff88"
               stroke-width="2.5"
             />
-            <!-- Moved text down to avoid intersecting the green line -->
             <text x="130" y="222" fill="#00ff88" font-size="14">
               Aₓ = A cos θ
             </text>
             <text x="235" y="218" fill="#00ff88" font-size="12">M</text>
-
-            <!-- y-component -->
             <line
               x1="240"
               y1="200"
@@ -578,20 +580,16 @@
               stroke-width="2.5"
               stroke-dasharray="4 3"
             />
-            <!-- Moved text right to avoid line -->
             <text x="250" y="145" fill="#ffe600" font-size="14">
               Aᵧ = A sin θ
             </text>
             <text x="245" y="70" fill="#ffe600" font-size="12">P</text>
-
-            <!-- Angle -->
             <path
               d="M 80 200 A 40 40 0 0 0 74 179"
               fill="none"
               stroke="#a855f7"
               stroke-width="1.5"
             />
-            <!-- Moved theta clear of the arc -->
             <text x="90" y="190" fill="#a855f7" font-size="14">θ</text>
           </svg>
           <div class="caption">
@@ -608,7 +606,7 @@
 
         <div class="formula-box">
           <div class="label">Equations (2.4) &amp; (2.5)</div>
-          <div class="formula" style="font-size: 1.1rem; line-height: 1.8">
+          <div class="formula" style="font-size: 1rem; line-height: 1.8">
             A = √(Aₓ² + Aᵧ²) &nbsp;&nbsp;&nbsp;&nbsp;(Magnitude)<br />
             θ = tan⁻¹(Aᵧ / Aₓ) &nbsp;&nbsp;&nbsp;&nbsp;(Direction)
           </div>
@@ -661,14 +659,14 @@
         <h3>Scalar or Dot Product</h3>
         <div class="formula-box">
           <div class="label">Equation (2.6)</div>
-          <div class="formula" style="font-size: 1.25rem">A · B = AB cos θ</div>
+          <div class="formula" style="font-size: 1.15rem">A · B = AB cos θ</div>
         </div>
 
         <!-- PAGE 23: PROJECTIONS, WORK EXAMPLE, & CHARACTERISTICS -->
         <p>Physical interpretation of dot product:</p>
         <div class="formula-box">
           <div class="label">Projections Interpretation</div>
-          <div class="formula" style="font-size: 1rem; line-height: 1.7">
+          <div class="formula" style="font-size: 0.95rem; line-height: 1.7">
             A · B = A (component of B in direction of A) =
             <span class="hl-cyan">AB cos θ</span><br />
             B · A = B (component of A in direction of B) =
@@ -676,7 +674,6 @@
           </div>
         </div>
 
-        <!-- FIXED Fig 2.2(a) and 2.2(b) SVGs -->
         <div class="vector-diagram">
           <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
             <line
@@ -687,7 +684,6 @@
               stroke="#333"
               stroke-width="1"
             />
-
             <line
               x1="40"
               y1="140"
@@ -697,7 +693,6 @@
               stroke-width="3"
             />
             <polygon points="220,140 208,148 208,132" fill="#00f0ff" />
-            <!-- Moved A text down -->
             <text
               x="235"
               y="145"
@@ -707,7 +702,6 @@
             >
               A
             </text>
-
             <line
               x1="40"
               y1="140"
@@ -717,7 +711,6 @@
               stroke-width="3"
             />
             <polygon points="160,40 148,48 156,52" fill="#ff00aa" />
-            <!-- Moved B text clear -->
             <text
               x="170"
               y="45"
@@ -727,7 +720,6 @@
             >
               B
             </text>
-
             <line
               x1="160"
               y1="40"
@@ -737,9 +729,7 @@
               stroke-width="1.5"
               stroke-dasharray="4 3"
             />
-            <!-- Moved B cos theta below the line -->
             <text x="100" y="158" fill="#00ff88" font-size="13">B cos θ</text>
-
             <path
               d="M 80 140 A 40 40 0 0 0 70 110"
               fill="none"
@@ -749,24 +739,22 @@
             <text x="85" y="125" fill="#a855f7" font-size="13">θ</text>
           </svg>
           <div class="caption">
-            <strong>Fig. 2.2 (a) &amp; (b):</strong> Projection of B on A gives
-            component B cos θ.
+            <strong>Fig. 2.2:</strong> Projection of B on A gives component B
+            cos θ.
           </div>
         </div>
 
         <h3>Physical Example — Work Done</h3>
         <div class="formula-box">
           <div class="label">Work as a Scalar Product</div>
-          <div class="formula" style="font-size: 1.1rem; line-height: 1.8">
+          <div class="formula" style="font-size: 1rem; line-height: 1.8">
             Work = (Effective component of force) × Distance<br />
             <span class="hl-green">W = F · d = Fd cos θ</span>
           </div>
         </div>
 
-        <!-- FIXED Fig 2.3 SVG -->
         <div class="vector-diagram">
           <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg">
-            <!-- Ground -->
             <line
               x1="20"
               y1="130"
@@ -775,7 +763,6 @@
               stroke="#00f0ff"
               stroke-width="2"
             />
-            <!-- Block -->
             <rect
               x="80"
               y="70"
@@ -795,8 +782,6 @@
             >
               Block
             </text>
-
-            <!-- Force Arrow F -->
             <line
               x1="160"
               y1="70"
@@ -806,7 +791,6 @@
               stroke-width="3"
             />
             <polygon points="260,20 248,28 255,34" fill="#ff00aa" />
-            <!-- Moved F text safely away -->
             <text
               x="270"
               y="25"
@@ -816,8 +800,6 @@
             >
               F
             </text>
-
-            <!-- F cos theta -->
             <line
               x1="160"
               y1="70"
@@ -827,10 +809,7 @@
               stroke-width="2"
               stroke-dasharray="4 3"
             />
-            <!-- Moved F cos theta clearly above the line -->
             <text x="210" y="62" fill="#ffe600" font-size="13">F cos θ</text>
-
-            <!-- Angle arc -->
             <path
               d="M 190 70 A 30 30 0 0 0 185 57"
               fill="none"
@@ -838,8 +817,6 @@
               stroke-width="1.5"
             />
             <text x="200" y="55" fill="#a855f7" font-size="12">θ</text>
-
-            <!-- Displacement Arrow d -->
             <line
               x1="80"
               y1="150"
@@ -849,7 +826,6 @@
               stroke-width="2"
             />
             <polygon points="260,150 250,145 250,155" fill="#00ff88" />
-            <!-- Moved d text down -->
             <text
               x="165"
               y="170"
@@ -900,8 +876,8 @@
             3. Parallel &amp; Antiparallel
           </div>
           <p>
-            • Parallel (0°): <span class="hl-yellow">A · B = AB</span><br />•
-            Antiparallel (180°): <span class="hl-magenta">A · B = −AB</span>
+            • Parallel (0°): <span class="hl-yellow">A · B = AB</span><br />
+            • Antiparallel (180°): <span class="hl-magenta">A · B = −AB</span>
           </p>
         </div>
 
@@ -921,7 +897,7 @@
             5. Rectangular Components &amp; Angle
           </div>
           <div class="formula-box" style="margin: 10px 0">
-            <div class="formula" style="font-size: 1.05rem">
+            <div class="formula" style="font-size: 0.95rem">
               A · B = AₓBₓ + AᵧBᵧ + AᴢBᴢ
             </div>
           </div>
@@ -931,7 +907,7 @@
           >
             <div
               class="formula"
-              style="font-size: 1.15rem; color: var(--neon-green)"
+              style="font-size: 1.05rem; color: var(--neon-green)"
             >
               cos θ = (AₓBₓ + AᵧBᵧ + AᴢBᴢ) / AB
             </div>
@@ -946,7 +922,7 @@
 
         <div class="formula-box">
           <div class="label">Equation (2.9)</div>
-          <div class="formula" style="font-size: 1.25rem">
+          <div class="formula" style="font-size: 1.15rem">
             A × B = AB sin θ n̂
           </div>
           <div class="formula-note">
@@ -965,13 +941,12 @@
           <div class="label">Equation (2.10) — Anti-Commutative</div>
           <div
             class="formula"
-            style="font-size: 1.25rem; color: var(--neon-magenta)"
+            style="font-size: 1.15rem; color: var(--neon-magenta)"
           >
             A × B = − (B × A)
           </div>
         </div>
 
-        <!-- Fig 2.4 SVGs -->
         <div class="vector-diagram">
           <svg viewBox="0 0 340 190" xmlns="http://www.w3.org/2000/svg">
             <polygon
@@ -998,7 +973,6 @@
             >
               A
             </text>
-
             <line
               x1="120"
               y1="110"
@@ -1017,7 +991,6 @@
             >
               B
             </text>
-
             <line
               x1="120"
               y1="110"
@@ -1027,7 +1000,6 @@
               stroke-width="3.5"
             />
             <polygon points="120,25 114,37 126,37" fill="#00ff88" />
-            <!-- Avoided overlap completely -->
             <text
               x="135"
               y="35"
@@ -1037,7 +1009,6 @@
             >
               A × B = AB sin θ n̂
             </text>
-
             <line
               x1="120"
               y1="110"
@@ -1087,7 +1058,7 @@
         </div>
       </div>
 
-      <!-- PAGE 25: EQUATIONS OF MOTION -->
+      <!-- PAGE 25-28: EQUATIONS OF MOTION -->
       <div class="main-section-bar">
         <span>2.4</span>
         <span>EQUATIONS OF MOTION</span>
@@ -1099,16 +1070,16 @@
           straight line with <strong>constant acceleration</strong>.
         </p>
 
+        <!-- FIRST EQUATION OF MOTION -->
         <h3>Derivation of First Equation of Motion</h3>
         <div class="formula-box">
           <div class="label">Algebraic Derivation</div>
-          <div class="formula" style="font-size: 1.1rem; line-height: 1.8">
+          <div class="formula" style="font-size: 1rem; line-height: 1.8">
             a = (v_f − vᵢ) / t<br />
             <span class="hl-green">v_f = vᵢ + at &nbsp;&nbsp; (2.11)</span>
           </div>
         </div>
 
-        <!-- FIXED Fig 2.5 V-T Graph SVG -->
         <div class="vector-diagram">
           <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
             <line
@@ -1143,7 +1114,7 @@
             />
             <circle cx="40" cy="130" r="4" fill="#ff00aa" />
             <circle cx="240" cy="50" r="4" fill="#ff00aa" />
-            <!-- Shifted A and B clear from the axes -->
+
             <text
               x="5"
               y="125"
@@ -1185,7 +1156,6 @@
             />
             <text x="250" y="135" fill="#00ff88" font-size="12">C</text>
 
-            <!-- Shifted Slope formula clearly up -->
             <text
               x="100"
               y="70"
@@ -1201,6 +1171,352 @@
             gives acceleration.
           </div>
         </div>
+
+        <p>From the graph, it can observed that;</p>
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            OA = vᵢ = Initial velocity of the body<br />
+            OE = DB = v_f = Final velocity of the body<br /><br />
+            DB = DC + CB<br />
+            DB = OA + CB &nbsp;&nbsp;
+            <span style="color: var(--text-muted); font-size: 0.85rem"
+              >(As OA = DC)</span
+            ><br />
+            <span class="hl-yellow"
+              >Therefore &nbsp; v_f = CB + vᵢ &nbsp;&nbsp;
+              .................(2.12)</span
+            >
+          </div>
+        </div>
+
+        <p>
+          The value of CB in the above equation can be determined by taking the
+          slope of line AB, which is equal to acceleration a.
+        </p>
+
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            a = CB / AC<br />
+            As AC = t<br />
+            So a = CB / t<br />
+            <span class="hl-yellow"
+              >or &nbsp; CB = at &nbsp;&nbsp; .................(2.13)</span
+            >
+          </div>
+        </div>
+
+        <p>Combining Eqs. (2.12) and (2.13), we have</p>
+        <div
+          class="char-card"
+          style="
+            border-left-color: var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.05);
+            text-align: center;
+            margin-top: 15px;
+          "
+        >
+          <p
+            style="
+              font-weight: 700;
+              color: var(--neon-cyan);
+              margin: 0;
+              font-size: 1.15rem;
+            "
+          >
+            v_f = vᵢ + at
+          </p>
+        </div>
+        <p
+          style="
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 5px;
+          "
+        >
+          This is the first equation of motion.
+        </p>
+
+        <div class="typo-box">
+          <strong>🔍 Textbook Typo (Page 26):</strong> "From the graph, it can
+          observed that;" (Missing the word "be" between "can" and "observed").
+        </div>
+      </div>
+
+      <!-- SECOND EQUATION OF MOTION -->
+      <div class="content-section reveal">
+        <h2 class="hl-magenta">Derivation of Second Equation of Motion</h2>
+
+        <p>
+          Suppose a body is moving with uniform acceleration
+          <span class="hl-cyan">a</span> along a straight line with an initial
+          velocity <span class="hl-cyan">vᵢ</span>, which becomes
+          <span class="hl-magenta">v_f</span> after time interval
+          <span class="hl-yellow">t</span>. Let it cover a distance
+          <span class="hl-green">S</span> in a particular direction during time
+          <span class="hl-yellow">t</span>, then using the definition of
+          velocity as rate of change of displacement, we can write:
+        </p>
+
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            Velocity = Displacement / Time<br />
+            or Displacement = Velocity × Time<br /><br />
+            <span style="color: var(--text-muted); font-size: 0.85rem"
+              >If velocity of the body is not constant, we can use average
+              velocity instead of velocity.</span
+            ><br /><br />
+            Thus Displacement = Average velocity × Time<br />
+            Displacement = (Initial velocity + Final velocity) / 2 × Time<br />
+            S = [ (vᵢ + v_f) / 2 ] × t
+          </div>
+        </div>
+
+        <p>Using first equation of motion (v_f = vᵢ + at):</p>
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            S = [ (vᵢ + vᵢ + at) / 2 ] × t<br />
+            S = [ (2vᵢ + at) / 2 ] × t<br />
+            2S = 2vᵢt + at²<br />
+            <span class="hl-yellow"
+              >S = vᵢt + ½at² &nbsp;&nbsp; .................(2.14)</span
+            >
+          </div>
+        </div>
+        <p
+          style="
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+          "
+        >
+          This is the second equation of motion.
+        </p>
+
+        <div class="typo-box">
+          <strong>🔍 Textbook Typos (Page 26):</strong> "which become v_f"
+          (should be <em>becomes</em>). "Let it covers" (should be
+          <em>cover</em>). The book's formula also has unbalanced parentheses:
+          <code>(Initial velocity + (Final velocity) / 2</code>.
+        </div>
+
+        <h3 class="hl-magenta">
+          Derivation of Second Equation of Motion by Graphical Method
+        </h3>
+        <p>
+          Second equation of motion can be derived using velocity-time graph for
+          a body moving with initial velocity vᵢ which attains a final value v_f
+          in time interval t. It can be seen from the graph that distance
+          travelled by the body is, S = v × t.
+        </p>
+
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            Also S = Area of the figure OABD<br />
+            S = (Area of the rectangle OACD) + (Area of the triangle ABC)<br />
+            S = (OA × OD) + ½(AC × CB)<br /><br />
+            As OA = vᵢ and OD = AC = t. So, the above equation becomes:<br />
+            S = vᵢt + ½(t × CB)<br /><br />
+            Here CB = at (From 1st EOM). By putting this value:<br />
+            S = vᵢt + ½(t × at)<br />
+            <span class="hl-yellow">S = vᵢt + ½at²</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- THIRD EQUATION OF MOTION -->
+      <div class="content-section reveal">
+        <h2 class="hl-magenta">Derivation of third equation of motion</h2>
+
+        <p>
+          Consider a body moving along a straight line with an initial velocity
+          vᵢ, which attains a final value v_f in time t. Let the displacement of
+          the body be S during this time interval. Then, we can write:
+        </p>
+
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            Displacement = ( (Initial velocity + Final velocity) / 2 ) × Time<br />
+            S = [ (vᵢ + v_f) / 2 ] × t<br />
+            <span class="hl-yellow"
+              >2S = (vᵢ + v_f) × t &nbsp;&nbsp; .................(2.15)</span
+            >
+          </div>
+        </div>
+
+        <p>
+          Using the first equation of motion (v_f = vᵢ + at)
+          <strong>or</strong> t = (v_f - vᵢ) / a, putting the value of t in Eq.
+          (2.15):
+        </p>
+
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            2S = (v_f + vᵢ) [ (v_f - vᵢ) / a ]<br />
+            <span class="hl-yellow">2aS = v_f² - vᵢ²</span>
+          </div>
+        </div>
+        <p
+          style="
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+          "
+        >
+          This is the third equation of motion.
+        </p>
+
+        <h3 class="hl-magenta">
+          Derivation of third Equation of Motion by Graphical method
+        </h3>
+        <p>
+          In the speed-time graph shown in the figure, the total distance S
+          travelled by a body is given by the area OABD under the graph, such
+          that
+        </p>
+
+        <div class="formula-box">
+          <div
+            class="formula"
+            style="font-size: 0.95rem; line-height: 1.7; text-align: left"
+          >
+            S = ½(Sum of parallel sides) × Height<br />
+            S = ½(OA + BD) × OD<br /><br />
+            Since OA = vᵢ, BD = v_f and OD = t<br />
+            S = ½(vᵢ + v_f) × t<br /><br />
+            From first EOM, t = (v_f - vᵢ) / a<br />
+            S = ½(v_f + vᵢ) [ (v_f - vᵢ) / a ]<br />
+            or S = (1 / 2a) (v_f + vᵢ)(v_f - vᵢ)<br />
+            <span class="hl-yellow"
+              >2aS = v_f² - vᵢ² &nbsp;&nbsp; .................(2.16)</span
+            >
+          </div>
+        </div>
+
+        <div class="vector-diagram">
+          <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+            <line
+              x1="40"
+              y1="180"
+              x2="300"
+              y2="180"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+            />
+            <line
+              x1="40"
+              y1="180"
+              x2="40"
+              y2="20"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+            />
+            <text x="290" y="195" fill="#00f0ff" font-size="12">Time →</text>
+            <text x="15" y="15" fill="#00f0ff" font-size="12">Velocity →</text>
+            <text x="25" y="195" fill="#888" font-size="12">O</text>
+            <line
+              x1="40"
+              y1="130"
+              x2="240"
+              y2="50"
+              stroke="#ff00aa"
+              stroke-width="3"
+            />
+            <circle cx="40" cy="130" r="4" fill="#ff00aa" />
+            <circle cx="240" cy="50" r="4" fill="#ff00aa" />
+            <text x="15" y="135" fill="#fff" font-size="12">A</text>
+            <text x="10" y="115" fill="#ffe600" font-size="12">vᵢ</text>
+            <text x="250" y="45" fill="#fff" font-size="12">B</text>
+            <line
+              x1="240"
+              y1="50"
+              x2="240"
+              y2="180"
+              stroke="#00ff88"
+              stroke-width="1.5"
+              stroke-dasharray="4 3"
+            />
+            <text x="235" y="195" fill="#fff" font-size="12">D</text>
+            <text x="135" y="195" fill="#ffe600" font-size="12">t</text>
+            <line
+              x1="40"
+              y1="130"
+              x2="240"
+              y2="130"
+              stroke="#00ff88"
+              stroke-width="1.5"
+              stroke-dasharray="4 3"
+            />
+            <text x="250" y="135" fill="#fff" font-size="12">C</text>
+            <line
+              x1="40"
+              y1="50"
+              x2="240"
+              y2="50"
+              stroke="#666"
+              stroke-width="1.5"
+              stroke-dasharray="2 2"
+            />
+            <text x="15" y="55" fill="#fff" font-size="12">F</text>
+            <text x="10" y="35" fill="#ffe600" font-size="12">v_f</text>
+            <text
+              x="100"
+              y="75"
+              fill="#00f0ff"
+              font-size="13"
+              font-weight="bold"
+            >
+              a
+            </text>
+          </svg>
+          <div class="caption">
+            <strong>Fig. 2.6 &amp; 2.7:</strong> Velocity-Time Graph for 2nd and
+            3rd Equations of Motion. Area OABD represents displacement S.
+          </div>
+        </div>
+
+        <p
+          style="
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 20px;
+            line-height: 1.5;
+          "
+        >
+          <strong>Conceptual Note:</strong> The equations of motion are useful
+          in solving linear motion problems with uniform acceleration. If
+          direction doesn't change, vector quantities can be manipulated like
+          scalars (initial velocity = positive). A negative sign is assigned to
+          quantities where direction is opposite to initial velocity. In the
+          absence of air resistance, free fall acceleration is
+          <span class="hl-cyan">g = 9.8 m s⁻²</span> downward. We apply these
+          equations to free fall by replacing <strong>a</strong> with
+          <strong>g</strong>.
+        </p>
       </div>
 
       <!-- BOTTOM NAV / PROGRESS -->
@@ -1214,7 +1530,7 @@
         "
       >
         <p style="color: var(--text-muted); margin-bottom: 12px">
-          Chapter 2 · Pages 19–25 complete!
+          Chapter 2 · Pages 19–28 complete!
         </p>
         <a
           href="index.html"
