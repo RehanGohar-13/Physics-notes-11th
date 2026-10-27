@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 13</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 10px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .board-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        border-left: 3px solid var(--green);
+        padding-left: 10px;
+        margin-top: 10px;
+      }
+      .cloud-box {
+        display: inline-block;
+        background: rgba(0, 240, 255, 0.08);
+        border: 2px dashed var(--accent);
+        border-radius: 40px;
+        padding: 8px 22px;
+        margin: 10px 0;
+        font-family: Consolas, monospace;
+        font-weight: 700;
+        color: var(--yellow);
+        font-size: 1.15rem;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p12.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 13</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Pipe Closed From One Side</div>
+      <div class="page-sub">Case-II · 1st &amp; 2nd Modes of Vibration</div>
+
+      <!-- SETUP CARD -->
+      <div class="concept-card">
+        <div class="concept-title">Case-II : Pipe Is Closed From One Side</div>
+        <div class="calc">
+          When the pipe of length
+          <strong style="color: var(--accent)">"l"</strong> is closed from one
+          end. Closed Ends behave as nodes because Air molecules don't have
+          enough freedom to move.
+        </div>
+      </div>
+
+      <!-- 1ST MODE CARD -->
+      <div class="concept-card">
+        <div class="concept-title">A — 1<sup>st</sup> Mode of Vibration :</div>
+
+        <!-- SVG DIAGRAM 1ST MODE (Closed Right) -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 500 160" width="100%" height="auto">
+            <!-- Axis -->
+            <line
+              x1="50"
+              y1="80"
+              x2="450"
+              y2="80"
+              stroke="#333"
+              stroke-dasharray="4,3"
+            />
+
+            <!-- Pipe (Open Left, Closed Right) -->
+            <path
+              d="M 50 40 L 450 40 L 450 120 L 50 120"
+              fill="none"
+              stroke="#555"
+              stroke-width="2.5"
+            />
+            <line
+              x1="450"
+              y1="35"
+              x2="450"
+              y2="125"
+              stroke="#ff00aa"
+              stroke-width="5"
+            />
+
+            <!-- Wave Envelope (1/4 wave) -->
+            <path
+              d="M 50 40 Q 250 40 450 80"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.8"
+            />
+            <path
+              d="M 50 120 Q 250 120 450 80"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.8"
+              stroke-dasharray="5,4"
+            />
+
+            <!-- Node & Antinode -->
+            <circle cx="450" cy="80" r="5" fill="#ff00aa" />
+            <text
+              x="50"
+              y="28"
+              fill="#fbbf24"
+              font-size="15"
+              font-weight="800"
+              text-anchor="middle"
+            >
+              A
+            </text>
+            <text
+              x="450"
+              y="103"
+              fill="#ff00aa"
+              font-size="14"
+              font-weight="800"
+              text-anchor="middle"
+            >
+              N
+            </text>
+
+            <!-- Brace -->
+            <line
+              x1="50"
+              y1="145"
+              x2="450"
+              y2="145"
+              stroke="#4ade80"
+              stroke-width="1.5"
+            />
+            <line x1="50" y1="140" x2="50" y2="150" stroke="#4ade80" />
+            <line x1="450" y1="140" x2="450" y2="150" stroke="#4ade80" />
+            <text
+              x="250"
+              y="160"
+              fill="#4ade80"
+              font-size="13"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              l = λ₁/4
+            </text>
+          </svg>
+        </div>
+
+        <div class="board-note">
+          <strong style="color: var(--green)">★ Board note:</strong> In this
+          Case We have one node and one anti-node.
+        </div>
+
+        <div class="calc" style="margin-top: 12px">l = λ₁ / 4</div>
+
+        <div style="text-align: center; margin: 8px 0">
+          <div class="cloud-box">{ 4l = λ₁ }</div>
+        </div>
+
+        <div class="calc">
+          As we know:<br />
+          v = f₁ λ₁<br />
+          v / λ₁ = f₁
+        </div>
+
+        <div style="text-align: center; margin: 8px 0">
+          <div class="cloud-box">{ v / 4l = f₁ } &nbsp;∵ [λ₁ = 4l]</div>
+        </div>
+      </div>
+
+      <!-- 2ND MODE INTRO CARD -->
+      <div class="concept-card">
+        <div class="concept-title">B — 2<sup>nd</sup> Mode of Vibration :</div>
+
+        <!-- SVG DIAGRAM 2ND MODE (Closed Right) -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 500 165" width="100%" height="auto">
+            <!-- Axis -->
+            <line
+              x1="50"
+              y1="80"
+              x2="450"
+              y2="80"
+              stroke="#333"
+              stroke-dasharray="4,3"
+            />
+
+            <!-- Pipe -->
+            <path
+              d="M 50 40 L 450 40 L 450 120 L 50 120"
+              fill="none"
+              stroke="#555"
+              stroke-width="2.5"
+            />
+            <line
+              x1="450"
+              y1="35"
+              x2="450"
+              y2="125"
+              stroke="#ff00aa"
+              stroke-width="5"
+            />
+
+            <!-- 3/4 wave envelope: A(50), N(183.3), A(316.7), N(450) -->
+            <path
+              d="M 50 40 Q 116.6 40 183.3 80 Q 250 120 316.7 120 Q 383.3 120 450 80"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.8"
+            />
+            <path
+              d="M 50 120 Q 116.6 120 183.3 80 Q 250 40 316.7 40 Q 383.3 40 450 80"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.8"
+              stroke-dasharray="5,4"
+            />
+
+            <!-- Nodes -->
+            <circle cx="183.3" cy="80" r="5" fill="#ff00aa" />
+            <circle cx="450" cy="80" r="5" fill="#ff00aa" />
+            <text
+              x="183.3"
+              y="103"
+              fill="#ff00aa"
+              font-size="13"
+              font-weight="800"
+              text-anchor="middle"
+            >
+              N
+            </text>
+            <text
+              x="450"
+              y="103"
+              fill="#ff00aa"
+              font-size="13"
+              font-weight="800"
+              text-anchor="middle"
+            >
+              N
+            </text>
+
+            <!-- Antinodes -->
+            <text
+              x="50"
+              y="28"
+              fill="#fbbf24"
+              font-size="14"
+              font-weight="800"
+              text-anchor="middle"
+            >
+              A
+            </text>
+            <text
+              x="316.7"
+              y="28"
+              fill="#fbbf24"
+              font-size="14"
+              font-weight="800"
+              text-anchor="middle"
+            >
+              A
+            </text>
+
+            <!-- Braces -->
+            <line
+              x1="50"
+              y1="145"
+              x2="183.3"
+              y2="145"
+              stroke="#4ade80"
+              stroke-width="1.5"
+            />
+            <line x1="50" y1="140" x2="50" y2="150" stroke="#4ade80" />
+            <line x1="183.3" y1="140" x2="183.3" y2="150" stroke="#4ade80" />
+            <text
+              x="116.6"
+              y="160"
+              fill="#4ade80"
+              font-size="12"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              λ₂/4
+            </text>
+
+            <line
+              x1="183.3"
+              y1="145"
+              x2="450"
+              y2="145"
+              stroke="#4ade80"
+              stroke-width="1.5"
+            />
+            <line x1="450" y1="140" x2="450" y2="150" stroke="#4ade80" />
+            <text
+              x="316.7"
+              y="160"
+              fill="#4ade80"
+              font-size="12"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              λ₂/2
+            </text>
+          </svg>
+        </div>
+
+        <div class="calc">l = λ₂/4 + λ₂/2</div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p12.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 13</span>
+        <a href="ch7-prof-p14.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Notebook Page
+        </h3>
+        <img
+          src="ch7_p13.jpg"
+          alt="Ch 7 Page 13"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_p13.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>
