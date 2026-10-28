@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 15</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 10px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .board-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        border-left: 3px solid var(--green);
+        padding-left: 10px;
+        margin-top: 10px;
+      }
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+      .bullet-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 8px;
+        font-size: 0.92rem;
+        color: var(--text-main);
+      }
+      .bullet-list li::before {
+        content: "★";
+        position: absolute;
+        left: 0;
+        color: var(--yellow);
+        font-size: 0.85rem;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p14.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 15</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Stationary Waves in Microwave Oven</div>
+      <div class="page-sub">MCQ Concepts &amp; Standing Wave Detection</div>
+
+      <!-- MAIN MICROWAVE CONCEPT CARD -->
+      <div class="concept-card">
+        <div class="concept-title">
+          Stationary Waves in Microwave Oven (MCQs)
+        </div>
+
+        <!-- DIAGRAM 1: MICROWAVE OVEN WITH POPCORN BOWL -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 450 180" width="100%" height="auto">
+            <!-- Main Oven Body -->
+            <rect
+              x="40"
+              y="20"
+              width="370"
+              height="140"
+              rx="10"
+              fill="#12151e"
+              stroke="#00f0ff"
+              stroke-width="2.5"
+            />
+
+            <!-- Glass Door -->
+            <rect
+              x="55"
+              y="32"
+              width="240"
+              height="116"
+              rx="6"
+              fill="#080a10"
+              stroke="#334155"
+              stroke-width="2"
+            />
+
+            <!-- Deep 3D Bowl -->
+            <path
+              d="M 130 112 C 130 142, 220 142, 220 112 Z"
+              fill="#1e293b"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+            />
+            <ellipse
+              cx="175"
+              cy="112"
+              rx="45"
+              ry="6"
+              fill="#0f172a"
+              stroke="#00f0ff"
+              stroke-width="1"
+            />
+
+            <!-- Popcorns inside bowl -->
+            <g fill="#fef08a" stroke="#ca8a04" stroke-width="0.5">
+              <circle cx="155" cy="110" r="5" />
+              <circle cx="165" cy="106" r="6" />
+              <circle cx="175" cy="103" r="7" />
+              <circle cx="185" cy="107" r="6" />
+              <circle cx="195" cy="110" r="5" />
+              <circle cx="160" cy="101" r="5" />
+              <circle cx="172" cy="97" r="6" />
+              <circle cx="182" cy="99" r="5" />
+            </g>
+
+            <!-- Control Panel -->
+            <rect
+              x="310"
+              y="32"
+              width="85"
+              height="116"
+              rx="6"
+              fill="#0a0d14"
+              stroke="#1e293b"
+              stroke-width="1.5"
+            />
+
+            <!-- Digital Timer Screen -->
+            <rect
+              x="320"
+              y="42"
+              width="65"
+              height="22"
+              rx="3"
+              fill="#000"
+              stroke="#ff00aa"
+              stroke-width="1"
+            />
+            <text
+              x="352.5"
+              y="58"
+              fill="#ff00aa"
+              font-size="13"
+              font-family="monospace"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              0:30
+            </text>
+
+            <!-- Dial/Knob -->
+            <circle
+              cx="352.5"
+              cy="80"
+              r="8"
+              fill="#1e293b"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+            />
+
+            <!-- Keypad Grid -->
+            <g
+              font-size="9"
+              fill="#94a3b8"
+              font-family="monospace"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              <rect
+                x="325"
+                y="96"
+                width="18"
+                height="12"
+                rx="2"
+                fill="#1e293b"
+              />
+              <text x="334" y="105">1</text>
+              <rect
+                x="356"
+                y="96"
+                width="18"
+                height="12"
+                rx="2"
+                fill="#1e293b"
+              />
+              <text x="365" y="105">2</text>
+              <rect
+                x="325"
+                y="112"
+                width="18"
+                height="12"
+                rx="2"
+                fill="#1e293b"
+              />
+              <text x="334" y="121">3</text>
+              <rect
+                x="356"
+                y="112"
+                width="18"
+                height="12"
+                rx="2"
+                fill="#1e293b"
+              />
+              <text x="365" y="121">4</text>
+              <rect
+                x="325"
+                y="128"
+                width="18"
+                height="12"
+                rx="2"
+                fill="#1e293b"
+              />
+              <text x="334" y="137">5</text>
+              <rect
+                x="356"
+                y="128"
+                width="18"
+                height="12"
+                rx="2"
+                fill="#1e293b"
+              />
+              <text x="365" y="137">6</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- BULLET POINTS -->
+        <ul class="bullet-list">
+          <li>
+            <strong>Microwaves:</strong> Wavelength range in
+            <span style="color: var(--accent)">mm – cm</span>.
+          </li>
+          <li>Oven is a <strong>metallic container</strong>.</li>
+          <li>
+            Microwaves <strong>cannot escape</strong> through the metallic
+            boundaries.
+          </li>
+          <li>
+            Possible to form <strong>stationary (standing) waves</strong> inside
+            the oven.
+          </li>
+        </ul>
+      </div>
+
+      <!-- DIAGRAM 2: STANDING WAVE & DETECTOR -->
+      <div class="concept-card">
+        <div class="concept-title">
+          Standing Wave &amp; Probe Detector Setup
+        </div>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 460 150" width="100%" height="auto">
+            <!-- Source Box -->
+            <rect
+              x="20"
+              y="35"
+              width="60"
+              height="70"
+              fill="#15151c"
+              stroke="#3b82f6"
+              stroke-width="2"
+              rx="4"
+            />
+            <text
+              x="50"
+              y="75"
+              fill="#3b82f6"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Source
+            </text>
+
+            <!-- Metallic Plate -->
+            <rect
+              x="390"
+              y="25"
+              width="15"
+              height="90"
+              fill="#334155"
+              stroke="#ff00aa"
+              stroke-width="2"
+            />
+            <text
+              x="397.5"
+              y="130"
+              fill="#ff00aa"
+              font-size="10"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Metallic Plate
+            </text>
+
+            <!-- Standing Wave Pattern (3 Loops) -->
+            <path
+              d="M 80 70 Q 131.6 25 183.3 70 Q 235 115 286.6 70 Q 338.3 25 390 70"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.2"
+            />
+            <path
+              d="M 80 70 Q 131.6 115 183.3 70 Q 235 25 286.6 70 Q 338.3 115 390 70"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2.2"
+              stroke-dasharray="4,3"
+            />
+
+            <!-- Node Points -->
+            <circle cx="183.3" cy="70" r="4" fill="#fbbf24" />
+            <circle cx="286.6" cy="70" r="4" fill="#fbbf24" />
+
+            <!-- Probe Detector Arrow & Label -->
+            <line
+              x1="183.3"
+              y1="100"
+              x2="183.3"
+              y2="76"
+              stroke="#4ade80"
+              stroke-width="2"
+            />
+            <text
+              x="183.3"
+              y="115"
+              fill="#4ade80"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Probe Detector
+            </text>
+            <text
+              x="183.3"
+              y="130"
+              fill="#9494a0"
+              font-size="9.5"
+              text-anchor="middle"
+            >
+              (Detects Nodes &amp; Antinodes)
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- BOTTOM EXTRA LECTURE NOTE: PROJECTILE RANGE -->
+      <div class="concept-card">
+        <div class="concept-title">
+          Projectile Motion Range Formula (Side Note)
+        </div>
+
+        <div class="calc" style="text-align: center">
+          <strong style="color: var(--accent); font-size: 1.15rem"
+            >R = (vᵢ² · sin 2θ) / g</strong
+          >
+        </div>
+
+        <!-- CORRECTED TRAJECTORY GRAPH -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 400 135" width="100%" height="auto">
+            <!-- Axes -->
+            <line
+              x1="40"
+              y1="100"
+              x2="360"
+              y2="100"
+              stroke="#475569"
+              stroke-width="2"
+            />
+            <line
+              x1="40"
+              y1="100"
+              x2="40"
+              y2="20"
+              stroke="#475569"
+              stroke-width="2"
+            />
+            <text x="35" y="15" fill="#94a3b8" font-size="10">y</text>
+            <text x="368" y="103" fill="#94a3b8" font-size="10">x</text>
+
+            <!-- Tangent launch line at 45° -->
+            <line
+              x1="40"
+              y1="100"
+              x2="110"
+              y2="30"
+              stroke="#ff00aa"
+              stroke-width="1.5"
+              stroke-dasharray="3,3"
+            />
+
+            <!-- Angle Arc -->
+            <path
+              d="M 70 100 A 30 30 0 0 0 61.2 78.8"
+              fill="none"
+              stroke="#fbbf24"
+              stroke-width="1.8"
+            />
+            <text x="79" y="95" fill="#fbbf24" font-size="11" font-weight="700">
+              θ = 45°
+            </text>
+
+            <!-- Parabola -->
+            <path
+              d="M 40 100 Q 180 20 320 100"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2.5"
+            />
+
+            <!-- Range Double Arrow -->
+            <line
+              x1="40"
+              y1="118"
+              x2="320"
+              y2="118"
+              stroke="#00f0ff"
+              stroke-width="1.5"
+            />
+            <text
+              x="180"
+              y="115"
+              fill="#00f0ff"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Range (R)
+            </text>
+          </svg>
+        </div>
+
+        <div class="calc">
+          When θ = 45°:<br />
+          R = [vᵢ² · sin 2(45°)] / g<br />
+          R = (vᵢ² / g) · sin(90°)<br />
+          <strong style="color: var(--green)"
+            >R = vᵢ² / g &nbsp; (Maximum Range)</strong
+          >
+        </div>
+
+        <div class="board-note">
+          <strong style="color: var(--green)">★ Factor Note:</strong> The
+          projectile range is maximized ONLY when the angle is exactly 45&deg;.
+          If the launch angle is greater or less than 45&deg;, the value of
+          sin(2&theta;) drops below 1, making the final range strictly smaller
+          than R<sub>max</sub>.
+        </div>
+      </div>
+
+      <!-- PAGINATION -->
+      <div class="pagination">
+        <a href="ch7-prof-p14.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 15</span>
+        <a href="prof-hub.html" class="page-btn">Prof Hub 🏠</a>
+      </div>
+
+      <!-- SOURCE IMAGE FALLBACK -->
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Notebook Page
+        </h3>
+        <img
+          src="ch7_p15.jpg"
+          alt="Ch 7 Page 15"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_p15.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>
