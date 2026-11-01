@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 21</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .def-box {
+        background: rgba(0, 240, 255, 0.06);
+        border-left: 4px solid var(--accent);
+        padding: 12px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 12px;
+        font-size: 0.92rem;
+        color: var(--text-main);
+        font-style: italic;
+      }
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+      .bullet-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 8px;
+        font-size: 0.92rem;
+        color: var(--text-main);
+      }
+      .bullet-list li::before {
+        content: "★";
+        position: absolute;
+        left: 0;
+        color: var(--yellow);
+        font-size: 0.85rem;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+      .tb-badge {
+        display: inline-block;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid var(--blue-ink);
+        color: var(--blue-ink);
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p20.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 21</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">7.8 Diffraction of Waves</div>
+      <div class="page-sub">
+        Textbook §7.8 · Definition · Conditions · Wave Types &amp; Examples
+      </div>
+
+      <!-- DEFINITION CARD -->
+      <div class="concept-card">
+        <div class="tb-badge">TEXTBOOK · § 7.8</div>
+        <div class="concept-title">DEFINITION</div>
+        <div class="def-box">
+          Diffraction of waves is the bending of waves around the sharp edges or
+          corners of obstacles or the spreading of waves beyond a barrier.
+        </div>
+
+        <div class="calc">
+          • Occurs when a wave encounters a barrier or opening (<strong
+            style="color: var(--accent)"
+            >slit</strong
+          >) that is <strong>comparable in size to the wavelength</strong> (d ≈
+          λ).<br /><br />
+          • <strong style="color: var(--green)">Longer Wavelength (λ)</strong> →
+          More spreading / significant diffraction.<br />
+          • <strong style="color: var(--pink)">Shorter Wavelength (λ)</strong> →
+          Less spreading / minor diffraction.
+        </div>
+      </div>
+
+      <!-- WAVE TYPES & EXAMPLES -->
+      <div class="concept-card">
+        <div class="concept-title">Observed in Various Wave Types</div>
+        <ul class="bullet-list">
+          <li>
+            <strong>Water waves</strong> (bending around rocks / sea walls)
+          </li>
+          <li>
+            <strong>Sound waves</strong> (hearing around open doors and corners)
+          </li>
+          <li><strong>Light waves</strong> (fringes through tiny pinholes)</li>
+          <li>
+            <strong>Electromagnetic waves</strong> (X-rays diffracting through
+            crystal lattices)
+          </li>
+        </ul>
+
+        <div class="concept-title" style="margin-top: 15px">EXAMPLES</div>
+        <div class="calc">
+          1. <strong>Sound around corners:</strong> Long acoustic wavelengths
+          (meters) readily bend around doorframes and building walls.<br /><br />
+          2. <strong>X-ray crystallography:</strong> Extremely short X-ray
+          wavelengths match atomic lattice spacing in crystals, producing atomic
+          diffraction patterns.
+        </div>
+      </div>
+
+      <!-- THE RIPPLE TANK -->
+      <div class="concept-card">
+        <div class="concept-title">THE RIPPLE TANK</div>
+        <div class="calc">
+          A very useful laboratory apparatus not only to generate water waves,
+          but also to demonstrate fundamental wave properties:
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 10px;
+          "
+        >
+          <span style="color: var(--accent); font-weight: 700"
+            >1. Reflection</span
+          >
+          <span style="color: var(--pink); font-weight: 700"
+            >2. Diffraction</span
+          >
+          <span style="color: var(--yellow); font-weight: 700"
+            >3. Refraction</span
+          >
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p20.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 21</span>
+        <a href="ch7-prof-p22.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Textbook Page
+        </h3>
+        <img
+          src="ch7_tb_p21.jpg"
+          alt="Ch 7 Textbook Diffraction"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_tb_p21.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>

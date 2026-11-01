@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 19</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .def-box {
+        background: rgba(0, 240, 255, 0.06);
+        border-left: 4px solid var(--accent);
+        padding: 12px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 12px;
+        font-size: 0.92rem;
+        color: var(--text-main);
+        font-style: italic;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 10px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+      .tb-badge {
+        display: inline-block;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid var(--blue-ink);
+        color: var(--blue-ink);
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p18.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 19</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Beats Formation</div>
+      <div class="page-sub">
+        Textbook p.163 · Tuning forks · Definition · Waveforms intro
+      </div>
+
+      <!-- DEFINITION -->
+      <div class="concept-card">
+        <div class="tb-badge">TEXTBOOK · § BEATS · p.163</div>
+        <div class="concept-title">BEATS</div>
+        <div class="def-box">
+          Beats are periodic fluctuations between maximum and minimum loudness
+          when two sound waves of slightly different frequencies, travelling in
+          the same direction, overlap each other.
+        </div>
+        <div class="calc">
+          Tuning forks give out
+          <strong style="color: var(--accent)">pure notes</strong> (single
+          frequency).
+        </div>
+      </div>
+
+      <!-- SAME FREQUENCY CASE -->
+      <div class="concept-card">
+        <div class="concept-title">Same Frequency — No Beats</div>
+        <div class="calc">
+          • If two tuning forks A and B of the same frequency, say
+          <strong style="color: var(--yellow)">32 Hz</strong>, are sounded
+          separately, they give out pure notes.<br /><br />
+          • If sounded <strong>simultaneously</strong>, it is difficult to
+          differentiate one from the other.<br /><br />
+          • The sound waves are
+          <strong style="color: var(--accent)">superposed</strong> and heard as
+          a single pure note.
+        </div>
+      </div>
+
+      <!-- BEATS FORMATION -->
+      <div class="concept-card">
+        <div class="concept-title">BEATS FORMATION</div>
+        <div class="calc">
+          If tuning fork B is
+          <strong style="color: var(--pink)"
+            >loaded with wax or plasticine</strong
+          >, its frequency is lowered slightly — say it becomes
+          <strong style="color: var(--yellow)">30 Hz</strong>.
+        </div>
+        <div class="calc">
+          Sounded together → a note of
+          <strong>alternately increasing and decreasing intensity</strong> is
+          heard.<br /><br />
+          This is called a
+          <strong style="color: var(--accent)">beat note</strong> (or beat), due
+          to <strong>interference</strong> between waves from A and B.
+        </div>
+      </div>
+
+      <!-- WAVEFORMS INTRO -->
+      <div class="concept-card">
+        <div class="concept-title">WAVEFORMS</div>
+        <div class="svg-wrap">
+          <svg viewBox="0 0 420 200" width="100%" height="auto">
+            <!-- (a) f1 = 32 Hz -->
+            <text x="8" y="28" fill="#00f0ff" font-size="11" font-weight="700">
+              (a)
+            </text>
+            <path
+              d="M 40 30 Q 55 10 70 30 T 100 30 T 130 30 T 160 30 T 190 30 T 220 30 T 250 30 T 280 30 T 310 30 T 340 30 T 370 30"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2"
+            />
+            <text
+              x="390"
+              y="34"
+              fill="#00f0ff"
+              font-size="10"
+              font-weight="700"
+            >
+              f₁=32Hz
+            </text>
+
+            <!-- (b) f2 = 30 Hz -->
+            <text x="8" y="78" fill="#a855f7" font-size="11" font-weight="700">
+              (b)
+            </text>
+            <path
+              d="M 40 80 Q 56 60 72 80 T 104 80 T 136 80 T 168 80 T 200 80 T 232 80 T 264 80 T 296 80 T 328 80 T 360 80"
+              fill="none"
+              stroke="#a855f7"
+              stroke-width="2"
+            />
+            <text
+              x="390"
+              y="84"
+              fill="#a855f7"
+              font-size="10"
+              font-weight="700"
+            >
+              f₂=30Hz
+            </text>
+
+            <!-- (c) Resultant beats -->
+            <text x="8" y="128" fill="#4ade80" font-size="11" font-weight="700">
+              (c)
+            </text>
+            <!-- envelope -->
+            <path
+              d="M 40 130 Q 100 95 160 130 Q 220 165 280 130 Q 340 95 400 130"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="1.2"
+              stroke-dasharray="3,2"
+            />
+            <path
+              d="M 40 130 Q 100 165 160 130 Q 220 95 280 130 Q 340 165 400 130"
+              fill="none"
+              stroke="#ff00aa"
+              stroke-width="1.2"
+              stroke-dasharray="3,2"
+            />
+            <!-- carrier -->
+            <path
+              d="M 40 130 Q 50 110 60 130 T 80 130 T 100 130 T 120 130 T 140 130 T 160 130 T 180 130 T 200 130 T 220 130 T 240 130 T 260 130 T 280 130 T 300 130 T 320 130 T 340 130 T 360 130 T 380 130 T 400 130"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.6"
+            />
+
+            <!-- X Y Z markers -->
+            <circle cx="40" cy="130" r="3" fill="#fbbf24" />
+            <text
+              x="40"
+              y="148"
+              fill="#fbbf24"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              X
+            </text>
+            <circle cx="160" cy="130" r="3" fill="#fbbf24" />
+            <text
+              x="160"
+              y="148"
+              fill="#fbbf24"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Y
+            </text>
+            <circle cx="280" cy="130" r="3" fill="#fbbf24" />
+            <text
+              x="280"
+              y="148"
+              fill="#fbbf24"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Z
+            </text>
+
+            <!-- time labels -->
+            <text
+              x="40"
+              y="168"
+              fill="#9494a0"
+              font-size="9"
+              text-anchor="middle"
+            >
+              0
+            </text>
+            <text
+              x="160"
+              y="168"
+              fill="#9494a0"
+              font-size="9"
+              text-anchor="middle"
+            >
+              ¼ s
+            </text>
+            <text
+              x="280"
+              y="168"
+              fill="#9494a0"
+              font-size="9"
+              text-anchor="middle"
+            >
+              ½ s
+            </text>
+            <text
+              x="210"
+              y="190"
+              fill="#4ade80"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Resultant wave
+            </text>
+          </svg>
+        </div>
+        <div class="calc" style="font-size: 0.85rem">
+          <strong style="color: var(--accent)">(a)</strong> waveform from tuning
+          fork A<br />
+          <strong style="color: var(--accent-alt)">(b)</strong> waveform from
+          tuning fork B<br />
+          <strong style="color: var(--green)">(c)</strong> resultant when A and
+          B sound together
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p18.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 19</span>
+        <a href="ch7-prof-p20.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Textbook Page
+        </h3>
+        <img
+          src="ch7_tb_p19.jpg"
+          alt="Ch 7 Textbook Beats Formation"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_tb_p19.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>

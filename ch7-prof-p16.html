@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 16</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 10px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .bullet-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin: 10px 0;
+      }
+      .bullet-item {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        color: var(--text-main);
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p15.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 16</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Diffraction of Waves (L/Q)</div>
+      <div class="page-sub">
+        Wavefronts · Slit Diffraction · Ripple Tank · Beats Intro
+      </div>
+
+      <!-- DIFFRACTION CARD -->
+      <div class="concept-card">
+        <div class="concept-title">Diffraction Through a Slit</div>
+
+        <!-- SVG DIAGRAM: PLANE WAVES TO CURVED DIFFRACTED WAVES -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 450 160" width="100%" height="auto">
+            <!-- Incoming Plane Wavefronts -->
+            <line
+              x1="40"
+              y1="30"
+              x2="40"
+              y2="130"
+              stroke="#00f0ff"
+              stroke-width="2.5"
+            />
+            <line
+              x1="70"
+              y1="30"
+              x2="70"
+              y2="130"
+              stroke="#00f0ff"
+              stroke-width="2.5"
+            />
+            <line
+              x1="100"
+              y1="30"
+              x2="100"
+              y2="130"
+              stroke="#00f0ff"
+              stroke-width="2.5"
+            />
+            <line
+              x1="130"
+              y1="30"
+              x2="130"
+              y2="130"
+              stroke="#00f0ff"
+              stroke-width="2.5"
+            />
+            <text
+              x="85"
+              y="20"
+              fill="#00f0ff"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              "Straight Wavefronts"
+            </text>
+
+            <!-- Slit Barriers with Hatching -->
+            <!-- Top Barrier -->
+            <rect
+              x="180"
+              y="20"
+              width="16"
+              height="50"
+              fill="#1e293b"
+              stroke="#ff00aa"
+              stroke-width="2"
+            />
+            <line
+              x1="180"
+              y1="30"
+              x2="196"
+              y2="20"
+              stroke="#ff00aa"
+              stroke-width="1"
+            />
+            <line
+              x1="180"
+              y1="50"
+              x2="196"
+              y2="40"
+              stroke="#ff00aa"
+              stroke-width="1"
+            />
+
+            <!-- Bottom Barrier -->
+            <rect
+              x="180"
+              y="90"
+              width="16"
+              height="50"
+              fill="#1e293b"
+              stroke="#ff00aa"
+              stroke-width="2"
+            />
+            <line
+              x1="180"
+              y1="100"
+              x2="196"
+              y2="90"
+              stroke="#ff00aa"
+              stroke-width="1"
+            />
+            <line
+              x1="180"
+              y1="120"
+              x2="196"
+              y2="110"
+              stroke="#ff00aa"
+              stroke-width="1"
+            />
+            <text
+              x="188"
+              y="152"
+              fill="#ff00aa"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              "Slit"
+            </text>
+
+            <!-- Circular Diffracted Waves -->
+            <path
+              d="M 196 65 A 20 20 0 0 1 196 95"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2.5"
+            />
+            <path
+              d="M 196 50 A 35 35 0 0 1 196 110"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2.5"
+            />
+            <path
+              d="M 196 35 A 50 50 0 0 1 196 125"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2.5"
+            />
+            <path
+              d="M 196 20 A 65 65 0 0 1 196 140"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="2.5"
+            />
+          </svg>
+        </div>
+
+        <div class="calc">
+          <strong style="color: var(--accent)">Wave-fronts:</strong><br />
+          Diagrams that easily express waves.
+        </div>
+
+        <div class="calc">
+          <strong style="color: var(--pink)">Diffraction:</strong><br />
+          Bending of waves around corners, sharp edges, and obstacles.
+        </div>
+      </div>
+
+      <!-- RIPPLE TANK CARD -->
+      <div class="concept-card">
+        <div class="concept-title">Ripple Tank</div>
+        <div class="bullet-grid">
+          <div class="bullet-item">★ Water tank</div>
+          <div class="bullet-item">★ Waves production</div>
+          <div class="bullet-item">★ Contains obstacles</div>
+          <div class="bullet-item">★ Vibrating motor</div>
+        </div>
+        <div
+          class="calc"
+          style="text-align: center; color: var(--green); margin-top: 8px"
+        >
+          ★ Demonstrates Diffraction of water waves
+        </div>
+      </div>
+
+      <!-- BEATS INTRO CARD -->
+      <div class="concept-card">
+        <div class="concept-title">Beats</div>
+        <div class="calc">
+          Superposition of 2 waves having the same direction but slightly
+          different frequencies.
+        </div>
+
+        <!-- SVG SUPERPOSITION TO BEAT ENVELOPE -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 450 140" width="100%" height="auto">
+            <!-- Wave 1 -->
+            <path
+              d="M 20 30 Q 35 10 50 30 T 80 30 T 110 30 T 140 30"
+              fill="none"
+              stroke="#00f0ff"
+              stroke-width="2"
+            />
+            <text
+              x="80"
+              y="48"
+              fill="#00f0ff"
+              font-size="10"
+              text-anchor="middle"
+            >
+              Wave 1
+            </text>
+
+            <text
+              x="155"
+              y="40"
+              fill="#fbbf24"
+              font-size="18"
+              font-weight="800"
+            >
+              +
+            </text>
+
+            <!-- Wave 2 -->
+            <path
+              d="M 170 30 Q 183 10 196 30 T 222 30 T 248 30 T 274 30"
+              fill="none"
+              stroke="#a855f7"
+              stroke-width="2"
+            />
+            <text
+              x="222"
+              y="48"
+              fill="#a855f7"
+              font-size="10"
+              text-anchor="middle"
+            >
+              Wave 2
+            </text>
+
+            <text
+              x="288"
+              y="40"
+              fill="#fbbf24"
+              font-size="18"
+              font-weight="800"
+            >
+              =
+            </text>
+
+            <!-- Beat Envelope -->
+            <g transform="translate(305, 0)">
+              <!-- Envelope Outline -->
+              <path
+                d="M 10 30 Q 40 5 70 30 Q 100 55 130 30"
+                fill="none"
+                stroke="#ff00aa"
+                stroke-width="1.5"
+                stroke-dasharray="3,2"
+              />
+              <path
+                d="M 10 30 Q 40 55 70 30 Q 100 5 130 30"
+                fill="none"
+                stroke="#ff00aa"
+                stroke-width="1.5"
+                stroke-dasharray="3,2"
+              />
+              <!-- High frequency carrier inside -->
+              <path
+                d="M 10 30 Q 17.5 15 25 30 T 40 30 T 55 30 T 70 30 T 85 30 T 100 30 T 115 30 T 130 30"
+                fill="none"
+                stroke="#4ade80"
+                stroke-width="1.8"
+              />
+            </g>
+            <text
+              x="375"
+              y="70"
+              fill="#ff00aa"
+              font-size="11"
+              font-weight="700"
+              text-anchor="middle"
+            >
+              Beat Envelope
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p15.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 16</span>
+        <a href="ch7-prof-p17.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Notebook Page
+        </h3>
+        <img
+          src="ch7_p16.jpg"
+          alt="Ch 7 Page 16"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_p16.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>

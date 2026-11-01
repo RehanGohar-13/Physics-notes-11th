@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 22</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .svg-wrap {
+        background: #05050a;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 10px;
+        margin: 12px 0;
+        text-align: center;
+      }
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+      }
+      .bullet-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 8px;
+        font-size: 0.92rem;
+        color: var(--text-main);
+      }
+      .bullet-list li::before {
+        content: "★";
+        position: absolute;
+        left: 0;
+        color: var(--yellow);
+        font-size: 0.85rem;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+      .tb-badge {
+        display: inline-block;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid var(--blue-ink);
+        color: var(--blue-ink);
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p21.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 22</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Ripple Tank Diffraction Study</div>
+      <div class="page-sub">
+        Apparatus Setup · Gap Width Comparison · Conclusion
+      </div>
+
+      <!-- RIPPLE TANK APPARATUS CARD -->
+      <div class="concept-card">
+        <div class="tb-badge">TEXTBOOK · § RIPPLE TANK</div>
+        <div class="concept-title">APPARATUS COMPONENTS</div>
+        <ul class="bullet-list">
+          <li><strong>Water</strong> inside a glass-bottomed tray</li>
+          <li>
+            <strong>Vibrator</strong> (motorized oscillating bar/needle
+            suspended by elastic bands)
+          </li>
+          <li>
+            <strong>Lamp / Light Source</strong> mounted on an overhead stand
+          </li>
+          <li>
+            <strong>White Screen</strong> placed below tray to view shadow wave
+            patterns
+          </li>
+          <li>
+            <strong>Obstacles</strong> (rectangular blocks/barriers to form
+            slits)
+          </li>
+        </ul>
+
+        <!-- SVG 3D APPARATUS ILLUSTRATION -->
+        <div class="svg-wrap">
+          <svg viewBox="0 0 420 180" width="100%" height="auto">
+            <!-- Overhead Lamp & Stand -->
+            <line
+              x1="80"
+              y1="160"
+              x2="80"
+              y2="20"
+              stroke="#475569"
+              stroke-width="3"
+            />
+            <line
+              x1="80"
+              y1="20"
+              x2="160"
+              y2="20"
+              stroke="#475569"
+              stroke-width="3"
+            />
+            <path d="M 150 20 L 170 20 L 180 35 L 140 35 Z" fill="#fbbf24" />
+            <text
+              x="160"
+              y="14"
+              fill="#fbbf24"
+              font-size="9"
+              text-anchor="middle"
+              font-weight="700"
+            >
+              Lamp
+            </text>
+
+            <!-- Vibrator Bar -->
+            <rect x="120" y="55" width="120" height="8" rx="2" fill="#3b82f6" />
+            <text
+              x="180"
+              y="50"
+              fill="#3b82f6"
+              font-size="9"
+              text-anchor="middle"
+              font-weight="700"
+            >
+              Vibrator
+            </text>
+
+            <!-- Glass Tray -->
+            <polygon
+              points="100,80 260,80 290,110 130,110"
+              fill="rgba(0,240,255,0.15)"
+              stroke="#00f0ff"
+              stroke-width="1.8"
+            />
+            <text
+              x="195"
+              y="98"
+              fill="#00f0ff"
+              font-size="9"
+              text-anchor="middle"
+              font-weight="700"
+            >
+              Glass Tray (Water)
+            </text>
+
+            <!-- Bottom Screen -->
+            <polygon
+              points="100,140 260,140 290,170 130,170"
+              fill="#15151c"
+              stroke="#334155"
+              stroke-width="1.5"
+            />
+            <!-- Wave Shadow Lines on Screen -->
+            <path
+              d="M 140 155 Q 195 145 250 155"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.5"
+            />
+            <path
+              d="M 145 162 Q 195 152 245 162"
+              fill="none"
+              stroke="#4ade80"
+              stroke-width="1.5"
+            />
+            <text
+              x="195"
+              y="166"
+              fill="#4ade80"
+              font-size="9"
+              text-anchor="middle"
+              font-weight="700"
+            >
+              Wave Shadow Pattern
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- GAP WIDTH COMPARISON -->
+      <div class="concept-card">
+        <div class="concept-title">STUDY OF DIFFRACTION: GAP WIDTH EFFECT</div>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 420 140" width="100%" height="auto">
+            <!-- Left: Small Gap -->
+            <g transform="translate(10,10)">
+              <text
+                x="90"
+                y="12"
+                fill="#ff00aa"
+                font-size="10"
+                font-weight="700"
+                text-anchor="middle"
+              >
+                Small Gap (d ≈ λ)
+              </text>
+              <!-- Incoming -->
+              <line
+                x1="20"
+                y1="25"
+                x2="20"
+                y2="105"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <line
+                x1="40"
+                y1="25"
+                x2="40"
+                y2="105"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <line
+                x1="60"
+                y1="25"
+                x2="60"
+                y2="105"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <!-- Slit -->
+              <rect x="80" y="25" width="10" height="35" fill="#334155" />
+              <rect x="80" y="70" width="10" height="35" fill="#334155" />
+              <!-- Curved Diffracted -->
+              <path
+                d="M 90 52 A 18 18 0 0 1 90 78"
+                fill="none"
+                stroke="#4ade80"
+                stroke-width="2"
+              />
+              <path
+                d="M 90 40 A 30 30 0 0 1 90 90"
+                fill="none"
+                stroke="#4ade80"
+                stroke-width="2"
+              />
+              <path
+                d="M 90 28 A 42 42 0 0 1 90 102"
+                fill="none"
+                stroke="#4ade80"
+                stroke-width="2"
+              />
+              <text
+                x="90"
+                y="122"
+                fill="#4ade80"
+                font-size="9.5"
+                text-anchor="middle"
+                font-weight="700"
+              >
+                Significant Diffraction
+              </text>
+            </g>
+
+            <!-- Right: Large Gap -->
+            <g transform="translate(220,10)">
+              <text
+                x="90"
+                y="12"
+                fill="#00f0ff"
+                font-size="10"
+                font-weight="700"
+                text-anchor="middle"
+              >
+                Large Gap (d &gt;&gt; λ)
+              </text>
+              <!-- Incoming -->
+              <line
+                x1="20"
+                y1="25"
+                x2="20"
+                y2="105"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <line
+                x1="40"
+                y1="25"
+                x2="40"
+                y2="105"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <line
+                x1="60"
+                y1="25"
+                x2="60"
+                y2="105"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <!-- Slit -->
+              <rect x="80" y="25" width="10" height="20" fill="#334155" />
+              <rect x="80" y="85" width="10" height="20" fill="#334155" />
+              <!-- Mostly Straight Diffracted -->
+              <path
+                d="M 90 45 C 95 45, 95 47, 95 47 L 95 83 C 95 83, 95 85, 90 85"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <path
+                d="M 110 43 C 115 43, 115 47, 115 47 L 115 83 C 115 83, 115 87, 110 87"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <path
+                d="M 130 41 C 135 41, 135 47, 135 47 L 135 83 C 135 83, 135 89, 130 89"
+                fill="none"
+                stroke="#00f0ff"
+                stroke-width="2"
+              />
+              <text
+                x="90"
+                y="122"
+                fill="#9494a0"
+                font-size="9.5"
+                text-anchor="middle"
+                font-weight="700"
+              >
+                Decreased Diffraction
+              </text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- OBSERVATIONS & CONCLUSION -->
+      <div class="concept-card">
+        <div class="concept-title">OBSERVATIONS &amp; CONCLUSION</div>
+        <div class="calc">
+          <strong style="color: var(--pink)">Observation 1:</strong> When gap
+          width is <strong>small</strong> compared to wavelength (d ≈ λ),
+          diffraction is <strong>significant</strong> and waves bend around
+          obstacles in a semicircular pattern.<br /><br />
+          <strong style="color: var(--accent)">Observation 2:</strong> As gap
+          width <strong>increases</strong> relative to wavelength (d &gt;&gt;
+          λ), diffraction <strong>decreases</strong> and waves pass through with
+          minimal bending.
+        </div>
+
+        <div
+          class="calc"
+          style="
+            border-left: 3px solid var(--green);
+            background: rgba(74, 222, 128, 0.05);
+          "
+        >
+          <strong style="color: var(--green)">Conclusion:</strong> Demonstrates
+          the qualitative effect of gap width on diffraction in a ripple tank,
+          establishing that maximum diffraction requires gap size to be
+          comparable to wavelength.
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p21.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 22</span>
+        <a href="prof-hub.html" class="page-btn">Prof Hub 🏠</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Textbook Page
+        </h3>
+        <img
+          src="ch7_tb_p22.jpg"
+          alt="Ch 7 Textbook Ripple Tank"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_tb_p22.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>

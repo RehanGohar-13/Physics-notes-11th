@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prof Notes - Ch 7 Page 18</title>
+    <style>
+      :root {
+        --bg-main: #0d0d12;
+        --bg-card: #15151c;
+        --border-color: #2a2a35;
+        --text-main: #f3f3f6;
+        --text-muted: #9494a0;
+        --accent: #00f0ff;
+        --accent-alt: #a855f7;
+        --green: #4ade80;
+        --pink: #ff00aa;
+        --yellow: #fbbf24;
+        --blue-ink: #3b82f6;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        font-family: -apple-system, sans-serif;
+        line-height: 1.6;
+        padding-bottom: 70px;
+      }
+      a {
+        color: var(--text-muted);
+        text-decoration: none;
+      }
+      .top-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 13, 18, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .top-bar .page-title {
+        color: var(--accent);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 24px 20px;
+      }
+      .chapter-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        color: var(--blue-ink);
+        border-bottom: 2px solid var(--blue-ink);
+        padding-bottom: 6px;
+      }
+      .page-sub {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 22px;
+      }
+      .concept-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 16px;
+      }
+      .concept-title {
+        font-size: 1.05rem;
+        color: var(--blue-ink);
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .calc {
+        background: #0a0a0f;
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 14px;
+        font-family: Consolas, monospace;
+        font-size: 0.95rem;
+        line-height: 1.9;
+        color: #ccc;
+        margin-bottom: 12px;
+      }
+      .inst-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 10px 0;
+        border-bottom: 1px dashed #222;
+      }
+      .inst-row:last-child {
+        border-bottom: none;
+      }
+      .inst-name {
+        min-width: 95px;
+        color: var(--accent);
+        font-weight: 700;
+        font-style: italic;
+        font-size: 0.92rem;
+      }
+      .inst-desc {
+        color: var(--text-main);
+        font-size: 0.9rem;
+        flex: 1;
+      }
+      .note-box {
+        background: rgba(251, 191, 36, 0.06);
+        border: 1px solid rgba(251, 191, 36, 0.25);
+        border-radius: 8px;
+        padding: 14px;
+        margin-top: 8px;
+      }
+      .note-box h4 {
+        color: var(--yellow);
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+      .note-box ul {
+        padding-left: 18px;
+        color: var(--text-muted);
+        font-size: 0.88rem;
+      }
+      .note-box li {
+        margin-bottom: 4px;
+      }
+      .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 36px 0 20px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-color);
+      }
+      .page-btn {
+        padding: 10px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.88rem;
+      }
+      .page-indicator {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+      .source-image-section {
+        margin-top: 24px;
+        background: #000;
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px dashed #333;
+        text-align: center;
+      }
+      .source-image {
+        width: 100%;
+        border-radius: 8px;
+      }
+      .bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+        display: flex;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom));
+        z-index: 50;
+      }
+      .bottom a {
+        flex: 1;
+        text-align: center;
+        color: #777;
+        font-size: 0.65rem;
+        padding: 6px 2px;
+      }
+      .bottom a.active {
+        color: #4ade80;
+      }
+      .bottom .ico {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+      }
+      .tb-badge {
+        display: inline-block;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid var(--blue-ink);
+        color: var(--blue-ink);
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="ch7-prof-p17.html">← Prev</a>
+      <span class="page-title">Ch 7 · Page 18</span>
+      <a href="prof-hub.html">Hub →</a>
+    </div>
+
+    <div class="container">
+      <div class="chapter-title">Beats — Examples</div>
+      <div class="page-sub">
+        Textbook excerpt · Musical instruments · Ch 07 Waves
+      </div>
+
+      <div class="concept-card">
+        <div class="tb-badge">TEXTBOOK · CH 07</div>
+        <div class="concept-title">EXAMPLES</div>
+
+        <div class="inst-row">
+          <div class="inst-name">Guitar:</div>
+          <div class="inst-desc">
+            Two slightly out-of-tune strings produce beats
+          </div>
+        </div>
+        <div class="inst-row">
+          <div class="inst-name">Piano:</div>
+          <div class="inst-desc">
+            Two nearby keys played together create beats
+          </div>
+        </div>
+        <div class="inst-row">
+          <div class="inst-name">Violin:</div>
+          <div class="inst-desc">Small changes in bowing produce beats</div>
+        </div>
+        <div class="inst-row">
+          <div class="inst-name">Drums:</div>
+          <div class="inst-desc">
+            Two drums with different tuning create beats
+          </div>
+        </div>
+        <div class="inst-row">
+          <div class="inst-name">Flute:</div>
+          <div class="inst-desc">
+            Slight changes in blowing position produce beats
+          </div>
+        </div>
+        <div class="inst-row">
+          <div class="inst-name">Organ:</div>
+          <div class="inst-desc">Pipes with different tuning create beats</div>
+        </div>
+        <div class="inst-row">
+          <div class="inst-name">Synthesizer:</div>
+          <div class="inst-desc">
+            Two oscillators with close frequencies produce beats
+          </div>
+        </div>
+
+        <div class="calc" style="margin-top: 14px">
+          In each of these examples, the slight difference in frequency between
+          the two sound sources creates a periodic increase and decrease in
+          amplitude, resulting in a “beat” or pulsation effect.
+        </div>
+
+        <div class="note-box">
+          <h4>NOTE</h4>
+          <ul>
+            <li>
+              Musicians use them for
+              <strong style="color: var(--green)">effects and tuning</strong>
+            </li>
+            <li>
+              Sometimes beats are
+              <strong style="color: var(--pink)">unwanted</strong>, so
+              instruments are adjusted to reduce them
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <a href="ch7-prof-p17.html" class="page-btn">← Prev</a>
+        <span class="page-indicator">Ch 7 · Page 18</span>
+        <a href="ch7-prof-p19.html" class="page-btn">Next →</a>
+      </div>
+
+      <div class="source-image-section">
+        <h3 style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px">
+          Original Textbook Page
+        </h3>
+        <img
+          src="ch7_tb_p18.jpg"
+          alt="Ch 7 Textbook Beats Examples"
+          class="source-image"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+        />
+        <div
+          style="
+            display: none;
+            color: #555;
+            padding: 30px 10px;
+            border: 1px dashed #333;
+            border-radius: 8px;
+          "
+        >
+          Add <strong>ch7_tb_p18.jpg</strong> next to this file
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom">
+      <a href="index.html"><span class="ico">🏠</span>Home</a>
+      <a href="prof-hub.html"><span class="ico">📋</span>Prof Hub</a>
+      <a href="ch7-prof-p1.html" class="active"
+        ><span class="ico">🌊</span>Ch7 Waves</a
+      >
+      <a href="sandbox.html"><span class="ico">🧪</span>Sandbox</a>
+    </nav>
+  </body>
+</html>
